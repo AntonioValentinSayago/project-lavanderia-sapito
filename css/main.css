@@ -1,0 +1,17 @@
+:root {
+    --primario: #17224d;
+    --secundario: #f5FAFA;
+    --terceario: #17e9e1;
+    --cuarto: #007fff;
+  
+}
+
+.btn-add{
+    background: var(--primario);
+    border: none;
+}
+
+label{
+    font-weight: 900;
+    color: var(--primario);
+}
