@@ -42,7 +42,7 @@ if (isset($_SESSION['id'])) {
 
 </head>
 
-<body onload="myFunction()">
+<body">
 
   <!--
       Las clases que utilizo en los divs son propias de Bootstrap
@@ -71,6 +71,7 @@ if (isset($_SESSION['id'])) {
         <fieldset>
 
           <legend class="center">Control de Acceso</legend>
+          <h5>Lavandería Sapito</h5>
 
           <!-- Caja de texto para usuario -->
           <label class="sr-only" for="user">Usuario</label>
@@ -107,6 +108,10 @@ if (isset($_SESSION['id'])) {
               <button type="button" class="btn btn-primary btn-block" name="button" id="login">Iniciar sesion</button>
             </div>
           </div>
+          <br><br>
+          <p style="text-align:justify; color:black; font-weight: bold;">Nota Importante: <span style="color:red;">El siguiente servicio se encuentra en fase de desarrollo es por ello que se muestran funcionalidades 
+            incompletas seguimos trabjando, Gracias 
+          </span>  </p>
         </fieldset>
       </div>
     </div>
