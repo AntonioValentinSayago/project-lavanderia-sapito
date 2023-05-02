@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
+if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
+    header('location: ../index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +51,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-                <span class="d-none d-lg-block">Sapito</span>
+                <span class="d-none d-lg-block">Lavandería Sapito</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -59,8 +68,11 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Juan Felipe</span>
+                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
+                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">
+                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                        </span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -115,6 +127,12 @@
                 </a>
             </li><!-- End Components Nav -->
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../categorias/index.php">
+                    <i class="bi bi-tags"></i><span>Control Categorias</span>
+                </a>
+            </li><!-- End Components Nav -->
+
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -123,12 +141,10 @@
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse"
-                    href="gastosGenerales.php">
+                <a class="nav-link collapsed" href="../gastos/index.php">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
-
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="clientes.php">
@@ -141,6 +157,12 @@
                 <a class="nav-link collapsed" href="pages-faq.html">
                     <i class="bi bi-question-circle"></i>
                     <span>Manual de Usuario</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Cerrar Sesión</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
 
@@ -178,20 +200,26 @@
                                     <!-- No Labels Form -->
                                     <form class="row g-3" action="guardarInventario.php" method="post">
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" placeholder="Nombre del producto" name="nombreProducto">
+                                            <input type="text" class="form-control" placeholder="Nombre del producto"
+                                                name="nombreProducto" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Descripcion" name="descripcion">
+                                            <input type="text" class="form-control" placeholder="Descripcion"
+                                                name="descripcion" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control" placeholder="Codigo" name="codigoIn">
+                                            <input type="text" class="form-control" placeholder="Codigo" name="codigoIn"
+                                                required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" placeholder="Existencias" name="existencia">
+                                            <input type="number" class="form-control" placeholder="Existencias"
+                                                name="existencia" required>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-success"><i class="bi bi-save-fill"></i> Guardar</button>
-                                            <a href="inventario.php"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                                            <button type="submit" class="btn btn-success"><i
+                                                    class="bi bi-save-fill"></i> Guardar</button>
+                                            <a href="inventario.php"><button type="button"
+                                                    class="btn btn-secondary">Cancelar</button></a>
                                         </div>
                                     </form><!-- End No Labels Form -->
                                 </div>
@@ -203,7 +231,7 @@
         </section>
 
     </main><!-- End #main -->
-<br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">

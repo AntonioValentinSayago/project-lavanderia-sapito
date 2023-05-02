@@ -135,7 +135,11 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </a>
       </li><!-- End Components Nav -->
 
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
@@ -143,7 +147,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="gastosGenerales.php">
+        <a class="nav-link collapsed" href="../gastos/index.php">
           <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
         </a>
       </li><!-- End Charts Nav -->
@@ -191,10 +195,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </ol>  -->
       </nav>
       <div style="margin-left: auto;">
-        <a href="nuevoInventario.php"><button type="button" class="btn btn-primary btn-add"><i
-              class="bi bi-plus me-1"></i>Cliente</button></a>
-        <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i> Generar
-          Reporte</button>
+        <button type="button" class="btn btn-primary btn-add" onclick="example()"><i class="bi bi-plus me-1"></i>Cliente</button>
+        <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i> Generar Reporte</button>
       </div>
     </div><!-- End Page Title -->
 
@@ -202,7 +204,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       function example() {
         iziToast.warning({
           title: 'Error:',
-          message: 'Comunicación con el servidor'
+          message: 'Comunicación con el servidor, servicio en mantenimiento',
+          position: 'topCenter',
+          timeout: 3000,
         });
       }
     </script>
@@ -224,7 +228,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Folio</th>
@@ -235,15 +238,15 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     <tbody>
                       <?php
                       require_once("../config/db_config.php");
-                      $consulta = "SELECT *
-                      from notapedido NT
-                      inner join	clientes CL on NT.idNota = CL.idCliente";
+                      $consulta = "select DISTINCT nombreCompleto,estatus,direccion,folio_nota from ctl_catalogo cata
+                      JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
+                      JOIN clientes cl ON cl.idCliente = cata.idCliente";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         while ($fila = mysqli_fetch_array($stmt)) {
+                          $Estatus = $fila["estatus"];
                           ?>
                           <tr>
-                            <th scope="row">1</th>
                             <td>
                               <?php echo $fila["nombreCompleto"]; ?>
                             </td>
@@ -251,11 +254,14 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                               <?php echo $fila["direccion"]; ?>
                             </td>
                             <td>
-                              <?php echo $fila["folioNota"]; ?>
+                              <?php echo $fila["folio_nota"]; ?>
                             </td>
-                            <td><span class="badge bg-warning">
-                                <?php echo $fila["estatus"]; ?>
-                              </span></td>
+                            <td>
+                              <span
+                                class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
+                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
+                              </span>
+                            </td>
                             <td>
                               <span class="badge bg-warning"><i class="bi bi-pencil-square"></i> </span>
                               <span class="badge bg-success"><i class="bi bi-eye"></i> </span>

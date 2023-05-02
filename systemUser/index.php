@@ -135,6 +135,11 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </a>
       </li><!-- End Components Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -143,7 +148,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="gastosGenerales.php">
+        <a class="nav-link collapsed" href="../gastos/index.php">
           <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
         </a>
       </li><!-- End Charts Nav -->
@@ -202,7 +207,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       function example() {
         iziToast.warning({
           title: 'Error:',
-          message: 'Comunicación con el servidor',
+          message: 'Comunicación con el servidor, servicio en mantenimiento',
           position: 'topCenter',
           timeout: 3000,
         });

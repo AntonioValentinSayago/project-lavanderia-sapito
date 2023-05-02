@@ -42,13 +42,13 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <link href="../css/style.css" rel="stylesheet">
 
   <!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+  <!-- Default theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+  <!-- Semantic UI theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
 </head>
 
@@ -60,7 +60,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-        <span class="d-none d-lg-block">Sapito</span>
+        <span class="d-none d-lg-block">Lavandería Sapito</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -77,13 +77,18 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo ucfirst($_SESSION['img']); ?>" alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo ucfirst($_SESSION['nombre']); ?></span>
+            <img src="<?php echo ucfirst($_SESSION['img']); ?>" alt="<?php echo ucfirst($_SESSION['nombre']); ?>"
+              class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">
+              <?php echo ucfirst($_SESSION['nombre']); ?>
+            </span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo ucfirst($_SESSION['nombre']); ?></h6>
+              <h6>
+                <?php echo ucfirst($_SESSION['nombre']); ?>
+              </h6>
               <span>Administrador</span>
             </li>
             <li>
@@ -133,6 +138,11 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </a>
       </li><!-- End Components Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
@@ -141,7 +151,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="gastosGenerales.html">
+        <a class="nav-link collapsed" href="../gastos/index.php">
           <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
         </a>
       </li><!-- End Charts Nav -->
@@ -212,51 +222,54 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                   <table class="table table-borderless datatable" id="example">
                     <thead>
                       <tr>
-                        <th scope="col">Folio de Nota</th>
-                        <th scope="col">Fecha Entrega</th>
-                        <th scope="col">Saldo</th>
-                        <th scope="col">Deuda</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">$ Folio de Nota</th>
+                        <th scope="col">$ Fecha Entrega</th>
+                        <th scope="col">$ Dinero en Cuenta</th>
+                        <th scope="col">$ Por pagar</th>
+                        <th scope="col">$ Total</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Cliente</th>
                         <th scope="col">Ver</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
                       require_once("../config/db_config.php");
-                      $consulta = "SELECT * FROM NotaPedido";
+                      $consulta = "select * from ctl_catalogo cata
+                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
+                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
+                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
+                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         while ($fila = mysqli_fetch_array($stmt)) {
+                          $Estatus = $fila["estatus"];
                           ?>
                           <tr>
                             <th scope="row">
-                              <?php echo $fila["folioNota"]; ?>
+                              <?php echo $fila["folio_nota"]; ?>
                             </th>
                             <td>
-                              <?php echo $fila["fechaEntrega"]; ?>
+                              <?php echo $fila["fecha_entrega"]; ?>
                             </td>
                             <td>
-                              <?php echo $fila["dineroCuneta"]; ?>
+                              <?php echo $fila["dineroCuenta"]; ?>
                             </td>
                             <td>
                               <?php echo $fila["dineroPendiente"]; ?>
                             </td>
                             <td>
-                              <?php echo $fila["totalPagar"]; ?>
+                              <?php echo $fila["costoPagar"]; ?>
                             </td>
                             <td>
-                              <?php if ($fila["estatus"] = "E") {
-                                ?> <span class="badge bg-success">Entregado</span>
-                              </td>
-                              <?php
-                              } else {
-                                ?> <span class="badge bg-warning">En Proceso</span></td>
-                              <?php
-                              }
-                              ?>
+                              <span class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
+                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
+                              </span>
                             </td>
-                            <td><a href="verNota.php?idPedido=<?php echo $fila["idNota"] ?>"><span
+                            <td>
+                              <?php echo $fila["nombreCompleto"]; ?>
+                            </td>
+                            <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
                                   class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
                           </tr>
                           <?php

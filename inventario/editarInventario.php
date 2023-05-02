@@ -188,7 +188,7 @@
                                                         ?>
                                                     <!-- No Labels Form -->
                                                     <form class="row g-3" action="updateInventori.php" method="post">
-                                                        <input type="hideen" value="<?php echo $fila["idInventario"];?>" name="id">
+                                                        <input type="hidden" value="<?php echo $fila["idInventario"];?>" name="id">
                                                         <div class="col-md-12">
                                                             <input type="text" class="form-control" value="<?php echo $fila["nombreProducto"];?>" name="nombreProducto">
                                                         </div>

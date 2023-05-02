@@ -14,7 +14,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Empleados - Lavanderia Sapito</title>
+    <title>Inventario - Lavanderia Sapito</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -36,16 +36,23 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <link href="../vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../vendor/simple-datatables/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
 
     <!-- Template Main CSS File -->
     <link href="../css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+
 
 </head>
 
@@ -57,7 +64,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-                <span class="d-none d-lg-block">Sapito</span>
+                <span class="d-none d-lg-block">Lavandería Sapito</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -86,7 +93,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <h6>
                                 <?php echo ucfirst($_SESSION['nombre']); ?>
                             </h6>
-                            <span>Empleado</span>
+                            <span>Administracion</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -124,27 +131,33 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed " href="../pedidos/index.php">
+                <a class="nav-link collapsed" href="../pedidos/index.php">
                     <i class="bi bi-grid"></i>
                     <span>Panel Principal</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
+                <a class="nav-link collapsed" href="../inventario/inventario.php">
                     <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
+                </a>
+            </li><!-- End Components Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../categorias/index.php">
+                    <i class="bi bi-tags"></i><span>Control Categorias</span>
                 </a>
             </li><!-- End Components Nav -->
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#tables-nav">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="../gastos/index.php">
+                <a class="nav-link" href="gastosGenerales.php">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
@@ -158,14 +171,14 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link collapsed" href="../systemUser/index.php">
                     <i class="bi bi-person-add"></i>
                     <span>Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" onclick="example()">
+                <a class="nav-link collapsed" href="">
                     <i class="bi bi-question-circle"></i>
                     <span>Manual de Usuario</span>
                 </a>
@@ -183,16 +196,21 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
     <main id="main" class="main">
 
-        <div class="pagetitle">
-            <h1>Control de Acceso</h1>
+        <div class="pagetitle" style="display: flex;">
+            <h1>Control de Gastos Generales</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-                    <li class="breadcrumb-item active">Nuevo Usuario</li>
+                    <li class="breadcrumb-item"><a href="index.php"></a></li>
+                    <li class="breadcrumb-item active"></li>
                 </ol>
             </nav>
+            <div style="margin-left: auto;">
+                <button type="button" class="btn btn-primary btn-add" onclick="example()"><i
+                        class="bi bi-plus me-1"></i>Gasto</button>
+                <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i>
+                    Generar Reporte</button>
+            </div>
         </div><!-- End Page Title -->
-
 
         <!--Inicio del Section Principal-->
         <section class="section dashboard">
@@ -206,55 +224,79 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
 
-                                <div class="card-body">
-                                    <h4 class="card-title">Control de Inventario</h4>
-                                    <p>Fecha de Registro: <?php  echo date('d-m-Y') ?></p>
+                                <div class="card-body pt-3">
+                                    <table class="table table-borderless datatable">
+                                        <thead style="text-align:center">
+                                            <tr>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Precio $Total</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            require_once("../config/db_config.php");
+                                            $consulta = "SELECT * FROM ctl_gastos ";
+                                            $stmt = mysqli_query($conexion, $consulta);
 
-                                    <!-- No Labels Form -->
-                                    <form class="row g-3" action="guardarEmpleado.php" method="post">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Nombre (S)"
-                                                name="nombreEmp">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Apellido (S)"
-                                                name="lastEmp">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" placeholder="Correo Electronico"
-                                                name="email">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="number" class="form-control" placeholder="Telefono"
-                                                name="telefono">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select name="cargo" class="form-control" placeholder="Seleccione una opcion">
-                                                <option value="" disabled selected>Seleccione...</option>
-                                                <option value="0">Empleado</option>
-                                                <option value="1">Administrador</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="d" class="form-control" placeholder="Numero de Empleado"
-                                                name="numEmp" value="LS-EMP101">
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-success"><i
-                                                    class="bi bi-save-fill"></i> Guardar</button>
-                                            <a href="index.php"><button type="button"
-                                                    class="btn btn-secondary">Cancelar</button></a>
-                                        </div>
-                                    </form><!-- End No Labels Form -->
+                                            if (mysqli_num_rows($stmt) > 0) {
+                                                while ($fila = mysqli_fetch_array($stmt)) {
+                                                    ?>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <?php echo $fila["fechaGasto"]; ?>
+                                                        </th>
+                                                        <td>
+                                                            <?php echo $fila["nombreGasto"]; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $fila["descripcionGasto"]; ?>
+                                                        </td>
+                                                        <td class="text-largo">
+                                                            <?php echo $fila["precioGasto"]; ?>
+                                                        </td>
+                                                        <td>
+                                                            <span class="badge bg-warning" onclick="example()"
+                                                                style="cursor:pointer;"><i class="bi bi-pencil-square"></i>
+                                                            </span>
+                                                            <span class="badge bg-danger" onclick="example()"
+                                                                style="cursor:pointer;"><i class="bi bi-trash-fill"></i> </span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <h1>Error</h1>
+                                                <?php
+                                            }
+                                            mysqli_close($conexion);
+                                            ?>
+
+                                        </tbody>
+                                    </table>
+
                                 </div>
+
                             </div>
                         </div><!-- End Recent Sales -->
+
                     </div>
                 </div><!-- End Left side columns -->
+
             </div>
         </section>
 
     </main><!-- End #main -->
+
+    <script>
+        function example() {
+            alertify.alert('Advertencia', 'Error: En el servidor, favor de comunicarse a mesa de ayuda.');
+
+        }
+    </script>
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
@@ -269,18 +311,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
-    <script>
-        /*     document.addEventListener("keydown", function (event) {
-              console.log("Tecla presionada: " + event.keyCode);
-              if (event.keyCode == 32) { alert("Tecla presionada"); }
-            }); */
-
-        /* document.addEventListener("keyup", function(event) {
-          console.log("Tecla liberada: " + event.keyCode);
-        }); */
-
-    </script>
-
     <!-- Vendor JS Files -->
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../vendor/chart.js/chart.umd.js"></script>
@@ -293,15 +323,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
     <!-- Template Main JS File -->
     <script src="../js/main.js"></script>
-
-    <script>
-        function error() {
-            alertify
-                .alert("Error de Servidor", function () {
-                    alertify.message('OK');
-                });
-        }
-    </script>
 
 </body>
 

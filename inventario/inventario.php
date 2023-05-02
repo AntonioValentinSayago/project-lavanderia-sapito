@@ -64,7 +64,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-                <span class="d-none d-lg-block">Sapito</span>
+                <span class="d-none d-lg-block">Lavandería Sapito</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -110,7 +110,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="../login/controller/cerrarSesion.php">
+                            <a class="dropdown-item d-flex align-items-center"
+                                href="../login/controller/cerrarSesion.php">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Salir del Sistema</span>
                             </a>
@@ -142,16 +143,21 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </a>
             </li><!-- End Components Nav -->
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../categorias/index.php">
+                    <i class="bi bi-tags"></i><span>Control Categorias</span>
+                </a>
+            </li><!-- End Components Nav -->
+
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#tables-nav">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse"
-                    href="gastosGenerales.php">
+                <a class="nav-link collapsed" href="../gastos/index.php">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
@@ -191,7 +197,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <main id="main" class="main">
 
         <div class="pagetitle" style="display: flex;">
-            <h1>Panel Principal</h1>
+            <h1>Control de Inventario</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -219,12 +225,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <div class="card recent-sales overflow-auto">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Control de Inventario </h5>
-
                                     <table class="table table-borderless datatable">
-                                        <thead>
+                                        <thead style="text-align:center">
                                             <tr>
-                                                <th scope="col">#</th>
                                                 <th scope="col">Código</th>
                                                 <th scope="col">Producto</th>
                                                 <th scope="col">Descripcion</th>
@@ -236,7 +239,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                         <tbody>
                                             <?php
                                             require_once("../config/db_config.php");
-                                            $consulta = "SELECT * FROM inventario";
+                                            $consulta = "SELECT * FROM inventario ";
                                             $stmt = mysqli_query($conexion, $consulta);
 
                                             if (mysqli_num_rows($stmt) > 0) {
@@ -244,15 +247,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                     ?>
                                                     <tr>
                                                         <th scope="row">
-                                                            <?php echo $fila["idInventario"]; ?>
-                                                        </th>
-                                                        <th scope="row">
                                                             <?php echo $fila["codigoIn"]; ?>
                                                         </th>
                                                         <td>
                                                             <?php echo $fila["nombreProducto"]; ?>
                                                         </td>
-                                                        <td>
+                                                        <td class="text-largo">
                                                             <?php echo $fila["descripcion"]; ?>
                                                         </td>
                                                         <td>
