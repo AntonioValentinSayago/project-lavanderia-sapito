@@ -17,17 +17,14 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <title>Empleados - Lavanderia Sapito</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
     <!-- Favicons -->
     <link href="https://cdn-icons-png.flaticon.com/512/394/394894.png" rel="icon">
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
-
     <!-- Vendor CSS Files -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -36,24 +33,18 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <link href="../vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../vendor/simple-datatables/style.css" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="../css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
-
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
-
 </head>
-
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
@@ -61,18 +52,14 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
                 <li class="nav-item d-block d-lg-none">
                     <a class="nav-link nav-icon search-bar-toggle " href="#">
                         <i class="bi bi-search"></i>
                     </a>
                 </li><!-- End Search Icon-->
-
                 <li class="nav-item dropdown pe-3">
-
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="<?php echo ucfirst($_SESSION['img']); ?>"
                             alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
@@ -80,7 +67,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <?php echo ucfirst($_SESSION['nombre']); ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
-
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>
@@ -91,7 +77,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                                 <i class="bi bi-question-circle"></i>
@@ -112,58 +97,45 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
-
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link collapsed " href="../pedidos/index.php">
                     <i class="bi bi-grid"></i>
                     <span>Panel Principal</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
                     <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
                 </a>
             </li><!-- End Components Nav -->
-
-
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
-
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../clientes/clientes.php">
                     <i class="bi bi-person"></i>
                     <span>Clientes</span>
                 </a>
             </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="bi bi-person-add"></i>
                     <span>Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" onclick="example()">
                     <i class="bi bi-question-circle"></i>
@@ -176,13 +148,10 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     <span>Cerrar Sesión</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
-
         </ul>
-
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>Control de Acceso</h1>
             <nav>
@@ -192,43 +161,42 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-
-
         <!--Inicio del Section Principal-->
         <section class="section dashboard">
             <div class="row">
-
                 <!-- Left side columns -->
                 <div class="col-lg-12">
                     <div class="row">
-
                         <!-- Recent Sales -->
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
-
                                 <div class="card-body">
                                     <h4 class="card-title">Control de Inventario</h4>
                                     <p>Fecha de Registro: <?php  echo date('d-m-Y') ?></p>
-
                                     <!-- No Labels Form -->
                                     <form class="row g-3" action="guardarEmpleado.php" method="post">
                                         <div class="col-md-6">
+                                            <label>Nombre Completo</label>
                                             <input type="text" class="form-control" placeholder="Nombre (S)"
                                                 name="nombreEmp">
                                         </div>
                                         <div class="col-md-6">
+                                        <label>Apellidos (s)</label>
                                             <input type="text" class="form-control" placeholder="Apellido (S)"
                                                 name="lastEmp">
                                         </div>
                                         <div class="col-md-4">
+                                        <label>Correo Electronico</label>
                                             <input type="text" class="form-control" placeholder="Correo Electronico"
                                                 name="email">
                                         </div>
                                         <div class="col-md-3">
+                                        <label>Telefono</label>
                                             <input type="number" class="form-control" placeholder="Telefono"
                                                 name="telefono">
                                         </div>
                                         <div class="col-md-3">
+                                        <label>Privilegios</label>
                                             <select name="cargo" class="form-control" placeholder="Seleccione una opcion">
                                                 <option value="" disabled selected>Seleccione...</option>
                                                 <option value="0">Empleado</option>
@@ -236,6 +204,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             </select>
                                         </div>
                                         <div class="col-md-2">
+                                        <label># Empleado</label>
                                             <input type="d" class="form-control" placeholder="Numero de Empleado"
                                                 name="numEmp" value="LS-EMP101">
                                         </div>
@@ -253,7 +222,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </div><!-- End Left side columns -->
             </div>
         </section>
-
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->

@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   header('location: ../index.php');
 }
-
+require_once("../config/db_config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +49,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
   <!-- Bootstrap theme -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+  <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
 </head>
 
@@ -191,7 +197,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Panel Principal</h1>
+      <h1>Control de Pedidos</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -199,104 +205,164 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </ol>
       </nav>
       <div style="margin-left: auto;">
-        <button type="button" class="btn btn-primary btn-add"><i class="bi bi-plus me-1"></i>Cliente</button>
-        <button type="button" class="btn btn-primary btn-add"><i class="bi bi-plus me-1"></i>Nota</button>
+        <button type="button" class="btn btn-primary btn-add"><i class="bi bi-person-fill-add"></i> Nuevo
+          Cliente</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          id="showTable"><i class="bi bi-eye-fill"></i> Control Pedidos</button>
       </div>
     </div><!-- End Page Title -->
 
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-
-        <!-- Left side columns -->
-        <div class="col-lg-12">
+        <div class="col-lg-7">
           <div class="row">
-
-            <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
+                <div class="card-body mt-2">
 
-                <div class="card-body">
-                  <h5 class="card-title">Registro de Notas </h5>
-
-                  <table class="table table-borderless datatable" id="example">
+                  <table class="table table-striped display nowrap" id="example">
                     <thead>
                       <tr>
-                        <th scope="col">$ Folio de Nota</th>
-                        <th scope="col">$ Fecha Entrega</th>
-                        <th scope="col">$ Dinero en Cuenta</th>
-                        <th scope="col">$ Por pagar</th>
-                        <th scope="col">$ Total</th>
-                        <th scope="col">Estatus</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Ver</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">$ Precio</th>
+                        <th scope="col">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      require_once("../config/db_config.php");
-                      $consulta = "select * from ctl_catalogo cata
-                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
-                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
-                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
-                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
-                      $stmt = mysqli_query($conexion, $consulta);
-                      if (mysqli_num_rows($stmt) > 0) {
-                        while ($fila = mysqli_fetch_array($stmt)) {
-                          $Estatus = $fila["estatus"];
+                      $consultaCategorias = "SELECT * FROM ctl_categorias";
+                      $datos = mysqli_query($conexion, $consultaCategorias);
+                      if (mysqli_num_rows($datos) > 0) {
+                        while ($filaDatos = mysqli_fetch_array($datos)) {
                           ?>
-                          <tr>
-                            <th scope="row">
-                              <?php echo $fila["folio_nota"]; ?>
+                          <tr data-rowid="<?php echo $filaDatos["id_ctl_categorias"]; ?>">
+                            <th>
+                              <?php echo $filaDatos["nombreCategoria"]; ?>
                             </th>
-                            <td>
-                              <?php echo $fila["fecha_entrega"]; ?>
+                            <th style="text-align: center; background: orange;color:black">
+                                <?php echo $filaDatos["precio"]; ?>
+                            </th>
+                            <td style="text-align: center;">
+                              <button class="badge bg-success" id="addRow" style="cursor:pointer">add</button>
                             </td>
-                            <td>
-                              <?php echo $fila["dineroCuenta"]; ?>
-                            </td>
-                            <td>
-                              <?php echo $fila["dineroPendiente"]; ?>
-                            </td>
-                            <td>
-                              <?php echo $fila["costoPagar"]; ?>
-                            </td>
-                            <td>
-                              <span class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
-                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
-                              </span>
-                            </td>
-                            <td>
-                              <?php echo $fila["nombreCompleto"]; ?>
-                            </td>
-                            <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
-                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
                           </tr>
                           <?php
                         }
                       } else {
                         ?>
-                        <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                        <h1>Error</h1>
                         <?php
                       }
-                      mysqli_close($conexion);
                       ?>
-
                     </tbody>
                   </table>
-
                 </div>
-
               </div>
             </div><!-- End Recent Sales -->
-
           </div>
-        </div><!-- End Left side columns -->
-
+        </div>
+        <!-- Left side columns -->
+        <div class="col-lg-5">
+          <div class="row">
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto" style="height:500px">
+                <div class="card-body">
+                  <hr>
+                  <table class="table table-striped" style="font-size:small" id="pedido">
+                    <thead>
+                      <tr>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <td>Cobertor Matrimonial</td>
+                      <td><input class="form-control" type="number" value="1" style="width:50px ;height:20px"></td>
+                      <td>$ <span class="badge bg-success">88.00</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns Table-->
       </div>
     </section>
-
   </main><!-- End #main -->
+  <!-- Ventana Modal Control Pedidos -->
+  <div class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Control de Pedidos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-borderless" id="delivery">
+            <thead>
+              <tr>
+                <th scope="col">$ Folio de Nota</th>
+                <th scope="col">$ Total</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Ver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $consulta = "select * from ctl_catalogo cata
+                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
+                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
+                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
+                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
+                                    ORDER BY id_ctl_catalogo desc";
+              $stmt = mysqli_query($conexion, $consulta);
+              if (mysqli_num_rows($stmt) > 0) {
+                while ($fila = mysqli_fetch_array($stmt)) {
+                  $Estatus = $fila["estatus"];
+                  ?>
+                  <tr>
+                    <th scope="row">
+                      <?php echo $fila["folio_nota"]; ?>
+                    </th>
+                    <td>
+                      <?php echo $fila["costoPagar"]; ?>
+                    </td>
+                    <td>
+                      <span class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
+                        <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
+                      </span>
+                    </td>
+                    <td>
+                      <?php echo $fila["nombreCompleto"]; ?>
+                    </td>
+                    <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
+                          class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
+                  </tr>
+                  <?php
+                }
+              } else {
+                ?>
+                <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                <?php
+              }
+              mysqli_close($conexion);
+              ?>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- En Ventana Modal Control Pedidos -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
@@ -311,7 +377,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-
   <!-- Vendor JS Files -->
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/chart.js/chart.umd.js"></script>
@@ -324,6 +389,85 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
   <!-- Template Main JS File -->
   <script src="../js/main.js"></script>
+
+  <script>
+    $(function () {
+      initEvent();
+      initDataTableCategory();
+    })
+    function initEvent() {
+      $('#showTable').click(function () {
+        initDataTableDelivery(); //
+      });
+
+    }
+
+    function initDataTableCategory() {
+
+      tblDeliveryView = $("#example").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+      
+      $('#example tbody').on('click', '#addRow', function () {
+        var pedido = $('#pedido').DataTable();
+        var data = tblDeliveryView.row($(this).parents('tr')).data();
+        pedido.row.add([data[0] + '.1', '<input class="form-control" type="number" value="1" style="width:50px ;height:20px">', '$ <span class="badge bg-success">'+data[1]+'</span>']).draw(false);
+      });
+
+
+    }
+    function initDataTableDelivery() {
+
+      tblDeliveryView = $("#delivery").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Pedido:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+    }
+
+    // En el archivo background.js de la extensión
+
+
+
+  </script>
 
 </body>
 

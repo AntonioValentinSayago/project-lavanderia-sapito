@@ -37,21 +37,16 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../vendor/simple-datatables/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
-
     <!-- Template Main CSS File -->
     <link href="../css/style.css" rel="stylesheet">
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
 
-    <!-- JavaScript -->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-    <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-    <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
+    <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
 
 </head>
@@ -205,9 +200,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </ol>
             </nav>
             <div style="margin-left: auto;">
-                <a href="nuevoInventario.php"><button type="button" class="btn btn-primary btn-add"><i
+                <a href="addCategoria.php"><button type="button" class="btn btn-primary btn-add"><i
                             class="bi bi-plus me-1"></i>Categoría</button></a>
-                <a href="../pdf/inventario.php" target="_target"><button type="button" class="btn btn-danger"><i
+                <a href="../pdf/categorias/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
                             class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
             </div>
         </div><!-- End Page Title -->
@@ -215,20 +210,17 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <!--Inicio del Section Principal-->
         <section class="section dashboard">
             <div class="row">
-
                 <!-- Left side columns -->
                 <div class="col-lg-12">
                     <div class="row">
-
                         <!-- Recent Sales -->
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
-
                                 <div class="card-body">
-                                    <table class="table table-borderless datatable">
+                                    <hr>
+                                    <table class="table table-borderless" id="example">
                                         <thead style="text-align:center">
                                             <tr>
-                                                <th scope="col">#</th>
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">$ Precio</th>
                                                 <th scope="col">Acciones</th>
@@ -237,30 +229,26 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                         <tbody>
                                             <?php
                                             require_once("../config/db_config.php");
-                                            $consulta = "SELECT * FROM ctl_categorias ";
+                                            $consulta = "SELECT * FROM ctl_categorias ORDER BY id_ctl_categorias DESC";
                                             $stmt = mysqli_query($conexion, $consulta);
-
                                             if (mysqli_num_rows($stmt) > 0) {
                                                 while ($fila = mysqli_fetch_array($stmt)) {
                                                     ?>
                                                     <tr>
-                                                        <th scope="row">
-                                                            <?php echo $fila["id_ctl_categorias"]; ?>
-                                                        </th>
                                                         <td>
                                                             <?php echo $fila["nombreCategoria"]; ?>
                                                         </td>
                                                         <td class="text-largo">
                                                             <?php echo $fila["precio"]; ?>
                                                         </td>
-
-
-                                                        <td>
+                                                        <td style="text-align:center">
                                                             <a
                                                                 href="editarCategoria.php?id_ctl_categorias=<?php echo $fila["id_ctl_categorias"]; ?>"><span
                                                                     class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                                                 </span></a>
-                                                            <span class="badge bg-danger" onclick="example()"
+                                                            <span class="badge bg-danger delete "
+                                                                id='del_<?php echo $fila['id_ctl_categorias'] ?>'
+                                                                data-id='<?php echo $fila['id_ctl_categorias'] ?>'
                                                                 style="cursor:pointer;"><i class="bi bi-trash-fill"></i> </span>
                                                         </td>
                                                     </tr>
@@ -273,30 +261,81 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             }
                                             mysqli_close($conexion);
                                             ?>
-
                                         </tbody>
                                     </table>
-
+                                    <hr>
                                 </div>
-
                             </div>
                         </div><!-- End Recent Sales -->
-
                     </div>
                 </div><!-- End Left side columns -->
-
             </div>
         </section>
-
     </main><!-- End #main -->
-
     <script>
-        function example() {
-            alertify.alert('Advertencia', 'Error: En el servidor, favor de comunicarse a mesa de ayuda.');
-
-        }
+        $(document).ready(function () {
+            // Delete 
+            $('.delete').click(function () {
+                var el = this;
+                // Delete id
+                var deleteid = $(this).data('id');
+                // Confirm box
+                bootbox.confirm("¿Seguro de borrar este producto?", function (result) {
+                    if (result) {
+                        // AJAX Request
+                        $.ajax({
+                            url: 'eliminar.php',
+                            type: 'POST',
+                            data: { id: deleteid },
+                            success: function (response) {
+                                // Removing row from HTML Table
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').fadeOut(800, function () {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Record not deleted.');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
+    <script>
+    $(function () {
+      initDataTableCategory();
+    })
 
+    function initDataTableCategory() {
+
+      tblDeliveryView = $("#example").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar categoría:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+    }  
+  </script>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">

@@ -198,8 +198,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       <div style="margin-left: auto;">
         <a href="newEmpleado.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Usuario</button></a>
-        <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i> Generar
-          Reporte</button>
+              <a href="../pdf/empleado/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
     </div><!-- End Page Title -->
 
@@ -268,15 +268,17 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                               <?php echo $fila["telefono"]; ?>
                             </td>
                             <td>
-                              <span class="badge <?php echo ($cargo == 0)? 'bg-light' : 'bg-secondary' ?> text-dark">
-                                <?php echo ($cargo == 0)? "Empleado": "Administrador" ?>
+                              <span class="badge <?php echo ($cargo == 0) ? 'bg-light' : 'bg-secondary' ?> text-dark">
+                                <?php echo ($cargo == 0) ? "Empleado" : "Administrador" ?>
                               </span>
                             </td>
                             <td>
                               <?php echo $fila["fecha_creacion"]; ?>
                             </td>
                             <td>
-                              <span class="badge bg-warning"><i class="bi bi-pencil-square"></i> </span>
+                              <a href="editarEmpleado.php?id_ctlUserSystem=<?php echo $fila["id_ctlUserSystem"]; ?>"><span
+                                  class="badge bg-warning"><i class="bi bi-pencil-square"></i>
+                                </span></a>
                               <span class="badge bg-success"><i class="bi bi-eye"></i> </span>
                             </td>
                           </tr>
@@ -289,24 +291,17 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                       }
                       mysqli_close($conexion);
                       ?>
-
                     </tbody>
                   </table>
                   <!-- End Active Table -->
                 </div>
-
               </div><!-- End Bordered Tabs -->
-
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
-
   </main><!-- End #main -->
-
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

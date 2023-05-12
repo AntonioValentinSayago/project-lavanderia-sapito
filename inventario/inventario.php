@@ -37,27 +37,20 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../vendor/simple-datatables/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
-
     <!-- Template Main CSS File -->
     <link href="../css/style.css" rel="stylesheet">
 
-    <!-- JavaScript -->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-    <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-    <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
-
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
+    <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
 </head>
 
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -68,16 +61,13 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
                 <li class="nav-item d-block d-lg-none">
                     <a class="nav-link nav-icon search-bar-toggle " href="#">
                         <i class="bi bi-search"></i>
                     </a>
                 </li><!-- End Search Icon-->
-
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -87,7 +77,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <?php echo ucfirst($_SESSION['nombre']); ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
-
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>
@@ -108,7 +97,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center"
                                 href="../login/controller/cerrarSesion.php">
@@ -116,67 +104,52 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                 <span>Salir del Sistema</span>
                             </a>
                         </li>
-
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
-
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../pedidos/index.php">
                     <i class="bi bi-grid"></i>
                     <span>Panel Principal</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-
             <li class="nav-item">
                 <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
                 </a>
             </li><!-- End Components Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../categorias/index.php">
                     <i class="bi bi-tags"></i><span>Control Categorias</span>
                 </a>
             </li><!-- End Components Nav -->
-
-
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
-
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../clientes/clientes.php">
                     <i class="bi bi-person"></i>
                     <span>Clientes</span>
                 </a>
             </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="clientes.php">
                     <i class="bi bi-person-add"></i>
                     <span>Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="pages-faq.html">
                     <i class="bi bi-question-circle"></i>
@@ -189,13 +162,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     <span>Cerrar Sesión</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
-
         </ul>
-
     </aside><!-- End Sidebar-->
-
     <main id="main" class="main">
-
         <div class="pagetitle" style="display: flex;">
             <h1>Control de Inventario</h1>
             <nav>
@@ -207,25 +176,22 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <div style="margin-left: auto;">
                 <a href="nuevoInventario.php"><button type="button" class="btn btn-primary btn-add"><i
                             class="bi bi-plus me-1"></i>Producto</button></a>
-                <a href="../pdf/inventario.php" target="_target"><button type="button" class="btn btn-danger"><i
+                <a href="../pdf/inventario/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
                             class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
             </div>
         </div><!-- End Page Title -->
-
         <!--Inicio del Section Principal-->
         <section class="section dashboard">
             <div class="row">
-
                 <!-- Left side columns -->
                 <div class="col-lg-12">
                     <div class="row">
-
                         <!-- Recent Sales -->
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
-
                                 <div class="card-body">
-                                    <table class="table table-borderless datatable">
+                                    <hr>
+                                    <table class="table table-borderless" id="example">
                                         <thead style="text-align:center">
                                             <tr>
                                                 <th scope="col">Código</th>
@@ -245,7 +211,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             if (mysqli_num_rows($stmt) > 0) {
                                                 while ($fila = mysqli_fetch_array($stmt)) {
                                                     ?>
-                                                    <tr>
+                                                    <tr id="<?php echo $fila['idInventario'] ?>">
                                                         <th scope="row">
                                                             <?php echo $fila["codigoIn"]; ?>
                                                         </th>
@@ -277,7 +243,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                                 href="editarInventario.php?idInventario=<?php echo $fila["idInventario"]; ?>"><span
                                                                     class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                                                 </span></a>
-                                                            <span class="badge bg-danger" onclick="example()"
+                                                            <span class="badge bg-danger delete "
+                                                                id='del_<?php echo $fila['idInventario'] ?>'
+                                                                data-id='<?php echo $fila['idInventario'] ?>'
                                                                 style="cursor:pointer;"><i class="bi bi-trash-fill"></i> </span>
                                                         </td>
                                                     </tr>
@@ -290,30 +258,85 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             }
                                             mysqli_close($conexion);
                                             ?>
-
                                         </tbody>
                                     </table>
-
                                 </div>
-
                             </div>
                         </div><!-- End Recent Sales -->
-
                     </div>
                 </div><!-- End Left side columns -->
-
             </div>
         </section>
-
     </main><!-- End #main -->
 
     <script>
-        function example() {
-            alertify.alert('Advertencia', 'Error: En el servidor, favor de comunicarse a mesa de ayuda.');
+        $(document).ready(function () {
 
-        }
+            // Delete 
+            $('.delete').click(function () {
+                var el = this;
+
+                // Delete id
+                var deleteid = $(this).data('id');
+
+                // Confirm box
+                bootbox.confirm("¿Seguro de borrar este producto?", function (result) {
+
+                    if (result) {
+                        // AJAX Request
+                        $.ajax({
+                            url: 'eliminar.php',
+                            type: 'POST',
+                            data: { id: deleteid },
+                            success: function (response) {
+                                // Removing row from HTML Table
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').fadeOut(800, function () {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Record not deleted.');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
+    <script>
+        $(function () {
+            initDataTableCategory();
+        })
 
+        function initDataTableCategory() {
+
+            tblDeliveryView = $("#example").DataTable({
+                fixedMeader: true,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": " _START_ a _END_ de _TOTAL_ Registros",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Registros",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar en inventario:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+        }  
+    </script>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">

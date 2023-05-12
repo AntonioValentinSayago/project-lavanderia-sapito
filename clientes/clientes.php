@@ -47,6 +47,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+  <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -195,8 +201,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </ol>  -->
       </nav>
       <div style="margin-left: auto;">
-        <button type="button" class="btn btn-primary btn-add" onclick="example()"><i class="bi bi-plus me-1"></i>Cliente</button>
-        <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i> Generar Reporte</button>
+        <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
+              class="bi bi-plus me-1"></i>Cliente</button></a>
+        <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i> Generar
+          Reporte</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="showTable"><i
+            class="bi bi-filetype-pdf"></i> Ver Todos los Clientes</button>
       </div>
     </div><!-- End Page Title -->
 
@@ -238,7 +248,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     <tbody>
                       <?php
                       require_once("../config/db_config.php");
-                      $consulta = "select DISTINCT nombreCompleto,estatus,direccion,folio_nota from ctl_catalogo cata
+                      $consulta = "select DISTINCT nombreCompleto,cl.idCliente,estatus,direccion,folio_nota from ctl_catalogo cata
                       JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                       JOIN clientes cl ON cl.idCliente = cata.idCliente";
                       $stmt = mysqli_query($conexion, $consulta);
@@ -263,7 +273,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                               </span>
                             </td>
                             <td>
-                              <span class="badge bg-warning"><i class="bi bi-pencil-square"></i> </span>
+                              <a href="editarCliente.php?idCliente=<?php echo $fila["idCliente"]; ?>"><span
+                                  class="badge bg-warning"><i class="bi bi-pencil-square"></i>
+                                </span></a>
                               <span class="badge bg-success"><i class="bi bi-eye"></i> </span>
                             </td>
                           </tr>
@@ -274,7 +286,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         <h1>Error</h1>
                         <?php
                       }
-                      mysqli_close($conexion);
                       ?>
 
                     </tbody>
@@ -294,6 +305,67 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
   </main><!-- End #main -->
 
+  <!-- Ventana Modal Control Pedidos -->
+  <div class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Control de Clientes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-borderless" id="delivery">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $consulta = "select * from clientes";
+              $stmt = mysqli_query($conexion, $consulta);
+              if (mysqli_num_rows($stmt) > 0) {
+                while ($fila = mysqli_fetch_array($stmt)) {
+                  ?>
+                  <tr>
+                    <th scope="row">
+                      <?php echo $fila["idCliente"]; ?>
+                    </th>
+                    <th scope="row">
+                      <?php echo $fila["nombreCompleto"]; ?>
+                    </th>
+                    <td>
+                      <?php echo $fila["direccion"]; ?>
+                    </td>
+                    <td>
+                      <?php echo $fila["telefono"]; ?>
+                    </td>
+                  </tr>
+                  <?php
+                }
+              } else {
+                ?>
+                <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                <?php
+              }
+              mysqli_close($conexion);
+              ?>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="hideShow">Cerrar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- En Ventana Modal Control Pedidos -->
+
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -308,14 +380,47 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       class="bi bi-arrow-up-short"></i></a>
 
   <script>
-    /*     document.addEventListener("keydown", function (event) {
-          console.log("Tecla presionada: " + event.keyCode);
-          if (event.keyCode == 32) { alert("Tecla presionada"); }
-        }); */
+    $(function () {
+      initEvent();
+    })
+    function initEvent() {
+      $('#showTable').click(function () {
+        initDataTableDelivery(); //
+      });
+    }
 
-    /* document.addEventListener("keyup", function(event) {
-      console.log("Tecla liberada: " + event.keyCode);
-    }); */
+  /*   $('#hideShow').click(function () {
+        $('#delivery').hide();//
+      }); */
+
+    function initDataTableDelivery() {
+
+      tblDeliveryView = $("#delivery").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Pedido:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+    }
+
+    // En el archivo background.js de la extensión
 
   </script>
 
