@@ -22,5 +22,5 @@ table tr td{
 table thead th{
     font-size: small;
     text-align: center;
-    color: var(--primario)
+    color: var(--primario);
 }

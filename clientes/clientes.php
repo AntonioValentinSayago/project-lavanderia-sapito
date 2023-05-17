@@ -36,22 +36,20 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <link href="../vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../vendor/simple-datatables/style.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="../css/main.css">
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/main.css">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
   <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"/>
 
 </head>
 
@@ -191,53 +189,29 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-
     <div class="pagetitle" style="display: flex;">
       <h1>Cartera de Clientes</h1>
-      <nav>
-        <!--         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-          <li class="breadcrumb-item active">Panel Principal</li>
-        </ol>  -->
-      </nav>
       <div style="margin-left: auto;">
         <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Cliente</button></a>
-        <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i> Generar
-          Reporte</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="showTable"><i
-            class="bi bi-filetype-pdf"></i> Ver Todos los Clientes</button>
+              <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
     </div><!-- End Page Title -->
-
-    <script>
-      function example() {
-        iziToast.warning({
-          title: 'Error:',
-          message: 'Comunicación con el servidor, servicio en mantenimiento',
-          position: 'topCenter',
-          timeout: 3000,
-        });
-      }
-    </script>
-
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-
         <div class="col-xl-12">
-
           <div class="card">
             <div class="card-body pt-3">
+              <h5 class="card-title">Clientes con Pedido</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
-
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-
                   <!-- Active Table -->
-                  <table class="table table-borderless datatable">
+                  <table class="table table-striped" id="example1">
                     <thead>
-                      <tr>
+                      <tr style="background:#F4f4f8;">
                         <th scope="col">Cliente</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Folio</th>
@@ -256,7 +230,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         while ($fila = mysqli_fetch_array($stmt)) {
                           $Estatus = $fila["estatus"];
                           ?>
-                          <tr>
+                          <tr style="text-align:center">
                             <td>
                               <?php echo $fila["nombreCompleto"]; ?>
                             </td>
@@ -273,9 +247,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                               </span>
                             </td>
                             <td>
-                              <a href="editarCliente.php?idCliente=<?php echo $fila["idCliente"]; ?>"><span
-                                  class="badge bg-warning"><i class="bi bi-pencil-square"></i>
-                                </span></a>
                               <span class="badge bg-success"><i class="bi bi-eye"></i> </span>
                             </td>
                           </tr>
@@ -287,85 +258,210 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         <?php
                       }
                       ?>
+                    </tbody>
+                  </table>
+                  <!-- End Active Table -->
+                </div>
+              </div><!-- End Bordered Tabs -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pagetitle" style="display: flex;">
+      <div style="margin-left: auto;">
+      <a href="../pdf/clientes/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+      </div>
+    </div><!-- End Page Title -->
+    <section class="section dashboard">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-body pt-3">
+              <h5 class="card-title">Control de Clientes</h5>
+              <!-- Bordered Tabs -->
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  <!-- Active Table -->
+                  <table class="table table-striped" id="example">
+                    <thead>
+                      <tr style="background:#F4f4f8;">
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $consulta = "select * from clientes";
+                      $stmt = mysqli_query($conexion, $consulta);
+                      if (mysqli_num_rows($stmt) > 0) {
+                        while ($fila = mysqli_fetch_array($stmt)) {
+                          $idCliente = $fila["idCliente"];
+                          ?>
+                          <tr style="text-align:center">
+                            <th scope="row">
+                              <?php echo $idCliente ?>
+                            </th>
+                            <th scope="row">
+                              <?php echo $fila["nombreCompleto"]; ?>
+                            </th>
+                            <td>
+                              <?php echo $fila["direccion"]; ?>
+                            </td>
+                            <td>
+                              <?php echo $fila["telefono"]; ?>
+                            </td>
+                            <td>
+                              <a href="editarCliente.php?idCliente=<?php echo $fila["idCliente"]; ?>"><span
+                                  class="badge bg-warning"><i class="bi bi-pencil-square"></i>
+                                </span></a>
+                                <?php
+                                  $consultaCliente = "select * from ctl_catalogo where idCliente = $idCliente";
+                                  $stmtCliente = mysqli_query($conexion, $consultaCliente);
+                                  if (mysqli_num_rows($stmtCliente) >= 1)
+                                  {
+                                      ?>
+                                        <span class="badge bg-danger" style="cursor:pointer;" onclick="validar()"><i
+                                        class="bi bi-trash-fill"></i> </span>
+                                      <?php
+                                  }else
+                                  {
+                                    ?>
+                                    <span class="badge bg-danger delete " id='del_<?php echo $idCliente ?>'
+                                      data-id='<?php echo $idCliente ?>' style="cursor:pointer;"><i
+                                        class="bi bi-trash-fill"></i> </span>
+                                    <?php
+                                  }
+                                ?>
+                            </td>
+                          </tr>
+                          <?php
+                        }
+                      } else {
+                        ?>
+                        <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                        <?php
+                      }
+                      mysqli_close($conexion);
+                      ?>
 
                     </tbody>
                   </table>
                   <!-- End Active Table -->
                 </div>
-
               </div><!-- End Bordered Tabs -->
-
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
-
   </main><!-- End #main -->
+  <script>
+      function validar()
+      {
+        iziToast.warning({
+        title: 'Advertencia',
+        message: 'No puedo borrar un cliente con pedido',
+        position: 'center'
+        });
+      }
 
-  <!-- Ventana Modal Control Pedidos -->
-  <div class="modal fade" id="exampleModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Control de Clientes</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-borderless" id="delivery">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre Completo</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Telefono</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $consulta = "select * from clientes";
-              $stmt = mysqli_query($conexion, $consulta);
-              if (mysqli_num_rows($stmt) > 0) {
-                while ($fila = mysqli_fetch_array($stmt)) {
-                  ?>
-                  <tr>
-                    <th scope="row">
-                      <?php echo $fila["idCliente"]; ?>
-                    </th>
-                    <th scope="row">
-                      <?php echo $fila["nombreCompleto"]; ?>
-                    </th>
-                    <td>
-                      <?php echo $fila["direccion"]; ?>
-                    </td>
-                    <td>
-                      <?php echo $fila["telefono"]; ?>
-                    </td>
-                  </tr>
-                  <?php
-                }
-              } else {
-                ?>
-                <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
-                <?php
-              }
-              mysqli_close($conexion);
-              ?>
+        $(document).ready(function () {
+            // Delete 
+            $('.delete').click(function () {
+                var el = this;
+                // Delete id
+                var deleteid = $(this).data('id');
+                // Confirm box
+                bootbox.confirm("¿Seguro de borrar este Cliente?", function (result) {
+                    if (result) {
+                        // AJAX Request
+                        $.ajax({
+                            url: 'eliminar.php',
+                            type: 'POST',
+                            data: { id: deleteid },
+                            success: function (response) {
+                                // Removing row from HTML Table
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').fadeOut(800, function () {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Errro de Servidor.');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="hideShow">Cerrar </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- En Ventana Modal Control Pedidos -->
+  
+  <script>
+    $(function () {
+      initDataTableDelivery();
+      initDataTableCategory();
+    })
 
+    function initDataTableCategory() {
+      tblDeliveryView = $("#example").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Cliente:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+    }
 
+    function initDataTableDelivery() {
+      tblDeliveryView = $("#example1").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Cliente:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+    }  
+  </script>
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -379,50 +475,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <script>
-    $(function () {
-      initEvent();
-    })
-    function initEvent() {
-      $('#showTable').click(function () {
-        initDataTableDelivery(); //
-      });
-    }
-
-  /*   $('#hideShow').click(function () {
-        $('#delivery').hide();//
-      }); */
-
-    function initDataTableDelivery() {
-
-      tblDeliveryView = $("#delivery").DataTable({
-        fixedMeader: true,
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": " _START_ a _END_ de _TOTAL_ Registros",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar Pedido:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        },
-      });
-    }
-
-    // En el archivo background.js de la extensión
-
-  </script>
 
   <!-- Vendor JS Files -->
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

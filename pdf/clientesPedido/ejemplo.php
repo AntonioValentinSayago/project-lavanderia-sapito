@@ -3,12 +3,12 @@ setlocale(LC_TIME, 'es_MX.UTF-8');
 session_start();
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
-  header('location: ../../../../index.php');
+    header('location: ../../../../index.php');
 }
 
 function getPlantilla($productos)
 {
-  $contenido = '
+    $contenido = '
 <title>Lavandenría Sapito | Reporte </title>
   <body>
  <header class="clearfix">
@@ -31,34 +31,37 @@ function getPlantilla($productos)
       </div>
     </header>
     <main>
-			<p>Desglose de productos</p>
+			<p>Reporte de Pedidos</p>
       <table>
         <thead>
           <tr>
-            <th class="qty">Nombre</th>
-            <th class="qty">Descripción</th>
-            <th class="desc">Fecha de Registro</th>
-            <th>Existencias</th>
+            <th class="qty">Folio</th>
+            <th class="qty">Nombre Cliente</th>
+            <th class="qty">Dirección</th>
+            <th class="desc">Fecha Entrega</th>
+            <th class="qty">Nombre Empleado</th>
+            <th class="qty">Total a Pagar</th>
           </tr>
         </thead>
         <tbody>';
-
-  $importetotal = 0;
-  foreach ($productos as $producto) {
-    $importe = $producto["cantidadProducto"];
-    $importetotal += $importe;
-    $contenido .= '
+    $importetotal = 0;
+    foreach ($productos as $producto) {
+        $importe = $producto["costoPagar"];
+        $importetotal += $importe;
+        $contenido .= '
   					<tr>
-  					<td class="qty">' . $producto["nombreProducto"] . '</td>
-  					<td class="desc">' . $producto["descripcion"] . '</td>
-  					<td class="desc">' . $producto["fecha_creacion"] . '</td>
-  					<td class="total">' . $producto["cantidadProducto"] . '</td>
+                      <td class="qty">' . $producto["folio_nota"] . '</td>
+  					<td class="qty">' . $producto["nombreCompleto"] . '</td>
+                      <td class="qty">' . $producto["direccion"] . '</td>
+                      <td class="qty">' . $producto["fecha_entrega"] . '</td>
+  					<td class="desc">' . $producto["NombreEmpleado"] . '</td>
+  					<td class="qty">' . $producto["costoPagar"] . '</td>
   					</tr>';
-  }
-  $contenido .= '
-			   <tr>
-				<td class="qty" colspan="3"><strong>Total de Inventario</strong></td>
-				<td class="total"><strong>' . number_format($importetotal, 0) . '</strong></td>
+    }
+    $contenido .= '
+          <tr>
+				<td class="qty" colspan="5"><strong>Total:</strong></td>
+				<td class="total"><strong>$ ' . number_format($importetotal, 0) . '</strong></td>
 			</tr> 
         </tbody>
       </table>
@@ -71,7 +74,7 @@ function getPlantilla($productos)
     </footer>
     </body>';
 
-  return $contenido;
+    return $contenido;
 
 }
 

@@ -189,12 +189,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
         <div class="pagetitle" style="display: flex;">
             <h1>Cartera de Clientes</h1>
-            <nav>
-                <!--         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-          <li class="breadcrumb-item active">Panel Principal</li>
-        </ol>  -->
-            </nav>
+
             <div style="margin-left: auto;">
                 <button type="button" class="btn btn-primary btn-add" onclick="example()"><i
                         class="bi bi-plus me-1"></i>Cliente</button>
@@ -204,51 +199,34 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </div>
         </div><!-- End Page Title -->
 
-        <script>
-            function example() {
-                iziToast.warning({
-                    title: 'Error:',
-                    message: 'Comunicación con el servidor, servicio en mantenimiento',
-                    position: 'topCenter',
-                    timeout: 3000,
-                });
-            }
-        </script>
-
         <!--Inicio del Section Principal-->
         <section class="section dashboard">
             <div class="row">
-
                 <div class="col-xl-12">
-
                     <div class="card">
                         <div class="card-body pt-3">
                             <?php
-                            $nombreGasto = $_GET["nombreGasto"];
-
+                            $idCliente = $_GET["idCliente"];
                             require_once("../config/db_config.php");
-                            $consulta = "SELECT * FROM ctl_gastos WHERE nombreGasto = '$nombreGasto'";
+                            $consulta = "SELECT * FROM clientes WHERE idCliente = '$idCliente'";
                             $stmt = mysqli_query($conexion, $consulta);
-
                             if (mysqli_num_rows($stmt) > 0) {
                                 while ($fila = mysqli_fetch_array($stmt)) {
                                     ?>
-                                    <!-- Bordered Tabs -->
                                     <hr>
-                                    <!-- No Labels Form -->
-                                    <form class="row g-3 mt-2" action="addGasto.php" method="post">
+                                    <form class="row g-3 mt-2" action="updateClientes.php" method="post">
                                         <div class="col-md-6">
                                             <label for="">Nombre Completo*</label>
-                                            <input type="date" class="form-control" name="nombre"
-                                                placeholder="Nombre Completo*">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="">Telefono*</label>
-                                            <input type="text" class="form-control" name="telefono" placeholder="telefono">
+                                            <input type="hidden" name="idCliente" value="<?php echo $fila["idCliente"]; ?>">
+                                            <input type="text" class="form-control" name="nombreCompleto" value="<?php echo $fila["nombreCompleto"]; ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="">Dirección*</label>
-                                            <input type="text" class="form-control" name="dirección" placeholder="dirección">
+                                            <input type="text" class="form-control" name="direccion" value="<?php echo $fila["direccion"]; ?>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="">Telefono*</label>
+                                            <input type="number" class="form-control" name="telefono" value="<?php echo $fila["telefono"]; ?>">
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-success"><i class="bi bi-save-fill"></i>

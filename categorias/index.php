@@ -280,7 +280,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 // Delete id
                 var deleteid = $(this).data('id');
                 // Confirm box
-                bootbox.confirm("¿Seguro de borrar este producto?", function (result) {
+                bootbox.confirm("¿Seguro de borrar esta Categoria?", function (result) {
                     if (result) {
                         // AJAX Request
                         $.ajax({
