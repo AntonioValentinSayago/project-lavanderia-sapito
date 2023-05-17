@@ -55,7 +55,7 @@ if (isset($_SESSION['id'])) {
           <label class="sr-only" for="user">Usuario</label>
           <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-            <input type="text" class="form-control" id="user" placeholder="Ingresa tu usuario">
+            <input type="text" class="form-control" id="user" placeholder="Ingresa tu correo electronico">
           </div>
           <!-- Div espaciador -->
           <div class="spacing-2"></div>
