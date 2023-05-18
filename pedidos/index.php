@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+setlocale(LC_TIME, 'es_MX.UTF-8');
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   header('location: ../index.php');
@@ -41,25 +41,20 @@ require_once("../config/db_config.php");
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-  <!-- Default theme -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-  <!-- Semantic UI theme -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-  <!-- Bootstrap theme -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
-
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
   <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
+  <!--   <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script> -->
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -189,9 +184,7 @@ require_once("../config/db_config.php");
           <span>Cerrar Sesión</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
-
     </ul>
-
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -209,90 +202,237 @@ require_once("../config/db_config.php");
           Cliente</button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
           id="showTable"><i class="bi bi-eye-fill"></i> Control Pedidos</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
 
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-4">
           <div class="row">
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body mt-2">
-
-                  <table class="table table-striped display nowrap" id="example">
-                    <thead>
-                      <tr>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">$ Precio</th>
-                        <th scope="col">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $consultaCategorias = "SELECT * FROM ctl_categorias";
-                      $datos = mysqli_query($conexion, $consultaCategorias);
-                      if (mysqli_num_rows($datos) > 0) {
-                        while ($filaDatos = mysqli_fetch_array($datos)) {
+                  <h5 style="font-size:10px;padding:0px 0px 0px 0px">
+                    <?php setlocale(LC_TIME, 'es_MX.UTF-8');
+                    echo date('d \d\e F \d\e Y'); ?>
+                  </h5>
+                  <hr>
+                  <!-- No Labels Form -->
+                  <form class="row g-3">
+                    <div class="col-md-9">
+                      <label for="">Categoría</label>
+                      <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
+                        <?php
+                        $consultaCategoria = "SELECT * FROM ctl_categorias";
+                        $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
+                        if (mysqli_num_rows($stmtCategoria) > 0) {
+                          while ($fila = mysqli_fetch_array($stmtCategoria)) {
+                            ?>
+                            <option data-nit="<?php echo $fila["precio"]; ?>"
+                              value="<?php echo $fila["id_ctl_categorias"]; ?>">
+                              <?php echo $fila["nombreCategoria"]; ?>
+                            </option>
+                            <?php
+                          }
+                        } else {
                           ?>
-                          <tr data-rowid="<?php echo $filaDatos["id_ctl_categorias"]; ?>">
-                            <th>
-                              <?php echo $filaDatos["nombreCategoria"]; ?>
-                            </th>
-                            <th style="text-align: center; background: orange;color:black">
-                                <?php echo $filaDatos["precio"]; ?>
-                            </th>
-                            <td style="text-align: center;">
-                              <button class="badge bg-success" id="addRow" style="cursor:pointer">add</button>
-                            </td>
-                          </tr>
+                          <option value="null" selected>No existen Categorías</option>
                           <?php
                         }
-                      } else {
                         ?>
-                        <h1>Error</h1>
-                        <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="">Precio $</label>
+                      <input type="number" class="form-control" id="nit">
+                    </div>
+                    <div class="col-md-12">
+                      <button type="button" class="btn btn-primary" id="adicionar">Agregar</button>
+                      <button type="reset" class="btn btn-secondary">Limpiar</button>
+                    </div>
+                  </form><!-- End No Labels Form -->
                 </div>
               </div>
             </div><!-- End Recent Sales -->
           </div>
         </div>
-        <!-- Left side columns -->
-        <div class="col-lg-5">
-          <div class="row">
-            <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto" style="height:500px">
-                <div class="card-body">
-                  <hr>
-                  <table class="table table-striped" style="font-size:small" id="pedido">
-                    <thead>
-                      <tr>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <td>Cobertor Matrimonial</td>
-                      <td><input class="form-control" type="number" value="1" style="width:50px ;height:20px"></td>
-                      <td>$ <span class="badge bg-success">88.00</button></td>
-                      </tr>
-                    </tbody>
+        <div class="col-lg-8">
+          <div class="card recent-sales overflow-auto">
+            <div class="card-body mt-2">
+              <h5 style="font-size:10px;padding:0px 0px 0px 0px">
+                <?php setlocale(LC_TIME, 'es_MX.UTF-8');
+                echo date('d \d\e F \d\e Y'); ?>
+              </h5>
+              <hr>
+              <!-- No Labels Form -->
+              <form class="row g-3 formularioVenta">
+                <div class="col-md-9">
+                  <label for="">Cliente</label>
+                  <!-- data-live-search="true" data-live-search-style="startsWith" -->
+                  <select class="form-control" type="text">
+                    <?php
+                    $consultaClientes = "SELECT * FROM clientes";
+                    $stmtClientes = mysqli_query($conexion, $consultaClientes);
+                    if (mysqli_num_rows($stmtClientes) > 0) {
+                      while ($fila = mysqli_fetch_array($stmtClientes)) {
+                        ?>
+                        <option value="<?php echo $fila["idCliente"]; ?>">
+                          <?php echo $fila["nombreCompleto"]; ?>
+                        </option>
+                        <?php
+                      }
+                    } else {
+                      ?>
+                      <option value="null" selected>No existen Clientes</option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+
+                </div>
+                <div class="col-md-3">
+                  <label for="">Folio Nota</label>
+                  <?php $numero = random_int(1, 99); ?>
+                  <input type="text" class="form-control" value="LSFN<?php echo $numero ?>" disabled>
+                </div>
+                <div class="col-md-9">
+                  <table class="table table-bordered table-hover " id="miTabla">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Cantidad:</th>
+                      <th scope="col">Total:</th>
+                      <th scope="col">--</th>
+                    </tr>
                   </table>
                 </div>
-              </div>
-            </div><!-- End Recent Sales -->
+                <div class="col-md-3 text-center">
+                  <label for="">Total a Pagar</label><br>
+                  <input type="number" class="form-control" id="total" name="nuevoTotalVenta" total=""
+                    placeholder="00000">
+                </div>
+                <div class="col-md-4">
+                  <label for="">Dinero a cuenta*</label>
+                  <input type="number" class="form-control" value="0">
+                </div>
+                <div class="col-md-4">
+                  <label for="">Resta:</label><br>
+                  <input type="number" class="form-control" value="0">
+                </div>
+                <div class="col-md-4">
+                  <label for="">Fecha de Entrega</label>
+                  <input type="date" class="form-control">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End No Labels Form -->
+            </div>
           </div>
-        </div><!-- End Left side columns Table-->
+        </div>
       </div>
     </section>
   </main><!-- End #main -->
+  <script>
+    function selectNit(e) {
+      var nit = e.target.selectedOptions[0].getAttribute("data-nit")
+      document.getElementById("nit").value = nit;
+    }
+    $(document).ready(function () {
+      $('#adicionar').click(function () {
+
+        var setCategoria = document.getElementById("categoria").value;
+        var selectMar = document.getElementById("categoria");
+        var categoria = selectMar.options[selectMar.selectedIndex].text;
+        var precio = document.getElementById("nit").value;
+
+        console.log(categoria);
+        console.log(precio);
+        var i = 1; //contador para asignar id al boton que borrara la fila
+        var fila = '<tr id="row' + i + '">' +
+          '<td>' + setCategoria + '</td>' +
+          '<td>' + categoria + '</td>' +
+          '<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  stock="1" nuevoStock="'+Number(-1)+'"   required></td>' +
+          '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
+          '<td><span name="remove" id="' + i + '" class="badge bg-success btn_remove">Quitar</button></td>' +
+          '</tr>';
+        i++;
+
+        var totalPrecio = 0;
+        var precioFila = parseFloat(precio);
+        totalPrecio += precioFila;
+
+        // Obtén una referencia al elemento en el que deseas agregar el contenido
+        var inputElement = document.getElementById('total');
+
+        // Agrega el contenido HTML utilizando innerHTML
+        inputElement.value = totalPrecio;
+        inputElement.setAttribute('precioReal', precio);
+
+        $('#miTabla tr:first').after(fila);
+        var nFilas = $("#miTabla tr").length;
+        //le resto 1 para no contar la fila del header
+        document.getElementById("categoria").value = "";
+        document.getElementById("nit").value = "";
+      });
+      $(document).on('click', '.btn_remove', function () {
+        var button_id = $(this).attr("id");
+        //cuando da click obtenemos el id del boton
+        $('#row' + button_id + '').remove(); //borra la fila
+        var nFilas = $("#miTabla tr").length;
+      });
+    });
+  </script>
+  <script>
+    $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
+
+      var precio = $(this).parent().parent().find(".ingresoPrecio").children(".nuevoPrecioProducto");
+      var precioFinal = $(this).val() * precio.attr("precioReal");
+
+      precio.val(precioFinal);
+      
+      var nuevoStock = Number($(this).attr("stock")) - $(this).val();
+      
+      sumarPrecios();
+
+    })
+
+    function sumarPrecios() {
+
+      var precioItem = $(".nuevoPrecioProducto");
+      var arraySumaPrecio = [];
+
+      for (var i = 0; i < precioItem.length; i++) {
+
+        arraySumaPrecio.push(Number($(precioItem[i]).val()));
+      }
+
+      function sumaArrayPrecios(total, numero) {
+
+        return total + numero;
+
+      }
+
+      var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+
+      console.log(sumaTotalPrecio);
+      
+
+      $("#total").val(sumaTotalPrecio);
+      $("#total").val(sumaTotalPrecio);
+      $("#total").attr("total", sumaTotalPrecio); 
+
+
+    }
+  </script>
+
+
+
+
   <!-- Ventana Modal Control Pedidos -->
   <div class="modal fade" id="exampleModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -352,7 +492,6 @@ require_once("../config/db_config.php");
               }
               mysqli_close($conexion);
               ?>
-
             </tbody>
           </table>
         </div>
@@ -391,19 +530,15 @@ require_once("../config/db_config.php");
   <script src="../js/main.js"></script>
 
   <script>
+    /* ---------------------------------------------------*/
+
     $(function () {
-      initEvent();
+      //$('select').selectpicker();
+      initDataTableDelivery();
       initDataTableCategory();
     })
-    function initEvent() {
-      $('#showTable').click(function () {
-        initDataTableDelivery(); //
-      });
-
-    }
 
     function initDataTableCategory() {
-
       tblDeliveryView = $("#example").DataTable({
         fixedMeader: true,
         "language": {
@@ -427,17 +562,10 @@ require_once("../config/db_config.php");
           }
         },
       });
-      
-      $('#example tbody').on('click', '#addRow', function () {
-        var pedido = $('#pedido').DataTable();
-        var data = tblDeliveryView.row($(this).parents('tr')).data();
-        pedido.row.add([data[0] + '.1', '<input class="form-control" type="number" value="1" style="width:50px ;height:20px">', '$ <span class="badge bg-success">'+data[1]+'</span>']).draw(false);
-      });
-
 
     }
-    function initDataTableDelivery() {
 
+    function initDataTableDelivery() {
       tblDeliveryView = $("#delivery").DataTable({
         fixedMeader: true,
         "language": {
@@ -462,10 +590,6 @@ require_once("../config/db_config.php");
         },
       });
     }
-
-    // En el archivo background.js de la extensión
-
-
 
   </script>
 
