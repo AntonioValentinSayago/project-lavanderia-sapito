@@ -130,7 +130,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
+        <a class="nav-link collapsed" href="../inventario/inventario.php">
           <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
         </a>
       </li><!-- End Components Nav -->
@@ -142,7 +142,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" href="../reportes/index.php">
           <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
         </a>
       </li><!-- End Tables Nav -->
@@ -189,12 +189,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
     <div class="pagetitle" style="display: flex;">
       <h1>Control de Acceso</h1>
-      <nav>
-        <!--         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-          <li class="breadcrumb-item active">Panel Principal</li>
-        </ol>  -->
-      </nav>
       <div style="margin-left: auto;">
         <a href="newEmpleado.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Usuario</button></a>

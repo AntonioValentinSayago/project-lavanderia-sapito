@@ -49,7 +49,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 
 </head>
 
@@ -145,7 +145,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </a>
       </li><!-- End Components Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" href="../reportes/index.php">
           <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
         </a>
       </li><!-- End Tables Nav -->
@@ -158,7 +158,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
 
       <li class="nav-item">
-        <a class="nav-link " href="users-profile.html">
+        <a class="nav-link ">
           <i class="bi bi-person"></i>
           <span>Clientes</span>
         </a>
@@ -172,7 +172,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
+        <a class="nav-link collapsed">
           <i class="bi bi-question-circle"></i>
           <span>Manual de Usuario</span>
         </a>
@@ -194,8 +194,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
       <div style="margin-left: auto;">
         <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Cliente</button></a>
-              <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
-                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+        <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+              class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
     </div><!-- End Page Title -->
     <!--Inicio del Section Principal-->
@@ -254,7 +254,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         }
                       } else {
                         ?>
-                        <h1>Error</h1>
+                        <div class="alert alert-danger" role="alert">
+                          No existen Clientes con Pedidos
+                        </div>
                         <?php
                       }
                       ?>
@@ -271,8 +273,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
     <div class="pagetitle" style="display: flex;">
       <div style="margin-left: auto;">
-      <a href="../pdf/clientes/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
-                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+        <a href="../pdf/clientes/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+              class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
     </div><!-- End Page Title -->
     <section class="section dashboard">
@@ -320,31 +322,31 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                               <a href="editarCliente.php?idCliente=<?php echo $fila["idCliente"]; ?>"><span
                                   class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                 </span></a>
-                                <?php
-                                  $consultaCliente = "select * from ctl_catalogo where idCliente = $idCliente";
-                                  $stmtCliente = mysqli_query($conexion, $consultaCliente);
-                                  if (mysqli_num_rows($stmtCliente) >= 1)
-                                  {
-                                      ?>
-                                        <span class="badge bg-danger" style="cursor:pointer;" onclick="validar()"><i
-                                        class="bi bi-trash-fill"></i> </span>
-                                      <?php
-                                  }else
-                                  {
-                                    ?>
-                                    <span class="badge bg-danger delete " id='del_<?php echo $idCliente ?>'
-                                      data-id='<?php echo $idCliente ?>' style="cursor:pointer;"><i
-                                        class="bi bi-trash-fill"></i> </span>
-                                    <?php
-                                  }
+                              <?php
+                              $consultaCliente = "select * from ctl_catalogo where idCliente = $idCliente";
+                              $stmtCliente = mysqli_query($conexion, $consultaCliente);
+                              if (mysqli_num_rows($stmtCliente) >= 1) {
                                 ?>
+                                <span class="badge bg-danger" style="cursor:pointer;" onclick="validar()"><i
+                                    class="bi bi-trash-fill"></i> </span>
+                                <?php
+                              } else {
+                                ?>
+                                <span class="badge bg-danger delete " id='del_<?php echo $idCliente ?>'
+                                  data-id='<?php echo $idCliente ?>' style="cursor:pointer;"><i class="bi bi-trash-fill"></i>
+                                </span>
+                                <?php
+                              }
+                              ?>
                             </td>
                           </tr>
                           <?php
                         }
                       } else {
                         ?>
-                        <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                        <div class="alert alert-danger" role="alert">
+                          La cartera de Clientes esta vacia
+                        </div>
                         <?php
                       }
                       mysqli_close($conexion);
@@ -362,48 +364,47 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     </section>
   </main><!-- End #main -->
   <script>
-      function validar()
-      {
-        iziToast.warning({
+    function validar() {
+      iziToast.warning({
         title: 'Advertencia',
         message: 'No puedo borrar un cliente con pedido',
         position: 'center'
-        });
-      }
+      });
+    }
 
-        $(document).ready(function () {
-            // Delete 
-            $('.delete').click(function () {
-                var el = this;
-                // Delete id
-                var deleteid = $(this).data('id');
-                // Confirm box
-                bootbox.confirm("¿Seguro de borrar este Cliente?", function (result) {
-                    if (result) {
-                        // AJAX Request
-                        $.ajax({
-                            url: 'eliminar.php',
-                            type: 'POST',
-                            data: { id: deleteid },
-                            success: function (response) {
-                                // Removing row from HTML Table
-                                if (response == 1) {
-                                    $(el).closest('tr').css('background', 'tomato');
-                                    $(el).closest('tr').fadeOut(800, function () {
-                                        $(this).remove();
-                                    });
-                                } else {
-                                    bootbox.alert('Errro de Servidor.');
-                                }
-                            }
-                        });
-                    }
-                });
+    $(document).ready(function () {
+      // Delete 
+      $('.delete').click(function () {
+        var el = this;
+        // Delete id
+        var deleteid = $(this).data('id');
+        // Confirm box
+        bootbox.confirm("¿Seguro de borrar este Cliente?", function (result) {
+          if (result) {
+            // AJAX Request
+            $.ajax({
+              url: 'eliminar.php',
+              type: 'POST',
+              data: { id: deleteid },
+              success: function (response) {
+                // Removing row from HTML Table
+                if (response == 1) {
+                  $(el).closest('tr').css('background', 'tomato');
+                  $(el).closest('tr').fadeOut(800, function () {
+                    $(this).remove();
+                  });
+                } else {
+                  bootbox.alert('Errro de Servidor.');
+                }
+              }
             });
+          }
         });
-    </script>
+      });
+    });
+  </script>
 
-  
+
   <script>
     $(function () {
       initDataTableDelivery();

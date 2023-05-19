@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     header('location: ../index.php');
 }
-
+require_once("../config/db_config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +47,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
     <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 
 </head>
 
@@ -119,7 +122,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
-                <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link">
                     <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
                 </a>
             </li><!-- End Components Nav -->
@@ -129,7 +132,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </a>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav">
+                <a class="nav-link collapsed" href="../reportes/index.php">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
@@ -145,13 +148,13 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="clientes.php">
+                <a class="nav-link collapsed" href="../systemUser/index.php">
                     <i class="bi bi-person-add"></i>
                     <span>Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
+                <a class="nav-link collapsed" href="">
                     <i class="bi bi-question-circle"></i>
                     <span>Manual de Usuario</span>
                 </a>
@@ -176,8 +179,22 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <div style="margin-left: auto;">
                 <a href="nuevoInventario.php"><button type="button" class="btn btn-primary btn-add"><i
                             class="bi bi-plus me-1"></i>Producto</button></a>
-                <a href="../pdf/inventario/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
-                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+                <?php $consultaRows = "SELECT * FROM inventario ";
+                $stmtRows = mysqli_query($conexion, $consultaRows);
+                if (mysqli_num_rows($stmtRows) > 0) {
+                    ?>
+                    <a href="../pdf/inventario/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+                                class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+
+                    <?php
+                } else {
+                    ?>
+                    <button type="button" class="btn btn-danger" onclick="validar()"><i
+                                class="bi bi-filetype-pdf"></i> Generar Reporte</button>
+                    <?php
+
+                }
+                ?>
             </div>
         </div><!-- End Page Title -->
         <!--Inicio del Section Principal-->
@@ -204,7 +221,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            require_once("../config/db_config.php");
                                             $consulta = "SELECT * FROM inventario ";
                                             $stmt = mysqli_query($conexion, $consulta);
 
@@ -253,7 +269,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 }
                                             } else {
                                                 ?>
-                                                <h1>Error</h1>
+                                                <div class="alert alert-danger" role="alert">
+                                                    No existen productos en el inventario
+                                                </div>
                                                 <?php
                                             }
                                             mysqli_close($conexion);
@@ -306,6 +324,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         });
     </script>
     <script>
+
+
         $(function () {
             initDataTableCategory();
         })

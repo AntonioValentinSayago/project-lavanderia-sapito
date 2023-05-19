@@ -39,7 +39,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <link rel="stylesheet" href="../css/main.css">
     <!-- Template Main CSS File -->
     <link href="../css/style.css" rel="stylesheet">
-      
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
@@ -139,14 +139,14 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </li><!-- End Components Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="../categorias/index.php">
+                <a class="nav-link">
                     <i class="bi bi-tags"></i><span>Control Categorias</span>
                 </a>
             </li><!-- End Components Nav -->
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav">
+                <a class="nav-link collapsed" href="../reportes/index.php">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
@@ -233,23 +233,39 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             $stmt = mysqli_query($conexion, $consulta);
                                             if (mysqli_num_rows($stmt) > 0) {
                                                 while ($fila = mysqli_fetch_array($stmt)) {
+                                                    $idCategoria = $fila["id_ctl_categorias"];
                                                     ?>
-                                                    <tr>
+                                                    <tr style="text-align:center">
                                                         <td>
                                                             <?php echo $fila["nombreCategoria"]; ?>
                                                         </td>
-                                                        <td class="text-largo">
-                                                            <?php echo $fila["precio"]; ?>
+                                                        <td>
+                                                            $ <?php echo $fila["precio"]; ?>
                                                         </td>
                                                         <td style="text-align:center">
                                                             <a
                                                                 href="editarCategoria.php?id_ctl_categorias=<?php echo $fila["id_ctl_categorias"]; ?>"><span
                                                                     class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                                                 </span></a>
-                                                            <span class="badge bg-danger delete "
-                                                                id='del_<?php echo $fila['id_ctl_categorias'] ?>'
-                                                                data-id='<?php echo $fila['id_ctl_categorias'] ?>'
-                                                                style="cursor:pointer;"><i class="bi bi-trash-fill"></i> </span>
+                                                            <?php
+                                                            $consultaCategoria = "select * from ctl_catalogo where id_ctl_categorias = $idCategoria";
+                                                            $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
+                                                            if (mysqli_num_rows($stmtCategoria) >= 1) {
+                                                                ?>
+                                                                <span class="badge bg-danger" style="cursor:pointer;"
+                                                                    onclick="validarCategorias()"><i class="bi bi-trash-fill"></i> </span>
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                <span class="badge bg-danger delete "
+                                                                    id='del_<?php echo $fila['id_ctl_categorias'] ?>'
+                                                                    data-id='<?php echo $fila['id_ctl_categorias'] ?>'
+                                                                    style="cursor:pointer;"><i class="bi bi-trash-fill"></i> </span>
+                                                                <?php
+                                                            }
+                                                            ?>
+
+
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -273,6 +289,15 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </section>
     </main><!-- End #main -->
     <script>
+        function validarCategoria() {
+            iziToast.warning({
+                title: 'Advertencia',
+                message: 'No puede borrar una categoria que tiene un pedido',
+                position: 'center'
+            });
+        }
+
+
         $(document).ready(function () {
             // Delete 
             $('.delete').click(function () {
@@ -305,37 +330,38 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         });
     </script>
     <script>
-    $(function () {
-      initDataTableCategory();
-    })
+        
+        $(function () {
+            initDataTableCategory();
+        })
 
-    function initDataTableCategory() {
+        function initDataTableCategory() {
 
-      tblDeliveryView = $("#example").DataTable({
-        fixedMeader: true,
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": " _START_ a _END_ de _TOTAL_ Registros",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar categoría:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        },
-      });
-    }  
-  </script>
+            tblDeliveryView = $("#example").DataTable({
+                fixedMeader: true,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": " _START_ a _END_ de _TOTAL_ Registros",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Registros",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar categoría:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+        }  
+    </script>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">

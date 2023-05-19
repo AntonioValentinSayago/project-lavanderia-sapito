@@ -147,13 +147,13 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav">
+                <a class="nav-link collapsed" href="../reportes/index.php">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="gastosGenerales.php">
+                <a class="nav-link">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->

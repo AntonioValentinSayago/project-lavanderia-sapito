@@ -47,11 +47,8 @@ require_once("../config/db_config.php");
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
   <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
-  <!--   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 </head>
 
 <body>
@@ -146,7 +143,7 @@ require_once("../config/db_config.php");
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="../reportes/index.php">
           <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
         </a>
       </li><!-- End Tables Nav -->
@@ -210,7 +207,7 @@ require_once("../config/db_config.php");
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <div class="row">
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -222,7 +219,7 @@ require_once("../config/db_config.php");
                   <hr>
                   <!-- No Labels Form -->
                   <form class="row g-3">
-                    <div class="col-md-9">
+                    <div class="col-md-8">
                       <label for="">Categoría</label>
                       <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
                         <?php
@@ -245,7 +242,7 @@ require_once("../config/db_config.php");
                         ?>
                       </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <label for="">Precio $</label>
                       <input type="number" class="form-control" id="nit">
                     </div>
@@ -259,7 +256,7 @@ require_once("../config/db_config.php");
             </div><!-- End Recent Sales -->
           </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-7">
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
@@ -267,12 +264,13 @@ require_once("../config/db_config.php");
                 echo date('d \d\e F \d\e Y'); ?>
               </h5>
               <hr>
-              <!-- No Labels Form -->
-              <form class="row g-3 formularioVenta">
+              <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
+              <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
                   <label for="">Cliente</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
-                  <select class="form-control" type="text">
+                  <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
+                  <select class="form-control" type="text" id="id_cliente">
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
                     $stmtClientes = mysqli_query($conexion, $consultaClientes);
@@ -291,40 +289,39 @@ require_once("../config/db_config.php");
                     }
                     ?>
                   </select>
-
                 </div>
                 <div class="col-md-3">
                   <label for="">Folio Nota</label>
                   <?php $numero = random_int(1, 99); ?>
-                  <input type="text" class="form-control" value="LSFN<?php echo $numero ?>" disabled>
+                  <input type="text" class="form-control" value="LSFN<?php echo $numero ?>" disabled id="folioNota">
                 </div>
                 <div class="col-md-9">
                   <table class="table table-bordered table-hover " id="miTabla">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Cantidad:</th>
-                      <th scope="col">Total:</th>
-                      <th scope="col">--</th>
+                    <tr style="font-size:10px; font-weight: 900;color:black">
+                      <td scope="col">#</td>
+                      <td scope="col">Nombre</td>
+                      <td scope="col">Cantidad:</td>
+                      <td scope="col">Total:</td>
+                      <td scope="col">--</td>
                     </tr>
                   </table>
                 </div>
                 <div class="col-md-3 text-center">
-                  <label for="">Total a Pagar</label><br>
-                  <input type="number" class="form-control" id="total" name="nuevoTotalVenta" total=""
-                    placeholder="00000">
+                  <label for="">Subtotal a Pagar</label><br>
+                  <input type="number" class="form-control" id="total" total="" placeholder="00000" disabled>
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
-                  <input type="number" class="form-control" value="0">
+                  <input type="number" class="form-control restaCantidadProducto" value="0" required id="dineroCuenta">
                 </div>
-                <div class="col-md-4">
-                  <label for="">Resta:</label><br>
-                  <input type="number" class="form-control" value="0">
+                <div class="col-md-4 ingresoRestaPrecio">
+                  <label for="">Total:</label><br>
+                  <input type="number" class="form-control restaPrecioProducto" id="resta" totalResta=""
+                    placeholder="00000" disabled>
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="date" class="form-control">
+                  <input type="date" class="form-control" required id="fechaEntrega">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -350,13 +347,11 @@ require_once("../config/db_config.php");
         var categoria = selectMar.options[selectMar.selectedIndex].text;
         var precio = document.getElementById("nit").value;
 
-        console.log(categoria);
-        console.log(precio);
         var i = 1; //contador para asignar id al boton que borrara la fila
         var fila = '<tr id="row' + i + '">' +
-          '<td>' + setCategoria + '</td>' +
+          '<th style="color:blue;">' + setCategoria + '</th>' +
           '<td>' + categoria + '</td>' +
-          '<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  stock="1" nuevoStock="'+Number(-1)+'"   required></td>' +
+          '<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
           '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
           '<td><span name="remove" id="' + i + '" class="badge bg-success btn_remove">Quitar</button></td>' +
           '</tr>';
@@ -368,10 +363,13 @@ require_once("../config/db_config.php");
 
         // Obtén una referencia al elemento en el que deseas agregar el contenido
         var inputElement = document.getElementById('total');
-
+        var inputElementResta = document.getElementById('resta');
         // Agrega el contenido HTML utilizando innerHTML
         inputElement.value = totalPrecio;
         inputElement.setAttribute('precioReal', precio);
+
+        inputElementResta.value = totalPrecio;
+        inputElementResta.setAttribute('precioReal', precio);
 
         $('#miTabla tr:first').after(fila);
         var nFilas = $("#miTabla tr").length;
@@ -392,11 +390,9 @@ require_once("../config/db_config.php");
 
       var precio = $(this).parent().parent().find(".ingresoPrecio").children(".nuevoPrecioProducto");
       var precioFinal = $(this).val() * precio.attr("precioReal");
-
       precio.val(precioFinal);
-      
       var nuevoStock = Number($(this).attr("stock")) - $(this).val();
-      
+
       sumarPrecios();
 
     })
@@ -419,19 +415,129 @@ require_once("../config/db_config.php");
 
       var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
 
-      console.log(sumaTotalPrecio);
-      
-
       $("#total").val(sumaTotalPrecio);
-      $("#total").val(sumaTotalPrecio);
-      $("#total").attr("total", sumaTotalPrecio); 
+      $("#total").attr("total", sumaTotalPrecio);
 
-
+      $("#resta").val(sumaTotalPrecio);
+      $("#resta").attr("totalResta", sumaTotalPrecio);
     }
+    /*
+      ********************************************************************
+      ********************************************************************
+    */
+
+    $(".formularioVenta").on("change", "input.restaCantidadProducto", function () {
+
+      var precio = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
+      var precioFinal = precio.val() - $(this).val()
+      precio.val(precioFinal);
+      console.log(precioFinal)
+
+      //restarPrecios();
+
+    })
+
+    function restarPrecios() {
+
+      var precioItem = $(".nuevoPrecioProducto");
+      var arraySumaPrecio = [];
+
+      for (var i = 0; i < precioItem.length; i++) {
+
+        arraySumaPrecio.push(Number($(precioItem[i]).val()));
+      }
+
+      function sumaArrayPrecios(total, numero) {
+
+        return total + numero;
+
+      }
+
+      var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+
+      $("#total").val(sumaTotalPrecio);
+      $("#total").attr("total", sumaTotalPrecio);
+
+      $("#resta").val(sumaTotalPrecio);
+      $("#resta").attr("totalResta", sumaTotalPrecio);
+    }
+
+
+
   </script>
 
 
+  <script>
+    //$(document).ready(function () {
+    $('#agregarVenta').submit(function (e) {
+      e.preventDefault(); // Evita el envío del formulario estándar
 
+      // Obtén los valores de los campos
+      var idEmpleado = document.getElementById("idEmpleado").value;
+      var cliente = document.getElementById("id_cliente").value;
+      var folioNota = document.getElementById("folioNota").value;
+      var total = document.getElementById("total").value;
+      var dineroCuenta = document.getElementById("dineroCuenta").value;
+      var resta = document.getElementById("resta").value;
+      var fechaEntrega = document.getElementById("fechaEntrega").value;
+      var tabla = document.getElementById("miTabla");
+      var valoresColumna = [];
+
+      // Itera sobre las filas de la tabla (comenzando desde el índice 1 para omitir la cabecera)
+      for (var i = 1; i < tabla.rows.length; i++) {
+        var fila = tabla.rows[i];
+
+        // Obtiene el texto de la primera celda de la fila
+        var celda = fila.cells[0];
+        var texto = celda.innerText;
+
+        valoresColumna.push(texto);
+      }
+      // Realiza la solicitud AJAX
+      $.ajax({
+        url: 'nuevoPedido.php', // Ruta al archivo PHP que realizará la inserción
+        method: 'POST', // Método de envío de datos
+        data: {
+          idEmpleado: idEmpleado,
+          cliente: cliente,
+          folioNota: folioNota,
+          total: total,
+          valoresColumna: valoresColumna,
+          dineroCuenta: dineroCuenta,
+          resta: resta,
+          fechaEntrega: fechaEntrega
+        }, // Datos a enviar
+        success: function (response) {
+          // Maneja la respuesta del servidor
+          let formulario = document.getElementById('agregarVenta');
+          formulario.reset();
+
+          var tabla = document.getElementById("miTabla");
+          var filas = tabla.getElementsByTagName("tr");
+
+          // Comenzar desde la segunda fila (índice 1) para omitir el encabezado
+          for (var i = filas.length - 1; i > 0; i--) {
+            tabla.deleteRow(i);
+          }
+
+          iziToast.success({
+            title: 'OK',
+            message: 'Nota Realizada Correctamente',
+            position: 'center',
+          });
+          console.log(response);
+          // Puedes mostrar una notificación o redirigir a otra página después de la inserción
+        },
+        error: function (xhr, status, error) {
+          // Maneja los errores de la solicitud AJAX
+          console.log("Error: " + xhr.status)
+          console.error(error);
+        }
+      });
+    });
+    //});
+
+  </script>
 
   <!-- Ventana Modal Control Pedidos -->
   <div class="modal fade" id="exampleModal" tabindex="-1">
