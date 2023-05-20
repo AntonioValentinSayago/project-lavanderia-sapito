@@ -40,12 +40,11 @@ require_once("../config/db_config.php");
 
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
-
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-  <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+  <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
@@ -195,9 +194,7 @@ require_once("../config/db_config.php");
         <a href="../clientes/clientes.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-person-fill-add"></i> Nuevo
             Cliente</button></a>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          id="showTable"><i class="bi bi-eye-fill"></i> Control Pedidos</button>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalCategorias"
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
           id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
@@ -332,6 +329,71 @@ require_once("../config/db_config.php");
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                  <hr>
+                  <table class="table table-borderless" id="example1">
+                    <thead>
+                      <tr>
+                        <th scope="col">$ Folio de Nota</th>
+                        <th scope="col">$ Total</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Ver</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $consulta = "select * from ctl_catalogo cata
+                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
+                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
+                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
+                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
+                                    ORDER BY id_ctl_catalogo desc";
+                      $stmt = mysqli_query($conexion, $consulta);
+                      if (mysqli_num_rows($stmt) > 0) {
+                        while ($fila = mysqli_fetch_array($stmt)) {
+                          $Estatus = $fila["estatus"];
+                          ?>
+                          <tr>
+                            <th scope="row">
+                              <?php echo $fila["folio_nota"]; ?>
+                            </th>
+                            <td>
+                              <?php echo $fila["costoPagar"]; ?>
+                            </td>
+                            <td>
+                              <span
+                                class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
+                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
+                              </span>
+                            </td>
+                            <td>
+                              <?php echo $fila["nombreCompleto"]; ?>
+                            </td>
+                            <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
+                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
+                          </tr>
+                          <?php
+                        }
+                      } else {
+                        ?>
+                        <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                        <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main><!-- End #main -->
   <script>
@@ -454,8 +516,6 @@ require_once("../config/db_config.php");
     })
 
   </script>
-
-
   <script>
     $('#agregarVenta').submit(function (e) {
       e.preventDefault(); // Evita el envío del formulario estándar
@@ -538,97 +598,28 @@ require_once("../config/db_config.php");
 
   </script>
 
-  <!-- Ventana Modal Control Pedidos -->
-  <div class="modal fade" id="exampleModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Control de Pedidos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-borderless" id="example">
-            <thead>
-              <tr>
-                <th scope="col">$ Folio de Nota</th>
-                <th scope="col">$ Total</th>
-                <th scope="col">Estatus</th>
-                <th scope="col">Cliente</th>
-                <th scope="col">Ver</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $consulta = "select * from ctl_catalogo cata
-                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
-                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
-                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
-                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
-                                    ORDER BY id_ctl_catalogo desc";
-              $stmt = mysqli_query($conexion, $consulta);
-              if (mysqli_num_rows($stmt) > 0) {
-                while ($fila = mysqli_fetch_array($stmt)) {
-                  $Estatus = $fila["estatus"];
-                  ?>
-                  <tr>
-                    <th scope="row">
-                      <?php echo $fila["folio_nota"]; ?>
-                    </th>
-                    <td>
-                      <?php echo $fila["costoPagar"]; ?>
-                    </td>
-                    <td>
-                      <span class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
-                        <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
-                      </span>
-                    </td>
-                    <td>
-                      <?php echo $fila["nombreCompleto"]; ?>
-                    </td>
-                    <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
-                          class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
-                  </tr>
-                  <?php
-                }
-              } else {
-                ?>
-                <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
-                <?php
-              }
-              mysqli_close($conexion);
-              ?>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- En Ventana Modal Control Pedidos -->
 
-  <!-- En ventana Modal Control de Precio -->
-  <div class="modal fade" id="exampleModalCategorias" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+  <!-- Modal -->
+  <div class="modal modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Control de Pedidos</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Lista de Precios</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <table class="table table-borderless" id="categorias">
-            <thead>
+          <table class="table table-striped table-hover" id="example2">
+            <thead style="background:#EABCB3;">
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">$ Precio</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style="color:black;" class="text-center">
               <?php
               $consultaCategoria = "SELECT * FROM ctl_categorias ORDER BY id_ctl_categorias DESC";
               $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
-              if (mysqli_num_rows($stmt) > 0) {
+              if (mysqli_num_rows($stmtCategoria) > 0) {
                 while ($fila = mysqli_fetch_array($stmtCategoria)) {
                   ?>
                   <tr>
@@ -647,21 +638,16 @@ require_once("../config/db_config.php");
                 <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
                 <?php
               }
-              mysqli_close($conexion);
               ?>
             </tbody>
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar </button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- En ventana Modal Control de Precio -->
-
-
-
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -690,41 +676,13 @@ require_once("../config/db_config.php");
 
   <script>
     /* ---------------------------------------------------*/
-
     $(function () {
       initDataTableDelivery();
       initDataTableCategory();
     })
 
-    function initDataTableDelivery() {
-      tblDeliveryView = $("#example").DataTable({
-        fixedMeader: true,
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": " _START_ a _END_ de _TOTAL_ Registros",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        },
-      });
-
-    }
-
     function initDataTableCategory() {
-      tblDeliveryView = $("#categorias").DataTable({
+      tblDeliveryView = $("#example1").DataTable({
         fixedMeader: true,
         "language": {
           "decimal": "",
@@ -738,6 +696,33 @@ require_once("../config/db_config.php");
           "loadingRecords": "Cargando...",
           "processing": "Procesando...",
           "search": "Buscar Pedido:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+
+    }
+
+    function initDataTableDelivery() {
+      tblDeliveryView = $("#example2").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Precio:",
           "zeroRecords": "Sin resultados encontrados",
           "paginate": {
             "first": "Primero",

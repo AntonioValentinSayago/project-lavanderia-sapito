@@ -262,7 +262,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 }
                                             } else {
                                                 ?>
-                                                <h1>Error</h1>
+                                                <div class="alert alert-danger" role="alert">
+                                                    No existen Datos
+                                                </div>
                                                 <?php
                                             }
                                             mysqli_close($conexion);
@@ -310,38 +312,38 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             });
         });
     </script>
-     <script>
-    $(function () {
-      initDataTableCategory();
-    })
+    <script>
+        $(function () {
+            initDataTableCategory();
+        })
 
-    function initDataTableCategory() {
+        function initDataTableCategory() {
 
-      tblDeliveryView = $("#example").DataTable({
-        fixedMeader: true,
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": " _START_ a _END_ de _TOTAL_ Registros",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar Gasto:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        },
-      });
-    }  
-  </script>
+            tblDeliveryView = $("#example").DataTable({
+                fixedMeader: true,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": " _START_ a _END_ de _TOTAL_ Registros",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Registros",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar Gasto:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+        }  
+    </script>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
