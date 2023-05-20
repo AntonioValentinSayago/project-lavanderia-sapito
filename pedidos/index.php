@@ -109,13 +109,10 @@ require_once("../config/db_config.php");
                 <span>Salir del Sistema</span>
               </a>
             </li>
-
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
-
       </ul>
     </nav><!-- End Icons Navigation -->
-
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
@@ -195,11 +192,12 @@ require_once("../config/db_config.php");
         </ol>
       </nav>
       <div style="margin-left: auto;">
-        <button type="button" class="btn btn-primary btn-add"><i class="bi bi-person-fill-add"></i> Nuevo
-          Cliente</button>
+        <a href="../clientes/clientes.php"><button type="button" class="btn btn-primary btn-add"><i
+              class="bi bi-person-fill-add"></i> Nuevo
+            Cliente</button></a>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
           id="showTable"><i class="bi bi-eye-fill"></i> Control Pedidos</button>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalCategorias"
           id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
@@ -308,24 +306,26 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-3 text-center">
                   <label for="">Subtotal a Pagar</label><br>
-                  <input type="number" class="form-control" id="total" total="" placeholder="00000" disabled>
+                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled>
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
-                  <input type="number" class="form-control restaCantidadProducto" value="0" required id="dineroCuenta">
+                  <input type="number" class="form-control restaCantidadProducto" required id="dineroCuenta"
+                    placeholder="00.00">
                 </div>
                 <div class="col-md-4 ingresoRestaPrecio">
                   <label for="">Total:</label><br>
                   <input type="number" class="form-control restaPrecioProducto" id="resta" totalResta=""
-                    placeholder="00000" disabled>
+                    placeholder="00.00" disabled>
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
                   <input type="date" class="form-control" required id="fechaEntrega">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button>
+                  <button type="reset" onclick="resetFormulario()" class="btn btn-danger"><i
+                      class="bi bi-trash3"></i></button>
                 </div>
               </form><!-- End No Labels Form -->
             </div>
@@ -335,10 +335,12 @@ require_once("../config/db_config.php");
     </section>
   </main><!-- End #main -->
   <script>
+
     function selectNit(e) {
       var nit = e.target.selectedOptions[0].getAttribute("data-nit")
       document.getElementById("nit").value = nit;
     }
+
     $(document).ready(function () {
       $('#adicionar').click(function () {
 
@@ -377,12 +379,28 @@ require_once("../config/db_config.php");
         document.getElementById("categoria").value = "";
         document.getElementById("nit").value = "";
       });
+
+      //Remover la categoría de la venta
       $(document).on('click', '.btn_remove', function () {
         var button_id = $(this).attr("id");
         //cuando da click obtenemos el id del boton
         $('#row' + button_id + '').remove(); //borra la fila
         var nFilas = $("#miTabla tr").length;
+
+        //restar la cantidad
+        var precioSubTotal = document.getElementById('total').value;
+        var precio1 = $(this).parent().parent().find(".ingresoPrecio").children(".nuevoPrecioProducto");
+        var total = precioSubTotal - precio1.attr("precioReal");
+        $("#total").val(total);
+
+        var precioTotal = document.getElementById('resta').value;
+        var precio2 = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
+        var precioFinal2 = precioTotal - precio2.attr("precioReal")
+        $("#resta").val(precioFinal2);
+
+
       });
+
     });
   </script>
   <script>
@@ -423,6 +441,7 @@ require_once("../config/db_config.php");
     }
     /*
       ********************************************************************
+        RESTAR CANTIDAD DEL PRODUCTO
       ********************************************************************
     */
 
@@ -431,44 +450,13 @@ require_once("../config/db_config.php");
       var precio = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
       var precioFinal = precio.val() - $(this).val()
       precio.val(precioFinal);
-      console.log(precioFinal)
-
-      //restarPrecios();
 
     })
-
-    function restarPrecios() {
-
-      var precioItem = $(".nuevoPrecioProducto");
-      var arraySumaPrecio = [];
-
-      for (var i = 0; i < precioItem.length; i++) {
-
-        arraySumaPrecio.push(Number($(precioItem[i]).val()));
-      }
-
-      function sumaArrayPrecios(total, numero) {
-
-        return total + numero;
-
-      }
-
-      var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
-
-      $("#total").val(sumaTotalPrecio);
-      $("#total").attr("total", sumaTotalPrecio);
-
-      $("#resta").val(sumaTotalPrecio);
-      $("#resta").attr("totalResta", sumaTotalPrecio);
-    }
-
-
 
   </script>
 
 
   <script>
-    //$(document).ready(function () {
     $('#agregarVenta').submit(function (e) {
       e.preventDefault(); // Evita el envío del formulario estándar
 
@@ -525,7 +513,6 @@ require_once("../config/db_config.php");
             message: 'Nota Realizada Correctamente',
             position: 'center',
           });
-          console.log(response);
           // Puedes mostrar una notificación o redirigir a otra página después de la inserción
         },
         error: function (xhr, status, error) {
@@ -535,7 +522,19 @@ require_once("../config/db_config.php");
         }
       });
     });
-    //});
+
+    function resetFormulario() {
+      let formulario = document.getElementById('agregarVenta');
+      formulario.reset();
+
+      var tabla = document.getElementById("miTabla");
+      var filas = tabla.getElementsByTagName("tr");
+
+      // Comenzar desde la segunda fila (índice 1) para omitir el encabezado
+      for (var i = filas.length - 1; i > 0; i--) {
+        tabla.deleteRow(i);
+      }
+    }
 
   </script>
 
@@ -548,7 +547,7 @@ require_once("../config/db_config.php");
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <table class="table table-borderless" id="delivery">
+          <table class="table table-borderless" id="example">
             <thead>
               <tr>
                 <th scope="col">$ Folio de Nota</th>
@@ -609,6 +608,60 @@ require_once("../config/db_config.php");
   </div>
   <!-- En Ventana Modal Control Pedidos -->
 
+  <!-- En ventana Modal Control de Precio -->
+  <div class="modal fade" id="exampleModalCategorias" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Control de Pedidos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-borderless" id="categorias">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">$ Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $consultaCategoria = "SELECT * FROM ctl_categorias ORDER BY id_ctl_categorias DESC";
+              $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
+              if (mysqli_num_rows($stmt) > 0) {
+                while ($fila = mysqli_fetch_array($stmtCategoria)) {
+                  ?>
+                  <tr>
+                    <td>
+                      <?php echo $fila["nombreCategoria"]; ?>
+                    </td>
+                    <td>
+                      $
+                      <?php echo $fila["precio"]; ?>
+                    </td>
+                  </tr>
+                  <?php
+                }
+              } else {
+                ?>
+                <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                <?php
+              }
+              mysqli_close($conexion);
+              ?>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- En ventana Modal Control de Precio -->
+
+
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -639,12 +692,11 @@ require_once("../config/db_config.php");
     /* ---------------------------------------------------*/
 
     $(function () {
-      //$('select').selectpicker();
       initDataTableDelivery();
       initDataTableCategory();
     })
 
-    function initDataTableCategory() {
+    function initDataTableDelivery() {
       tblDeliveryView = $("#example").DataTable({
         fixedMeader: true,
         "language": {
@@ -671,8 +723,8 @@ require_once("../config/db_config.php");
 
     }
 
-    function initDataTableDelivery() {
-      tblDeliveryView = $("#delivery").DataTable({
+    function initDataTableCategory() {
+      tblDeliveryView = $("#categorias").DataTable({
         fixedMeader: true,
         "language": {
           "decimal": "",
