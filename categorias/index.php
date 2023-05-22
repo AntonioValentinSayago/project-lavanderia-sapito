@@ -2,7 +2,7 @@
 session_start();
 
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
-if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
+if (!isset($_SESSION['cargo'])) {
     header('location: ../index.php');
 }
 
@@ -131,6 +131,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     <span>Panel Principal</span>
                 </a>
             </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../consultaPedido/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Historial de Pedidos</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../inventario/inventario.php">
@@ -240,7 +246,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                             <?php echo $fila["nombreCategoria"]; ?>
                                                         </td>
                                                         <td>
-                                                            $ <?php echo $fila["precio"]; ?>
+                                                            $
+                                                            <?php echo $fila["precio"]; ?>
                                                         </td>
                                                         <td style="text-align:center">
                                                             <a
@@ -253,7 +260,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                             if (mysqli_num_rows($stmtCategoria) >= 1) {
                                                                 ?>
                                                                 <span class="badge bg-danger" style="cursor:pointer;"
-                                                                    onclick="validarCategorias()"><i class="bi bi-trash-fill"></i> </span>
+                                                                    onclick="validarCategorias()"><i class="bi bi-trash-fill"></i>
+                                                                </span>
                                                                 <?php
                                                             } else {
                                                                 ?>
@@ -330,7 +338,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         });
     </script>
     <script>
-        
+
         $(function () {
             initDataTableCategory();
         })

@@ -2,7 +2,7 @@
 session_start();
 
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
-if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
+if (!isset($_SESSION['cargo'])) {
   header('location: ../index.php');
 }
 

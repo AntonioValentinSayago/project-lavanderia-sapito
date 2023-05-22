@@ -5,7 +5,7 @@ require_once("../config/db_config.php");
 session_start();
 
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
-if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
+if (!isset($_SESSION['cargo'])) {
   header('location: ../index.php');
 }
 
@@ -127,6 +127,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historial de Pedidos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
           <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
         </a>
@@ -137,7 +143,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </a>
       </li><!-- End Components Nav -->
       <li class="nav-item">
-        <a class="nav-link "href="#">
+        <a class="nav-link " href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
         </a>
       </li><!-- End Tables Nav -->
@@ -249,8 +255,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/inventario/pdf.php" target="_target"><span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      <a href="../pdf/inventario/pdf.php" target="_target"><span
+                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
                   </div>
@@ -282,8 +289,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/clientes/pdf.php" target="_target"><span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      <a href="../pdf/clientes/pdf.php" target="_target"><span
+                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
                   </div>
@@ -322,8 +330,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/categorias/pdf.php" target="_target"><span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      <a href="../pdf/categorias/pdf.php" target="_target"><span
+                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
                   </div>
@@ -356,8 +365,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/gastos/pdf.php" target="_target"><span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      <a href="../pdf/gastos/pdf.php" target="_target"><span
+                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
                   </div>
@@ -391,8 +401,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/empleado/pdf.php" target="_target"><span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      <a href="../pdf/empleado/pdf.php" target="_target"><span
+                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
                   </div>

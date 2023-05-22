@@ -2,7 +2,7 @@
 session_start();
 
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
-if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
+if (!isset($_SESSION['cargo'])) {
   header('location: ../index.php');
 }
 
@@ -126,6 +126,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <a class="nav-link collapsed " href="../pedidos/index.php">
           <i class="bi bi-grid"></i>
           <span>Panel Principal</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historial de Pedidos</span>
         </a>
       </li><!-- End Dashboard Nav -->
 

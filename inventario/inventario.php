@@ -2,7 +2,7 @@
 session_start();
 
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
-if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
+if (!isset($_SESSION['cargo'])) {
     header('location: ../index.php');
 }
 require_once("../config/db_config.php");
@@ -122,6 +122,12 @@ require_once("../config/db_config.php");
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
+                <a class="nav-link collapsed" href="../consultaPedido/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Historial de Pedidos</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
                 <a class="nav-link">
                     <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
                 </a>
@@ -189,8 +195,8 @@ require_once("../config/db_config.php");
                     <?php
                 } else {
                     ?>
-                    <button type="button" class="btn btn-danger" onclick="validar()"><i
-                                class="bi bi-filetype-pdf"></i> Generar Reporte</button>
+                    <button type="button" class="btn btn-danger" onclick="validar()"><i class="bi bi-filetype-pdf"></i>
+                        Generar Reporte</button>
                     <?php
 
                 }
