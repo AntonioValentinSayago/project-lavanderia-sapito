@@ -191,7 +191,7 @@ require_once("../config/db_config.php");
         </ol>
       </nav>
       <div style="margin-left: auto;">
-        <a href="../clientes/clientes.php"><button type="button" class="btn btn-primary btn-add"><i
+        <a href="../clientes/addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-person-fill-add"></i> Nuevo
             Cliente</button></a>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -208,7 +208,7 @@ require_once("../config/db_config.php");
               <div class="card recent-sales overflow-auto">
                 <div class="card-body mt-2">
                   <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-                    <?php setlocale(LC_TIME, 'es_MX.UTF-8');
+                    <?php date_default_timezone_set("America/Mexico_City");
                     echo date('d \d\e F \d\e Y'); ?>
                   </h5>
                   <hr>
@@ -255,23 +255,25 @@ require_once("../config/db_config.php");
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-                <?php setlocale(LC_TIME, 'es_MX.UTF-8');
-                echo date('d \d\e F \d\e Y'); ?>
+                <?php date_default_timezone_set("America/Mexico_City");
+                $date = date("d-m-Y"); // Establece la configuración regional en español para México
+                echo $fecha = date('Y-m-d', strtotime($date)); ?>
               </h5>
               <hr>
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
-                  <label for="">Cliente</label>
+                  <label for="id_cliente">Cliente</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control" type="text" id="id_cliente">
+                  <select class="form-control" type="text" id="id_cliente" required>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
                     $stmtClientes = mysqli_query($conexion, $consultaClientes);
                     if (mysqli_num_rows($stmtClientes) > 0) {
                       while ($fila = mysqli_fetch_array($stmtClientes)) {
                         ?>
+                        <option value="">Seleccione Cliente...</option>
                         <option value="<?php echo $fila["idCliente"]; ?>">
                           <?php echo $fila["nombreCompleto"]; ?>
                         </option>
@@ -287,8 +289,10 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-3">
                   <label for="">Folio Nota</label>
-                  <?php $numero = random_int(1, 99); ?>
-                  <input type="text" class="form-control" value="LSFN<?php echo $numero ?>" disabled id="folioNota">
+                  <?php $numero = random_int(1, 99); 
+                    $letra_aleatoria = chr(rand(65, 90));
+                  ?>
+                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;echo$numero ?>" disabled id="folioNota">
                 </div>
                 <div class="col-md-9">
                   <table class="table table-bordered table-hover " id="miTabla">
@@ -297,7 +301,6 @@ require_once("../config/db_config.php");
                       <td scope="col">Nombre</td>
                       <td scope="col">Cantidad:</td>
                       <td scope="col">Total:</td>
-                      <td scope="col">--</td>
                     </tr>
                   </table>
                 </div>
@@ -317,7 +320,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="date" class="form-control" required id="fechaEntrega">
+                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo $fecha ?>">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button>
@@ -335,6 +338,7 @@ require_once("../config/db_config.php");
             <div class="col-md-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
+                  <p>Cartera de Pedidos</p>
                   <hr>
                   <table class="table table-borderless" id="example1">
                     <thead>
@@ -348,12 +352,14 @@ require_once("../config/db_config.php");
                     </thead>
                     <tbody>
                       <?php
-                      $consulta = "select * from ctl_catalogo cata
+                      $consulta = "SELECT DISTINCT folio_nota,
+                      ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,
+                      cl.nombreCompleto as nombreCliente,
+                      cata.id_ctl_ventapedidos FROM ctl_catalogo cata
                                     join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                                     JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                                     JOIN clientes cl ON cl.idCliente = cata.idCliente
-                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
-                                    ORDER BY id_ctl_catalogo desc";
+                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         while ($fila = mysqli_fetch_array($stmt)) {
@@ -373,7 +379,7 @@ require_once("../config/db_config.php");
                               </span>
                             </td>
                             <td>
-                              <?php echo $fila["nombreCompleto"]; ?>
+                              <?php echo $fila["nombreCliente"]; ?>
                             </td>
                             <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
                                   class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
@@ -396,6 +402,68 @@ require_once("../config/db_config.php");
       </div>
     </section>
   </main><!-- End #main -->
+
+  <script>
+    /* ---------------------------------------------------*/
+    $(function () {
+      initDataTableDelivery();
+      initDataTableCategory();
+    })
+
+    function initDataTableCategory() {
+      tblDeliveryView = $("#example1").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Pedido:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+
+    }
+
+    function initDataTableDelivery() {
+      tblDeliveryView = $("#example2").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Precio:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+      });
+    }
+
+  </script>
   <script>
 
     function selectNit(e) {
@@ -417,7 +485,6 @@ require_once("../config/db_config.php");
           '<td>' + categoria + '</td>' +
           '<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
           '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
-          '<td><span name="remove" id="' + i + '" class="badge bg-success btn_remove">Quitar</button></td>' +
           '</tr>';
         i++;
 
@@ -572,8 +639,13 @@ require_once("../config/db_config.php");
             title: 'OK',
             message: 'Nota Realizada Correctamente',
             position: 'center',
+            timeout: 2000,
           });
           // Puedes mostrar una notificación o redirigir a otra página después de la inserción
+          setTimeout(function () {
+            location.reload();
+          }, 2500);
+
         },
         error: function (xhr, status, error) {
           // Maneja los errores de la solicitud AJAX
@@ -673,68 +745,6 @@ require_once("../config/db_config.php");
 
   <!-- Template Main JS File -->
   <script src="../js/main.js"></script>
-
-  <script>
-    /* ---------------------------------------------------*/
-    $(function () {
-      initDataTableDelivery();
-      initDataTableCategory();
-    })
-
-    function initDataTableCategory() {
-      tblDeliveryView = $("#example1").DataTable({
-        fixedMeader: true,
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": " _START_ a _END_ de _TOTAL_ Registros",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar Pedido:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        },
-      });
-
-    }
-
-    function initDataTableDelivery() {
-      tblDeliveryView = $("#example2").DataTable({
-        fixedMeader: true,
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": " _START_ a _END_ de _TOTAL_ Registros",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar Precio:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        },
-      });
-    }
-
-  </script>
 
 </body>
 
