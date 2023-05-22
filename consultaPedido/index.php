@@ -265,7 +265,7 @@ if (!isset($_SESSION['cargo'])) {
                       } else {
                         ?>
                         <div class="alert alert-danger" role="alert">
-                          No existen Clientes con Pedidos
+                          No existen Pedidos
                         </div>
                         <?php
                       }

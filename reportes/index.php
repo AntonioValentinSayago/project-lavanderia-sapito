@@ -212,7 +212,7 @@ if (!isset($_SESSION['cargo'])) {
                     <div class="ps-3">
                       <?php
                       $consulta = "SELECT *
-                      from ctl_userSystem";
+                      from ctl_ventapedidos";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         $totalRegistros = mysqli_num_rows($stmt);
@@ -222,7 +222,7 @@ if (!isset($_SESSION['cargo'])) {
                         </h6>
                         <?php
                       } ?>
-                      <a href=""><span class="text-success small pt-1 fw-bold">12%</span> <span
+                      <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
                           class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                     </div>
                   </div>
@@ -256,7 +256,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href="../pdf/inventario/pdf.php" target="_target"><span
-                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
@@ -290,7 +290,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href="../pdf/clientes/pdf.php" target="_target"><span
-                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
@@ -331,7 +331,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href="../pdf/categorias/pdf.php" target="_target"><span
-                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
@@ -366,7 +366,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href="../pdf/gastos/pdf.php" target="_target"><span
-                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
@@ -402,7 +402,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href="../pdf/empleado/pdf.php" target="_target"><span
-                          class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"><i
+                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
