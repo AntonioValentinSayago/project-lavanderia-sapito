@@ -125,6 +125,13 @@ require_once("../config/db_config.php");
           <span>Panel Principal</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historial de Pedidos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../inventario/inventario.php">
