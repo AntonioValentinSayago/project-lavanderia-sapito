@@ -1,12 +1,11 @@
 <?php
-/* session_start();
+session_start();
 setlocale(LC_TIME, 'es_MX.UTF-8');
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   header('location: ../index.php');
 }
-*/
-require_once("../config/db_config.php"); 
+require_once("../config/db_config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
