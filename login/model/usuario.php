@@ -45,7 +45,7 @@
       */
 
       // traemos el id y el nombre de la tabla usuarios donde el usuario sea igual al usuario ingresado y ademas la clave sea igual a la ingresada para ese usuario.
-      $consulta = 'select id_ctlUserSystem, nombreCompleto,foto_perfil,email_correo, cargo from ctl_userSystem where email_correo="'.$user.'" and clave="'.$clave.'" ';
+      $consulta = 'select id_ctlUserSystem, nombreCompleto,foto_perfil,email_correo, cargo from ctl_usersystem where email_correo="'.$user.'" and clave="'.$clave.'" ';
       /*
         Verificamos si el usuario existe, la funcion verificarRegistros
         retorna el número de filas afectadas, en otras palabras si el
