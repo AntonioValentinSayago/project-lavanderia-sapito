@@ -132,7 +132,6 @@ require_once("../config/db_config.php");
         </a>
       </li><!-- End Dashboard Nav -->
 
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="../inventario/inventario.php">
           <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
@@ -274,13 +273,13 @@ require_once("../config/db_config.php");
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
                   <select class="form-control" type="text" id="id_cliente" required>
+                  <option value="" >Seleccione Cliente...</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
                     $stmtClientes = mysqli_query($conexion, $consultaClientes);
                     if (mysqli_num_rows($stmtClientes) > 0) {
                       while ($fila = mysqli_fetch_array($stmtClientes)) {
                         ?>
-                        <option value="">Seleccione Cliente...</option>
                         <option value="<?php echo $fila["idCliente"]; ?>">
                           <?php echo $fila["nombreCompleto"]; ?>
                         </option>
@@ -296,17 +295,18 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-3">
                   <label for="">Folio Nota</label>
-                  <?php $numero = random_int(1, 99); 
-                    $letra_aleatoria = chr(rand(65, 90));
+                  <?php $numero = random_int(1, 99);
+                  $letra_aleatoria = chr(rand(65, 90));
                   ?>
-                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;echo$numero ?>" disabled id="folioNota">
+                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;
+                  echo $numero ?>" disabled id="folioNota">
                 </div>
                 <div class="col-md-9">
                   <table class="table table-bordered table-hover " id="miTabla">
                     <tr style="font-size:10px; font-weight: 900;color:black">
-                      <td scope="col">#</td>
+                      <!-- <td scope="col" >#</td> -->
                       <td scope="col">Nombre</td>
-                      <td scope="col">Cantidad:</td>
+                      <td scope="col">Cantidad o KG:</td>
                       <td scope="col">Total:</td>
                     </tr>
                   </table>
@@ -327,7 +327,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo $fecha ?>">
+                  <input type="datetime-local" class="form-control" required id="fechaEntrega" min="<?php echo $date?>">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button>
@@ -362,7 +362,8 @@ require_once("../config/db_config.php");
                       $consulta = "SELECT DISTINCT folio_nota,
                       ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,
                       cl.nombreCompleto as nombreCliente,
-                      cata.id_ctl_ventapedidos FROM ctl_catalogo cata
+                      cata.id_ctl_ventapedidos 
+                                    FROM ctl_catalogo cata
                                     join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                                     JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                                     JOIN clientes cl ON cl.idCliente = cata.idCliente
@@ -487,34 +488,40 @@ require_once("../config/db_config.php");
         var precio = document.getElementById("nit").value;
 
         var i = 1; //contador para asignar id al boton que borrara la fila
-        var fila = '<tr id="row' + i + '">' +
-          '<th style="color:blue;">' + setCategoria + '</th>' +
-          '<td>' + categoria + '</td>' +
-          '<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
-          '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
+        var fila = 
+          '<tr id="row' + i + '">' +
+            '<th style="color:blue; display:none">' + setCategoria + '</th>' +
+            '<td>' + categoria + '</td>' +
+            '<td><input type="number" step="any" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="0" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
+            '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
           '</tr>';
         i++;
-
         var totalPrecio = 0;
         var precioFila = parseFloat(precio);
         totalPrecio += precioFila;
 
-        // Obtén una referencia al elemento en el que deseas agregar el contenido
         var inputElement = document.getElementById('total');
-        var inputElementResta = document.getElementById('resta');
         // Agrega el contenido HTML utilizando innerHTML
         inputElement.value = totalPrecio;
         inputElement.setAttribute('precioReal', precio);
 
+        // Obtén una referencia al elemento en el que deseas agregar el contenido
+        var inputElementResta = document.getElementById('resta');
         inputElementResta.value = totalPrecio;
         inputElementResta.setAttribute('precioReal', precio);
 
+        //le resto 1 para no contar la fila del header
         $('#miTabla tr:first').after(fila);
         var nFilas = $("#miTabla tr").length;
-        //le resto 1 para no contar la fila del header
         document.getElementById("categoria").value = "";
         document.getElementById("nit").value = "";
+
+        setTimeout(() => {
+          sumarPrecios();
+        }, 500);
+
       });
+
 
       //Remover la categoría de la venta
       $(document).on('click', '.btn_remove', function () {
@@ -593,6 +600,8 @@ require_once("../config/db_config.php");
   <script>
     $('#agregarVenta').submit(function (e) {
       e.preventDefault(); // Evita el envío del formulario estándar
+      var botton = document.getElementById("agregarVenta");
+      botton.disabled = true;
 
       // Obtén los valores de los campos
       var idEmpleado = document.getElementById("idEmpleado").value;
@@ -604,6 +613,7 @@ require_once("../config/db_config.php");
       var fechaEntrega = document.getElementById("fechaEntrega").value;
       var tabla = document.getElementById("miTabla");
       var valoresColumna = [];
+
 
       // Itera sobre las filas de la tabla (comenzando desde el índice 1 para omitir la cabecera)
       for (var i = 1; i < tabla.rows.length; i++) {
@@ -641,12 +651,15 @@ require_once("../config/db_config.php");
           for (var i = filas.length - 1; i > 0; i--) {
             tabla.deleteRow(i);
           }
+          var botton = document.getElementById("agregarVenta");
+          botton.disabled = true;
+          botton.innerHTML = "<div class='alert alert-warning' role='alert'>Guardando Pedido!</div>";
 
           iziToast.success({
             title: 'OK',
             message: 'Nota Realizada Correctamente',
             position: 'center',
-            timeout: 2000,
+            timeout: 3000,
           });
           // Puedes mostrar una notificación o redirigir a otra página después de la inserción
           setTimeout(function () {
