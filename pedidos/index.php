@@ -5,7 +5,8 @@ setlocale(LC_TIME, 'es_MX.UTF-8');
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   header('location: ../index.php');
 }
-require_once("../config/db_config.php"); */
+*/
+require_once("../config/db_config.php"); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
