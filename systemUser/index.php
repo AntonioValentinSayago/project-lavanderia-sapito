@@ -245,7 +245,7 @@ if (!isset($_SESSION['cargo'])) {
                       <?php
                       require_once("../config/db_config.php");
                       $consulta = "SELECT *
-                      from ctl_userSystem";
+                      from ctl_usersystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         while ($fila = mysqli_fetch_array($stmt)) {
