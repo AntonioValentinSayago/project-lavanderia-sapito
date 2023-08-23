@@ -128,12 +128,6 @@ require_once("../config/db_config.php");
                     <span>Panel Principal</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../consultaPedido/index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Historial de Pedidos</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../inventario/inventario.php">
@@ -202,7 +196,7 @@ require_once("../config/db_config.php");
         </div><!-- End Page Title -->
         <?php
         $idNota = $_GET["idPedido"];
-        $consulta = "SELECT ped.folio_nota, ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,ped.hora_entrega,
+        $consulta = "SELECT ped.folio_nota, ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,
                             cate.nombreCategoria,
                             cl.nombreCompleto as nombreCliente, cl.direccion,cl.telefono, 
                             emp.nombreCompleto as nombreEmpleado
@@ -234,8 +228,7 @@ require_once("../config/db_config.php");
                                             <form class="row g-3 mt-2" action="updateNota.php" method="POST" id="miForm">
                                                 <div class="col-md-2">
                                                     <label for="">Estatus</label>
-                                                    <input type="hidden" name="idNota" value="<?php echo $idNota ?>"
-                                                        id="idNota">
+                                                    <input type="hidden" name="idNota" value="<?php echo $idNota ?>" id="idNota">
                                                     <input type="text" class="form-control" name="estatus" id="estatus"
                                                         value="<?php echo $fila["estatus"]; ?>" disabled>
                                                 </div>
@@ -250,22 +243,16 @@ require_once("../config/db_config.php");
                                                     <input type="text" class="form-control" name="cliente" id="cliente"
                                                         value="<?php echo $fila["nombreCliente"]; ?>" disabled>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <label for="">Telefono*</label>
                                                     <input type="number" class="form-control" name="telefono" id="telefono"
                                                         value="<?php echo $fila["telefono"]; ?>" disabled>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label for="">Fecha Estimada*</label>
-                                                    <input type="text" class="form-control" name="fechaEntrega"
-                                                        id="fechaEntrega" value="<?php echo $fila["fecha_entrega"]; ?>"
-                                                        disabled>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th scope="col">Lista de Productos</th>
+                                                                <th scope="col">Descripción</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -279,8 +266,7 @@ require_once("../config/db_config.php");
                                                                     ?>
                                                                     <tr>
                                                                         <td>
-                                                                            <input type="text" id="descripcion" class="form-control"
-                                                                                name="descripcion"
+                                                                            <input type="text" id="descripcion" class="form-control" name="descripcion"
                                                                                 value="<?php echo $filaCate["nombreCategoria"]; ?>"
                                                                                 disabled>
                                                                         </td>
@@ -294,8 +280,8 @@ require_once("../config/db_config.php");
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label for="">Dinero a Cuenta*</label>
-                                                    <input type="number" class="form-control" name="dineroCuenta"
-                                                        id="dineroCuenta" value="<?php echo $fila["dineroCuenta"]; ?>" disabled>
+                                                    <input type="number" class="form-control" name="dineroCuenta" id="dineroCuenta"
+                                                        value="<?php echo $fila["dineroCuenta"]; ?>" disabled>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label for="">Resta:*</label>
@@ -309,13 +295,12 @@ require_once("../config/db_config.php");
                                                         value="<?php echo $fila["costoPagar"]; ?>" disabled>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">Hora Estimada*</label>
-                                                    <input type="text" class="form-control" name="horaEntrega"
-                                                        id="horaEntrega" value="<?php echo $fila["hora_entrega"]; ?>"
-                                                        disabled>
+                                                    <label for="">Fecha Estimada*</label>
+                                                    <input type="text" class="form-control" name="fechaEntrega" id="fechaEntrega"
+                                                        value="<?php echo $fila["fecha_entrega"]; ?>" disabled>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label for="">Empleado</label>
+                                                <label for="">Empleado</label>
                                                     <input type="text" class="form-control" name="empleado" id="empleado"
                                                         value="<?php echo ucfirst($_SESSION['nombre']); ?>" disabled>
                                                 </div>
