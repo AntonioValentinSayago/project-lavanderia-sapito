@@ -367,7 +367,7 @@ require_once("../config/db_config.php");
                                     join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                                     JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                                     JOIN clientes cl ON cl.idCliente = cata.idCliente
-                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
+                                    JOIN ctl_usersystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         while ($fila = mysqli_fetch_array($stmt)) {
