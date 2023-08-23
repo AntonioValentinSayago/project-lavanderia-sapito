@@ -177,7 +177,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                     <?php
                                     $id_ctlUserSystem = $_GET["id_ctlUserSystem"];
                                     require_once("../config/db_config.php");
-                                    $consulta = "SELECT * FROM ctl_userSystem WHERE id_ctlUserSystem = $id_ctlUserSystem";
+                                    $consulta = "SELECT * FROM ctl_usersystem WHERE id_ctlUserSystem = $id_ctlUserSystem";
                                     $stmt = mysqli_query($conexion, $consulta);
 
                                     if (mysqli_num_rows($stmt) > 0) {
