@@ -9,7 +9,7 @@
     $cargo = $_POST["cargo"];
     $numEmp = $_POST["numEmp"];
         //code...
-        $insertar = "UPDATE ctl_userSystem 
+        $insertar = "UPDATE ctl_usersystem 
                     SET nombreCompleto = '$nombreEmp', apellidoCompleto = '$lastEmp',
                     email_correo = '$email', telefono = '$telefono', cargo = '$cargo',num_empleado = '$numEmp'
                     WHERE id_ctlUserSystem = $id_ctlUserSystem";
