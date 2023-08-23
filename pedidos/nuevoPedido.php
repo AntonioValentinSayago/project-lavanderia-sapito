@@ -10,13 +10,7 @@ $total = $_POST['total'];
 $valoresColumna = $_POST['valoresColumna'];
 $dineroCuenta = $_POST['dineroCuenta'];
 $resta = $_POST['resta'];
-
 $fechaEntrega = $_POST['fechaEntrega'];
-// Seperar la Hora y la Fecha
-list($fecha_nueva, $hora) = explode('T', $fechaEntrega);
-$fecha_nueva = date('Y-m-d', strtotime($fecha));
-$hora = date('H:i:s', strtotime($hora));
-
 $fecha_formateada = date('Y-m-d', strtotime($fechaEntrega));
 $date = date("Y-m-d");
 $fecha_formateada_creacion = date('Y-m-d', strtotime($date));
@@ -27,9 +21,8 @@ $insertarTablaPedidos = "INSERT INTO ctl_ventapedidos (folio_nota ,
                                             dineroPendiente,
                                             costoPagar,
                                             fecha_entrega,
-                                            fecha_creacion,
-                                            hora_entrega)
-VALUES ('$folioNota','Pendiente',$dineroCuenta, $resta,$total,'$fecha_nueva','$fecha_formateada_creacion','$hora')";
+                                            fecha_creacion)
+VALUES ('$folioNota','Pendiente',$dineroCuenta, $resta,$total,'$fecha_formateada','$fecha_formateada_creacion')";
 
 //$insertarDatosPedidos = mysqli_query($conexion, $insertarTablaPedidos);
 
