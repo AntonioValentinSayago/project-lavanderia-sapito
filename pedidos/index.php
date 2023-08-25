@@ -295,11 +295,24 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-3">
                   <label for="">Folio Nota</label>
-                  <?php $numero = random_int(1, 99);
-                  $letra_aleatoria = chr(rand(65, 90));
+                  <?php 
+                  //$numero = random_int(1, 99);
+                  //$letra_aleatoria = chr(rand(65, 90));
+                  $consultaFolioNota = "SELECT * FROM ctl_ventapedidos ORDER BY folio_nota DESC LIMIT 1";
+                  $stmtFolioNota= mysqli_query($conexion, $consultaFolioNota);
+                  if (mysqli_num_rows($stmtFolioNota) > 0) {
+                    while ($fila = mysqli_fetch_array($stmtFolioNota)) {
+                      $folio_incremento =  $fila["folio_nota"] + 1;
                   ?>
-                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;
-                  echo $numero ?>" disabled id="folioNota">
+                  <input type="text" class="form-control" value="<?php echo $folio_incremento ?>" disabled id="folioNota">
+                  <?php
+                      }
+                    } else {
+                      ?>
+                      <input type="text" class="form-control" value="1" disabled id="folioNota">
+                      <?php
+                    }
+                    ?>
                 </div>
                 <div class="col-md-9">
                   <table class="table table-bordered table-hover " id="miTabla">
