@@ -77,7 +77,7 @@
                         JOIN ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                         JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                         JOIN clientes cl ON cl.idCliente = cata.idCliente
-                        JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
+                        JOIN ctl_usersystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
                         WHERE cata.id_ctl_ventapedidos = $ultimoID
                         LIMIT 1
                         ";

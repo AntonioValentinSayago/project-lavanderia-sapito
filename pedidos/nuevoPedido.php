@@ -1,7 +1,7 @@
 <?php
 
 include("../config/db_config.php");
-setlocale(LC_TIME, 'es_MX.UTF-8');
+date_default_timezone_set('America/Mexico_City');
 // Obtén los valores enviados por AJAX
 $idEmpleado = $_POST['idEmpleado'];
 $cliente = $_POST['cliente'];
@@ -27,7 +27,8 @@ $insertarTablaPedidos = "INSERT INTO ctl_ventapedidos (folio_nota ,
                                             dineroPendiente,
                                             costoPagar,
                                             fecha_entrega,
-                                            fecha_creacion)
+                                            fecha_creacion,
+                                            hora_entrega)
 VALUES ($folioNota,'Pendiente',$dineroCuenta, $resta,$total,'$fecha_formateada','$fecha_formateada_creacion','$hora')";
 
 //$insertarDatosPedidos = mysqli_query($conexion, $insertarTablaPedidos);

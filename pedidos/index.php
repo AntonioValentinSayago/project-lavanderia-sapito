@@ -303,6 +303,7 @@ require_once("../config/db_config.php");
                   if (mysqli_num_rows($stmtFolioNota) > 0) {
                     while ($fila = mysqli_fetch_array($stmtFolioNota)) {
                       $folio_incremento =  $fila["folio_nota"] + 1;
+                      echo $fila["folio_nota"];
                   ?>
                   <input type="text" class="form-control" value="<?php echo $folio_incremento ?>" disabled id="folioNota">
                   <?php
@@ -406,8 +407,9 @@ require_once("../config/db_config.php");
                               <a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
                                   class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
 
-                               <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>" target="_black"><span
+                              <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>" target="_black"><span
                                   class="badge bg-warning"><i class="bi bi-file-earmark-medical-fill"></i></span></a>
+                                
                             </td>
                           </tr>
                           <?php
@@ -677,14 +679,14 @@ require_once("../config/db_config.php");
             title: 'OK',
             message: 'Nota Realizada Correctamente',
             position: 'center',
-            timeout: 2200,
+            timeout: 2500,
           });
           // Puedes mostrar una notificación o redirigir a otra página después de la inserción
           setTimeout(function () {
-             window.open('vendor/ticket.php', '_blank');
+            window.open('vendor/ticket.php', '_blank');
             location.reload();
-          }, 2500);
-
+          }, 2200);
+          
         },
         error: function (xhr, status, error) {
           // Maneja los errores de la solicitud AJAX
