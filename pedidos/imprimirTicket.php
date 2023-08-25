@@ -9,7 +9,8 @@
     require 'vendor/vendor-ticket/autoload.php'; 
     use Picqer\Barcode\BarcodeGeneratorPNG;
     
-    $pdf = new PDF_Code128('P','mm',array(80,130));
+   try{
+	    $pdf = new PDF_Code128('P','mm',array(80,130));
     $pdf->SetMargins(4,10,4);
     $pdf->AddPage();
     
@@ -148,3 +149,7 @@
         $pdf->Output("I","Ticket_Nro_1.pdf",true);
     }
     /*----------  Fin Detalles de la tabla  ----------*/
+   }catch(Exception $e) {
+    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+}
+
