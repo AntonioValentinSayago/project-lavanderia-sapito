@@ -677,10 +677,11 @@ require_once("../config/db_config.php");
             title: 'OK',
             message: 'Nota Realizada Correctamente',
             position: 'center',
-            timeout: 3000,
+            timeout: 2200,
           });
           // Puedes mostrar una notificación o redirigir a otra página después de la inserción
           setTimeout(function () {
+             window.open('vendor/ticket.php', '_blank');
             location.reload();
           }, 2500);
 
