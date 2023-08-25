@@ -402,8 +402,13 @@ require_once("../config/db_config.php");
                             <td>
                               <?php echo $fila["nombreCliente"]; ?>
                             </td>
-                            <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
-                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
+                            <td>
+                              <a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
+                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
+
+                               <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>" target="_black"><span
+                                  class="badge bg-warning"><i class="bi bi-file-earmark-medical-fill"></i></span></a>
+                            </td>
                           </tr>
                           <?php
                         }
