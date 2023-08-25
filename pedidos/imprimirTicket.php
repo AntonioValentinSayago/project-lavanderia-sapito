@@ -9,8 +9,7 @@
     require 'vendor/vendor-ticket/autoload.php'; 
     use Picqer\Barcode\BarcodeGeneratorPNG;
     
-   try{
-	    $pdf = new PDF_Code128('P','mm',array(80,130));
+    $pdf = new PDF_Code128('P','mm',array(80,130));
     $pdf->SetMargins(4,10,4);
     $pdf->AddPage();
     
@@ -76,7 +75,7 @@
                         JOIN ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                         JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                         JOIN clientes cl ON cl.idCliente = cata.idCliente
-                        JOIN ctl_usersystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
+                        JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem
                         WHERE cata.id_ctl_ventapedidos = $idNota
                         LIMIT 1
                         ";
@@ -149,7 +148,3 @@
         $pdf->Output("I","Ticket_Nro_1.pdf",true);
     }
     /*----------  Fin Detalles de la tabla  ----------*/
-   }catch(Exception $e) {
-    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-}
-
