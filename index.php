@@ -1,12 +1,5 @@
 <?php
 
-/*
-En ocasiones el usuario puede volver al login
-aun si ya existe una sesion iniciada, lo correcto
-es no mostrar otra ves el login sino redireccionarlo
-a su pagina principal mientras exista una sesion entonces
-creamos un archivo que controle el redireccionamiento
-*/
 
 session_start();
 
@@ -39,57 +32,56 @@ if (isset($_SESSION['id'])) {
 
 <body">
   <!-- Formulario Login -->
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-4 col-md-offset-4">
-        <!-- Margen superior (css personalizado )-->
-        <div class="spacing-1"></div>
+
+  <div class="d-lg-flex half">
+      <div
+        class="bg order-1 order-md-2"
+        style="background-image: url('https://wallpapers.com/images/hd/laundry-room-pictures-swc19ed2it6n8r9c.jpg')"
+      ></div>
+
+    <div class="contents order-2 order-md-1">
+      <div class="container">
 
         <!-- Estructura del formulario -->
-        <fieldset>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-7">
+              <h3>Lavandería<strong>Sapito</strong></h3>
+              <div class="form-group first">
+                  <label for="username">Correo Electronico</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="your-email@gmail.com"
+                    id="user"
+                  />
+              </div>
+              <div class="form-group last mb-3">
+                  <label for="password">Contraseña</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="****************"
+                    id="clave"
+                    autocomplete="off"
+                  />
+              </div>
+              <!-- Animacion de load (solo sera visible cuando el cliente espere una respuesta del servidor )-->
+              <div class="row" id="load" hidden="hidden">
+                <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5">
+                  <img src="img/load.gif" width="100%" alt="">
+                </div>
+                <div class="col-xs-12 center text-accent">
+                  <span>Validando información...</span>
+                </div>
+              </div>
+              <!-- Fin load -->
+              <button type="button" class="btn btn-enviar btn-block" name="button" id="login">Iniciar sesion</button>
 
-          <legend class="center">CONTROL DE ACCESO</legend>
-          <h5><img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" style="width: 30px;"></img> Lavandería Sapito</h5>
-
-          <!-- Caja de texto para usuario -->
-          <label class="sr-only" for="user">Usuario</label>
-          <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-            <input type="text" class="form-control" id="user" placeholder="Ingresa tu correo electronico">
-          </div>
-          <!-- Div espaciador -->
-          <div class="spacing-2"></div>
-          <!-- Caja de texto para la clave-->
-          <label class="sr-only" for="clave">Contraseña</label>
-          <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-            <input type="password" autocomplete="off" class="form-control" id="clave" placeholder="Ingresa tu usuario">
-          </div>
-
-          <!-- Animacion de load (solo sera visible cuando el cliente espere una respuesta del servidor )-->
-          <div class="row" id="load" hidden="hidden">
-            <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5">
-              <img src="img/load.gif" width="100%" alt="">
             </div>
-            <div class="col-xs-12 center text-accent">
-              <span>Validando información...</span>
-            </div>
-          </div>
-          <!-- Fin load -->
-
-          <!-- boton #login para activar la funcion click y enviar el los datos mediante ajax -->
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <div class="spacing-2"></div>
-              <button type="button" class="btn btn-primary btn-block" name="button" id="login">Iniciar sesion</button>
-            </div>
-          </div>
-        </fieldset>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- / Final Formulario login -->
 
   <!-- Jquery -->
   <script src="login/js/jquery.js"></script>
@@ -99,6 +91,6 @@ if (isset($_SESSION['id'])) {
   <script src="login/js/sweetalert.min.js"></script>
   <!-- Js personalizado -->
   <script src="login/js/operaciones.js"></script>
-</body>
+  </body>
 
 </html>
