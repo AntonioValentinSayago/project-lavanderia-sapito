@@ -32,7 +32,6 @@ if (isset($_SESSION['id'])) {
 
 <body">
   <!-- Formulario Login -->
-
   <div class="d-lg-flex half">
       <div
         class="bg order-1 order-md-2"
@@ -41,7 +40,6 @@ if (isset($_SESSION['id'])) {
 
     <div class="contents order-2 order-md-1">
       <div class="container">
-
         <!-- Estructura del formulario -->
         <div class="row align-items-center justify-content-center">
             <div class="col-md-7">
