@@ -50,10 +50,11 @@
     $pdf->Cell(0,5,mb_convert_encoding("-------------------------------------------------------------------",'ISO-8859-1', 'UTF-8'),0,0,'C');
     $pdf->Ln(3);
 
-    # Tabla de productos #
-    $pdf->Cell(19,5,mb_convert_encoding("Desc.",'ISO-8859-1', 'UTF-8'),0,0,'C');
-    $pdf->Cell(51,5,mb_convert_encoding("Precio",'ISO-8859-1', 'UTF-8'),0,0,'R');
-
+   # Tabla de productos #
+        $pdf->Cell(15,5,mb_convert_encoding("Desc.",'ISO-8859-1', 'UTF-8'),0,0,'C');
+        $pdf->Cell(45,5,mb_convert_encoding("Precio",'ISO-8859-1', 'UTF-8'),0,0,'C');
+        $pdf->Cell(1,5,mb_convert_encoding("Cant.",'ISO-8859-1', 'UTF-8'),0,0,'R');
+        $pdf->Cell(10,5,mb_convert_encoding("T.",'ISO-8859-1', 'UTF-8'),0,0,'R');
 
     $pdf->Ln(3);
     $pdf->Cell(72,5,mb_convert_encoding("-------------------------------------------------------------------",'ISO-8859-1', 'UTF-8'),0,0,'C');
@@ -86,7 +87,7 @@
     if (mysqli_num_rows($stmt) > 0){
         while($fila = mysqli_fetch_array($stmt)){
             $total_pagar = "$ ".$fila["costoPagar"]; 
-            $consultaCate = "SELECT nombreCategoria, precio from ctl_catalogo cata
+            $consultaCate = "SELECT nombreCategoria, precio,cata.cantidad as Cantidad  from ctl_catalogo cata
                 inner join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                 where cata.id_ctl_ventapedidos = $ultimoID;";
                      $stmtCate = mysqli_query($conexion, $consultaCate);
