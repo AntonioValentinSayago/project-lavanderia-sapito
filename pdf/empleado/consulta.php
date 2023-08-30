@@ -1,8 +1,8 @@
 <?php
 
-$mysqli= new mysqli("localhost","root","123456789","lavanderia_sapito");
+$mysqli= new mysqli("localhost","u551598332_root","#iSmT:[>8","u551598332_lavanderia_sap");
 $mysqli->set_charset("utf8");
-$consulta=$mysqli->prepare("SELECT * FROM ctl_userSystem");
+$consulta=$mysqli->prepare("SELECT * FROM ctl_usersystem");
 $consulta->execute();
 $resultados=$consulta->get_result();
 $productos=array();
