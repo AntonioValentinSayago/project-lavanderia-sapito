@@ -253,11 +253,13 @@ require_once("../config/db_config.php");
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">Descripción</th>
+                                                                <th scope="col">Cantidad</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                        dy>
                                                             <?php
-                                                            $consultaCate = "SELECT nombreCategoria from ctl_catalogo cata
+                                                            $consultaCate = "SELECT nombreCategoria, cata.cantidad AS Cantidad from ctl_catalogo cata
                                                             inner join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
                                                             where cata.id_ctl_ventapedidos = $idNota;";
                                                             $stmtCate = mysqli_query($conexion, $consultaCate);
@@ -266,9 +268,13 @@ require_once("../config/db_config.php");
                                                                     ?>
                                                                     <tr>
                                                                         <td>
-                                                                            <input type="text" id="descripcion" class="form-control" name="descripcion"
+                                                                            <input type="text" id="descripcion" class="form-control"
+                                                                                name="descripcion"
                                                                                 value="<?php echo $filaCate["nombreCategoria"]; ?>"
                                                                                 disabled>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p><?php echo $filaCate["Cantidad"]; ?></p>
                                                                         </td>
                                                                     </tr>
                                                                     <?php
