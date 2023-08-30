@@ -331,7 +331,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
-                  <input type="number" class="form-control restaCantidadProducto" required id="dineroCuenta"
+                  <input type="text" class="form-control restaCantidadProducto" required id="dineroCuenta"
                     placeholder="00.00">
                 </div>
                 <div class="col-md-4 ingresoRestaPrecio">
