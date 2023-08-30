@@ -112,7 +112,9 @@
 
                  $fechaEntrega = "Fecha de entrega: ". $fila["fecha_entrega"] . " ".$fila["hora_entrega"]; 
                  $pdf->Ln(3);
+                 $cliente =  "Cliente: ".$fila["nombreCliente"];
                  $pdf->MultiCell(0,4,mb_convert_encoding($fechaEntrega, 'ISO-8859-1', 'UTF-8'),0,'C',false);
+                 $pdf->MultiCell(0,4,mb_convert_encoding($cliente, 'ISO-8859-1', 'UTF-8'),5,'C',false);
                  $pdf->Ln(1);
                  $pdf->Cell(72,5,mb_convert_encoding("-------------------------------------------------------------------", 'ISO-8859-1', 'UTF-8'),0,0,'C');
                  
