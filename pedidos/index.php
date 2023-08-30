@@ -639,11 +639,20 @@ require_once("../config/db_config.php");
       for (var i = 1; i < tabla.rows.length; i++) {
         var fila = tabla.rows[i];
 
-        // Obtiene el texto de la primera celda de la fila
-        var celda = fila.cells[0];
+         // Obtiene el texto de la primera celda de la fila
+         var celda = fila.cells[0];
         var texto = celda.innerText;
 
-        valoresColumna.push(texto);
+        var cantidad =fila.cells[2].querySelector(".nuevaCantidadProducto");;
+        var textCana = cantidad.value;
+
+        var objeto = {
+          nombreCategoria:texto,
+          cantidad:textCana
+        }
+
+        valoresColumna.push(objeto);
+        //valoresColumna.push(textCana);
       }
       // Realiza la solicitud AJAX
       $.ajax({
