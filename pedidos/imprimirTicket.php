@@ -9,7 +9,7 @@
     require 'vendor/vendor-ticket/autoload.php'; 
     use Picqer\Barcode\BarcodeGeneratorPNG;
     
-    $pdf = new PDF_Code128('P','mm',array(80,130));
+    $pdf = new PDF_Code128('P','mm',array(80,135));
     $pdf->SetMargins(4,10,4);
     $pdf->AddPage();
     
