@@ -256,8 +256,7 @@ require_once("../config/db_config.php");
                                                                 <th scope="col">Cantidad</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                        dy>
+                                                        <tbody>                                                    
                                                             <?php
                                                             $consultaCate = "SELECT nombreCategoria, cata.cantidad AS Cantidad from ctl_catalogo cata
                                                             inner join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias

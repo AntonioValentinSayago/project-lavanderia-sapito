@@ -36,13 +36,15 @@ VALUES ($folioNota,'Pendiente',$dineroCuenta, $resta,$total,'$fecha_formateada',
 if (mysqli_query($conexion, $insertarTablaPedidos)) {
     // Obtiene el ID del último insert realizado
     $ultimoID = mysqli_insert_id($conexion);
-    for ($i = 0; $i < count($valoresColumna); $i++) {
-        $valor = $valoresColumna[$i];
+    for($i = 0; $i < count($valoresColumna); $i++) {
+        $valor = $valoresColumna[$i]['nombreCategoria'];
+        $cantidad = $valoresColumna[$i]['cantidad'];
         $sql = "INSERT INTO ctl_catalogo (id_ctl_ventapedidos,
                                           id_ctl_categorias,
                                           id_ctlUserSystem,
-                                          idCliente)
-        VALUES ($ultimoID,$valor,$idEmpleado,$cliente)";
+                                          idCliente,
+                                          cantidad)
+        VALUES ($ultimoID,$valor,$idEmpleado,$cliente,$cantidad)";
         if (mysqli_query($conexion, $sql)) {
             echo "Valor insertado correctamente: $valor<br>";
         } else {
