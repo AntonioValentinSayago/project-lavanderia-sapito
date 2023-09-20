@@ -245,9 +245,9 @@ if (!isset($_SESSION['cargo'])) {
                               <?php echo $fila["telefono_cliente"]; ?>
                             </td>
                             <td style="color:white">
-                              <span
-                                class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
-                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
+                            <span
+                                class="badge <?php echo ($Estatus == 'Entregado') ? 'bg-success' : 'bg-danger' ?> text-white">
+                                <?php echo ($Estatus == 'Entregado') ? "Entregado" : "Cancelado" ?>
                               </span>
                             </td>
                             <td>
