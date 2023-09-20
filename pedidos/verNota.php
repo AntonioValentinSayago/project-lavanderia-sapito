@@ -186,7 +186,10 @@ require_once("../config/db_config.php");
     <main id="main" class="main">
 
         <div class="pagetitle" style="display: flex;">
-            <h1>Control de Pedido</h1>
+        <h1>Control de Pedido</h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="index.php"><button type="button"
+                    class="btn btn-primary">Regresar</button>
+            </a>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -321,7 +324,7 @@ require_once("../config/db_config.php");
                                                             class="bi bi-save-fill"></i>
                                                         Entregar</button>
                                                     <a href="index.php"><button type="button"
-                                                            class="btn btn-secondary">Cancelar</button></a>
+                                                            class="btn btn-danger">Cancelar Pedido</button></a>
                                                 </div>
                                             </form><!-- End No Labels Form -->
                                             <?php
