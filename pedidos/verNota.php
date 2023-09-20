@@ -323,8 +323,8 @@ require_once("../config/db_config.php");
                                                     <button type="submit" class="btn btn-success"><i
                                                             class="bi bi-save-fill"></i>
                                                         Entregar</button>
-                                                    <a href="index.php"><button type="button"
-                                                            class="btn btn-danger">Cancelar Pedido</button></a>
+                                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleCancelar"
+                                                            class="btn btn-danger">Cancelar Pedido</button>
                                                 </div>
                                             </form><!-- End No Labels Form -->
                                             <?php
@@ -341,6 +341,24 @@ require_once("../config/db_config.php");
                     </div>
                 </div><!-- End Left side columns -->
             </div>
+                        <!-- Modal Cancelar Pedido-->
+<div class="modal fade" id="exampleCancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> Advertencia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estas seguro de Cancelar este pedido?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cerrar</button>
+        <button type="button" class="btn btn-success">Si, Seguro</button>
+      </div>
+    </div>
+  </div>
+</div>
         </section>
     </main><!-- End #main -->
     <script>
