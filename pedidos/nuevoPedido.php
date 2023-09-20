@@ -28,8 +28,9 @@ $insertarTablaPedidos = "INSERT INTO ctl_ventapedidos (folio_nota ,
                                             costoPagar,
                                             fecha_entrega,
                                             fecha_creacion,
-                                            hora_entrega)
-VALUES ($folioNota,'Pendiente',$dineroCuenta, $resta,$total,'$fecha_formateada','$fecha_formateada_creacion','$hora')";
+                                            hora_entrega,
+                                            obervaciones)
+VALUES ($folioNota,'Pendiente',$dineroCuenta, $resta,$total,'$fecha_formateada','$fecha_formateada_creacion','$hora', '$obervaciones')";
 
 //$insertarDatosPedidos = mysqli_query($conexion, $insertarTablaPedidos);
 
