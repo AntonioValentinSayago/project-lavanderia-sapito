@@ -273,7 +273,7 @@ require_once("../config/db_config.php");
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
                   <select class="form-control" type="text" id="id_cliente" required>
-                  <option value="" >Seleccione Cliente...</option>
+                    <option value="">Seleccione Cliente...</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
                     $stmtClientes = mysqli_query($conexion, $consultaClientes);
@@ -295,25 +295,26 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-3">
                   <label for="">Folio Nota</label>
-                  <?php 
+                  <?php
                   //$numero = random_int(1, 99);
                   //$letra_aleatoria = chr(rand(65, 90));
                   $consultaFolioNota = "SELECT * FROM ctl_ventapedidos ORDER BY folio_nota DESC LIMIT 1";
-                  $stmtFolioNota= mysqli_query($conexion, $consultaFolioNota);
+                  $stmtFolioNota = mysqli_query($conexion, $consultaFolioNota);
                   if (mysqli_num_rows($stmtFolioNota) > 0) {
                     while ($fila = mysqli_fetch_array($stmtFolioNota)) {
-                      $folio_incremento =  $fila["folio_nota"] + 1;
+                      $folio_incremento = $fila["folio_nota"] + 1;
                       echo $fila["folio_nota"];
-                  ?>
-                  <input type="text" class="form-control" value="<?php echo $folio_incremento ?>" disabled id="folioNota">
-                  <?php
-                      }
-                    } else {
                       ?>
-                      <input type="text" class="form-control" value="1" disabled id="folioNota">
+                      <input type="text" class="form-control" value="<?php echo $folio_incremento ?>" disabled
+                        id="folioNota">
                       <?php
                     }
+                  } else {
                     ?>
+                    <input type="text" class="form-control" value="1" disabled id="folioNota">
+                    <?php
+                  }
+                  ?>
                 </div>
                 <div class="col-md-9">
                   <table class="table table-bordered table-hover " id="miTabla">
@@ -341,7 +342,11 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="datetime-local" class="form-control" required id="fechaEntrega" min="<?php echo $date?>">
+                  <input type="datetime-local" class="form-control" required id="fechaEntrega" min="<?php echo $date ?>">
+                </div>
+                <div class="col-md-12">
+                  <label for="descripcion">Observaciones:</label>
+                  <input type="text" class="form-control" required id="obervaciones">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button>
@@ -407,9 +412,10 @@ require_once("../config/db_config.php");
                               <a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
                                   class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
 
-                              <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>" target="_black"><span
-                                  class="badge bg-warning"><i class="bi bi-file-earmark-medical-fill"></i></span></a>
-                                
+                              <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"
+                                target="_black"><span class="badge bg-warning"><i
+                                    class="bi bi-file-earmark-medical-fill"></i></span></a>
+
                             </td>
                           </tr>
                           <?php
@@ -508,12 +514,12 @@ require_once("../config/db_config.php");
         var precio = document.getElementById("nit").value;
 
         var i = 1; //contador para asignar id al boton que borrara la fila
-        var fila = 
+        var fila =
           '<tr id="row' + i + '">' +
-            '<th style="color:blue; display:none">' + setCategoria + '</th>' +
-            '<td>' + categoria + '</td>' +
-            '<td><input type="number" step="any" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="0" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
-            '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
+          '<th style="color:blue; display:none">' + setCategoria + '</th>' +
+          '<td>' + categoria + '</td>' +
+          '<td><input type="number" step="any" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="0" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
+          '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
           '</tr>';
         i++;
         var totalPrecio = 0;
@@ -631,6 +637,7 @@ require_once("../config/db_config.php");
       var dineroCuenta = document.getElementById("dineroCuenta").value;
       var resta = document.getElementById("resta").value;
       var fechaEntrega = document.getElementById("fechaEntrega").value;
+      var obervaciones = document.getElementById("obervaciones").value;
       var tabla = document.getElementById("miTabla");
       var valoresColumna = [];
 
@@ -639,16 +646,16 @@ require_once("../config/db_config.php");
       for (var i = 1; i < tabla.rows.length; i++) {
         var fila = tabla.rows[i];
 
-         // Obtiene el texto de la primera celda de la fila
-         var celda = fila.cells[0];
+        // Obtiene el texto de la primera celda de la fila
+        var celda = fila.cells[0];
         var texto = celda.innerText;
 
-        var cantidad =fila.cells[2].querySelector(".nuevaCantidadProducto");;
+        var cantidad = fila.cells[2].querySelector(".nuevaCantidadProducto");;
         var textCana = cantidad.value;
 
         var objeto = {
-          nombreCategoria:texto,
-          cantidad:textCana
+          nombreCategoria: texto,
+          cantidad: textCana
         }
 
         valoresColumna.push(objeto);
@@ -666,7 +673,8 @@ require_once("../config/db_config.php");
           valoresColumna: valoresColumna,
           dineroCuenta: dineroCuenta,
           resta: resta,
-          fechaEntrega: fechaEntrega
+          fechaEntrega: fechaEntrega,
+          obervaciones:obervaciones
         }, // Datos a enviar
         success: function (response) {
           // Maneja la respuesta del servidor
@@ -695,7 +703,7 @@ require_once("../config/db_config.php");
             window.open('vendor/ticket.php', '_blank');
             location.reload();
           }, 2200);
-          
+
         },
         error: function (xhr, status, error) {
           // Maneja los errores de la solicitud AJAX
