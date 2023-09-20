@@ -134,7 +134,7 @@
                 $pdf->Ln(5);
                 $totalPagar = "$" .$fila["costoPagar"];
                 $pdf->Cell(18,5,mb_convert_encoding("", 'ISO-8859-1', 'UTF-8'),0,0,'C');
-                $pdf->Cell(22,5,mb_convert_encoding("Tota:", 'ISO-8859-1', 'UTF-8'),0,0,'C');
+                $pdf->Cell(22,5,mb_convert_encoding("Total:", 'ISO-8859-1', 'UTF-8'),0,0,'C');
                 $pdf->Cell(32,5,mb_convert_encoding($totalPagar, 'ISO-8859-1', 'UTF-8'),0,0,'C');
                 
                 $pdf->Ln(5);

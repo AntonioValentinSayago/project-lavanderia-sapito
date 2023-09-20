@@ -467,6 +467,13 @@ require_once("../config/db_config.php");
             "previous": "Anterior"
           }
         },
+        "columns": [
+            null, // Primera columna (Nombre) - Será searchable
+            {"searchable": false}, // Segunda columna (Edad) - No será searchable
+            null,
+            null,
+            null // Tercera columna (Ciudad) - Será searchable
+        ]
       });
 
     }
