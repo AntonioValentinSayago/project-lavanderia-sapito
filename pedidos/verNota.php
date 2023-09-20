@@ -196,7 +196,8 @@ require_once("../config/db_config.php");
         </div><!-- End Page Title -->
         <?php
         $idNota = $_GET["idPedido"];
-        $consulta = "SELECT ped.folio_nota, ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,
+        $consulta = "SELECT ped.folio_nota, ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,
+        ped.fecha_entrega,ped.obervaciones,
                             cate.nombreCategoria,
                             cl.nombreCompleto as nombreCliente, cl.direccion,cl.telefono, 
                             emp.nombreCompleto as nombreEmpleado
@@ -308,6 +309,12 @@ require_once("../config/db_config.php");
                                                 <label for="">Empleado</label>
                                                     <input type="text" class="form-control" name="empleado" id="empleado"
                                                         value="<?php echo ucfirst($_SESSION['nombre']); ?>" disabled>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="">Observaciones:</label>
+                                                    <input type="text" class="form-control" name="horaEntrega"
+                                                        id="horaEntrega" value="<?php echo $fila["obervaciones"]; ?>"
+                                                        disabled>
                                                 </div>
                                                 <div class="text-center">
                                                     <button type="submit" class="btn btn-success"><i
