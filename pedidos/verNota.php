@@ -327,6 +327,38 @@ require_once("../config/db_config.php");
                                                             class="btn btn-danger">Cancelar Pedido</button>
                                                 </div>
                                             </form><!-- End No Labels Form -->
+                                                                                                    <!-- Modal Cancelar Pedido-->
+<div class="modal fade" id="exampleCancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> Advertencia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estas seguro de Cancelar este pedido?
+      </div>
+      <div class="modal-footer">
+<form action="cancelarNota.php" method="POST">
+        <input type="hidden" name="idNota" value="<?php echo $idNota ?>"id="idNota">
+        <input type="hidden" name="estatus" id="estatus" value="<?php echo $fila["estatus"]; ?>">
+        <input type="hidden" name="folioNota" id="folioNota"value="<?php echo $fila["folio_nota"]; ?>">
+        <input type="hidden" name="cliente" id="cliente"value="<?php echo $fila["nombreCliente"]; ?>">
+        <input type="hidden" name="telefono" id="telefono"value="<?php echo $fila["telefono"]; ?>">
+        <input type="hidden"name="fechaEntrega"id="fechaEntrega" value="<?php echo $fila["fecha_entrega"]; ?>">
+        <input type="hidden" id="descripcion" name="descripcion" value="<?php echo $filaCate["nombreCategoria"]; ?>">
+        <input type="hidden" name="dineroCuenta"id="dineroCuenta" value="<?php echo $fila["dineroCuenta"]; ?>">
+        <input type="hidden" name="total" id="total"value="<?php echo $fila["costoPagar"]; ?>">
+        <input type="hidden" name="horaEntrega"id="horaEntrega" value="<?php echo $fila["hora_entrega"]; ?>">
+        <input type="hidden" name="empleado" id="empleado"value="<?php echo ucfirst($_SESSION['nombre']); ?>" >
+        <input type="hidden" name="horaEntrega"id="horaEntrega" value="<?php echo $fila["obervaciones"]; ?>" >
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cerrar</button>
+        <button type="submit" class="btn btn-success">Si, Seguro</button>
+</form>
+      </div>
+    </div>
+  </div>
+</div>
                                             <?php
                                         }
                                     } else {
@@ -341,24 +373,6 @@ require_once("../config/db_config.php");
                     </div>
                 </div><!-- End Left side columns -->
             </div>
-                        <!-- Modal Cancelar Pedido-->
-<div class="modal fade" id="exampleCancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> Advertencia</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ¿Estas seguro de Cancelar este pedido?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cerrar</button>
-        <button type="button" class="btn btn-success">Si, Seguro</button>
-      </div>
-    </div>
-  </div>
-</div>
         </section>
     </main><!-- End #main -->
     <script>
