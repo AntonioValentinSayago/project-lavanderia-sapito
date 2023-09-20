@@ -310,6 +310,15 @@ if (!isset($_SESSION['cargo'])) {
             "previous": "Anterior"
           }
         },
+        "columns": [
+            null, // Primera columna (Nombre) - Será searchable
+            null, // Segunda columna (Edad) - No será searchable
+            {"searchable": false},
+            null,
+            null,
+            {"searchable": false},
+            {"searchable": false}, // Tercera columna (Ciudad) - Será searchable
+        ]
       });
     }  
   </script>
