@@ -227,6 +227,7 @@ if (!isset($_SESSION['cargo'])) {
                         <th scope="col">Empleado</th>
                         <th scope="col">Total</th>
                         <th scope="col">Descripción</th>
+                        <th scope="col">Fecha de entrega</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -262,6 +263,9 @@ if (!isset($_SESSION['cargo'])) {
                             </td>
                             <td>
                               <?php echo $fila["descripcion"]; ?>
+                            </td>
+                            <td>
+                              <?php echo $fila["fecha_entrega"]; ?>
                             </td>
                           </tr>
                           <?php
@@ -321,6 +325,7 @@ if (!isset($_SESSION['cargo'])) {
             null,
             null,
             {"searchable": false},
+            {"searchable": false}, // Tercera columna (Ciudad) - Será searchable
             {"searchable": false}, // Tercera columna (Ciudad) - Será searchable
         ]
       });
