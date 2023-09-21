@@ -298,12 +298,11 @@ require_once("../config/db_config.php");
                   <?php
                   //$numero = random_int(1, 99);
                   //$letra_aleatoria = chr(rand(65, 90));
-                  $consultaFolioNota = "SELECT * FROM ctl_ventapedidos ORDER BY folio_nota DESC LIMIT 1";
+                  $consultaFolioNota = "SELECT * FROM config_folios ORDER BY ultimo_folio DESC LIMIT 1";
                   $stmtFolioNota = mysqli_query($conexion, $consultaFolioNota);
                   if (mysqli_num_rows($stmtFolioNota) > 0) {
                     while ($fila = mysqli_fetch_array($stmtFolioNota)) {
-                      $folio_incremento = $fila["folio_nota"] + 1;
-                      echo $fila["folio_nota"];
+                      $folio_incremento = $fila["ultimo_folio"] + 1;
                       ?>
                       <input type="text" class="form-control" value="<?php echo $folio_incremento ?>" disabled
                         id="folioNota">
