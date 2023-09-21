@@ -195,9 +195,13 @@ if (!isset($_SESSION['cargo'])) {
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    <div class="pagetitle" style="display: flex;">
+  <div class="pagetitle" style="display: flex; width:100%">
       <h1>Historial de Pedidos</h1>
-      <div style="margin-left: auto;">
+      <div style="margin-left: auto; display:flex; gap:20px">
+        <form action="../pdf/pedidos/fecha.php" style="display:flex; gap: 10px">
+          <input type="date" class="form-control" name="fecha" required>
+          <button type="submit" class="btn btn-warning btn-sm" style="width: 100%;"><i class="bi bi-filetype-pdf"></i> Generar Reporte</button>
+        </form>
         <a href="../pdf/pedidos/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
               class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
