@@ -21,6 +21,9 @@ $fecha_formateada = date('Y-m-d', strtotime($fechaEntrega));
 $date = date("Y-m-d");
 $fecha_formateada_creacion = date('Y-m-d', strtotime($date));
 
+$updateTableFolio = "UPDATE config_folios SET ultimo_folio = $folioNota";
+mysqli_query($conexion, $updateTableFolio);
+
 $insertarTablaPedidos = "INSERT INTO ctl_ventapedidos (folio_nota ,
                                             estatus,
                                             dineroCuenta,
