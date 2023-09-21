@@ -189,7 +189,7 @@ require_once("../config/db_config.php");
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Control de Pedidos</h1>
+      <h1>Panel de Pedidos</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php"></a></li>
