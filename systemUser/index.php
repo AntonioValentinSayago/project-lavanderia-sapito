@@ -279,7 +279,9 @@ if (!isset($_SESSION['cargo'])) {
                               <a href="editarEmpleado.php?id_ctlUserSystem=<?php echo $fila["id_ctlUserSystem"]; ?>"><span
                                   class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                 </span></a>
-                              <span class="badge bg-success"><i class="bi bi-eye"></i> </span>
+                                <span class="badge bg-danger delete " id='<?php echo $fila['id_ctlUserSystem'] ?>'
+                                data-id='<?php echo $fila['id_ctlUserSystem'] ?>' style="cursor:pointer;"><i
+                                  class="bi bi-trash-fill"></i> </span>
                             </td>
                           </tr>
                           <?php
@@ -315,17 +317,43 @@ if (!isset($_SESSION['cargo'])) {
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <script>
-    /*     document.addEventListener("keydown", function (event) {
-          console.log("Tecla presionada: " + event.keyCode);
-          if (event.keyCode == 32) { alert("Tecla presionada"); }
-        }); */
+      <script>
+        $(document).ready(function () {
 
-    /* document.addEventListener("keyup", function(event) {
-      console.log("Tecla liberada: " + event.keyCode);
-    }); */
+            // Delete 
+            $('.delete').click(function () {
+                var el = this;
 
-  </script>
+                // Delete id
+                var deleteid = $(this).data('id');
+                console.log(deleteid)
+
+                // Confirm box
+                bootbox.confirm("¿Seguro de borrar este Empleado?", function (result) {
+
+                    if (result) {
+                        // AJAX Request
+                        $.ajax({
+                            url: 'eliminar.php',
+                            type: 'POST',
+                            data: { id: deleteid },
+                            success: function (response) {
+                                // Removing row from HTML Table
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').fadeOut(800, function () {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Record not deleted.');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
   <!-- Vendor JS Files -->
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

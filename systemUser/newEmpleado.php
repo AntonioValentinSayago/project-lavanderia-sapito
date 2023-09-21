@@ -208,6 +208,11 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             <input type="d" class="form-control" placeholder="Numero de Empleado"
                                                 name="numEmp" value="LS-EMP101">
                                         </div>
+                                        <div class="col-md-6">
+                                            <label>Contraseña</label>
+                                            <input type="text" class="form-control" placeholder="Nueva Contraseña"
+                                                name="password">
+                                        </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-success"><i
                                                     class="bi bi-save-fill"></i> Guardar</button>
