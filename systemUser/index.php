@@ -41,11 +41,16 @@ if (!isset($_SESSION['cargo'])) {
   <link href="../css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
+
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
+    <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 
 </head>
 
@@ -194,12 +199,12 @@ if (!isset($_SESSION['cargo'])) {
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Control de Acceso para usuarios</h1>
+      <h1>Control de Acceso</h1>
       <div style="margin-left: auto;">
         <a href="newEmpleado.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Usuario</button></a>
-              <a href="../pdf/empleado/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
-                            class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+        <a href="../pdf/empleado/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+              class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
     </div><!-- End Page Title -->
 
@@ -279,7 +284,7 @@ if (!isset($_SESSION['cargo'])) {
                               <a href="editarEmpleado.php?id_ctlUserSystem=<?php echo $fila["id_ctlUserSystem"]; ?>"><span
                                   class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                 </span></a>
-                                <span class="badge bg-danger delete " id='<?php echo $fila['id_ctlUserSystem'] ?>'
+                              <span class="badge bg-danger delete " id='<?php echo $fila['id_ctlUserSystem'] ?>'
                                 data-id='<?php echo $fila['id_ctlUserSystem'] ?>' style="cursor:pointer;"><i
                                   class="bi bi-trash-fill"></i> </span>
                             </td>
