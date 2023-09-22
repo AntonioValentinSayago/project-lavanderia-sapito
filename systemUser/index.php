@@ -194,7 +194,7 @@ if (!isset($_SESSION['cargo'])) {
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Control de acceso para usuarios</h1>
+      <h1>Control de Acceso para usuarios</h1>
       <div style="margin-left: auto;">
         <a href="newEmpleado.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Usuario</button></a>
