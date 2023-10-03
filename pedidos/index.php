@@ -342,7 +342,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="datetime-local" class="form-control" required id="fechaEntrega"
+                  <input type="date" class="form-control" required id="fechaEntrega"
                     min="<?php echo $date ?>">
                 </div>
                 <div class="col-md-4">
