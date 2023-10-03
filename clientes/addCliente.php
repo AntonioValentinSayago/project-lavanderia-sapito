@@ -40,6 +40,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <!-- Template Main CSS File -->
     <link href="../css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css">
