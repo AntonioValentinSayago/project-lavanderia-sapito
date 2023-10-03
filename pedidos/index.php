@@ -347,13 +347,14 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Horario de Entrega:</label>
-                  <select name="hora-entrega" id="hora-entrega" class="form-control">
+                  <select name="hora-entrega" id="hora-entrega" class="form-control" required>
+                   <option value="" select>Seleccione Horario....</option>
                     <option value="11:00am">11:00 am</option>
-                    <option value="11:00am">12:00 pm</option>
-                    <option value="11:00am">02:00 pm</option>
-                    <option value="11:00am">04:00 pm</option>
-                    <option value="11:00am">06:00 pm</option>
-                    <option value="11:00am">08:00 pm</option>
+                    <option value="12:00pm">12:00 pm</option>
+                    <option value="02:00pm">02:00 pm</option>
+                    <option value="04:00pm">04:00 pm</option>
+                    <option value="06:00pm">06:00 pm</option>
+                    <option value="08:00pm">08:00 pm</option>
                   </select>
                 </div>
                 <div class="col-md-8">
@@ -676,10 +677,21 @@ require_once("../config/db_config.php");
       var dineroCuenta = document.getElementById("dineroCuenta").value;
       var resta = document.getElementById("resta").value;
       var fechaEntrega = document.getElementById("fechaEntrega").value;
+      var horaEntrega = document.getElementById("horaEntrega").value;
       var obervaciones = document.getElementById("obervaciones").value;
       var tabla = document.getElementById("miTabla");
       var valoresColumna = [];
 
+      // Se valida de que existan productos en la venta
+      if(total === '' ){
+        iziToast.warning({
+            title: 'Error:',
+            message: 'Debe agregar Productos a la Venta',
+            position: 'topCenter',
+            timeout: 2000,
+          });
+          return;
+        }
 
       // Itera sobre las filas de la tabla (comenzando desde el índice 1 para omitir la cabecera)
       for (var i = 1; i < tabla.rows.length; i++) {
@@ -713,6 +725,7 @@ require_once("../config/db_config.php");
           dineroCuenta: dineroCuenta,
           resta: resta,
           fechaEntrega: fechaEntrega,
+          horaEntrega: horaEntrega,
           obervaciones: obervaciones
         }, // Datos a enviar
         success: function (response) {
