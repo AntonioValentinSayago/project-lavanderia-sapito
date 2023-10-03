@@ -208,6 +208,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                 <div class="col-md-6">
                                     <label for="">Nombre Completo*</label>
                                     <input type="text" class="form-control" name="nombre" id="nombreCliente" placeholder="Nombre Completo*">
+                                    <span id="nombreStatus" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Telefono*</label>
