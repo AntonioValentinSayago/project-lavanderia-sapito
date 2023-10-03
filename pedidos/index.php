@@ -223,6 +223,7 @@ require_once("../config/db_config.php");
                     <div class="col-md-8">
                       <label for="">Categoría</label>
                       <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
+                        <option value="null" selected>Seleccione una Opción</option>
                         <?php
                         $consultaCategoria = "SELECT * FROM ctl_categorias";
                         $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
@@ -341,7 +342,8 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="datetime-local" class="form-control" required id="fechaEntrega" min="<?php echo $date ?>">
+                  <input type="datetime-local" class="form-control" required id="fechaEntrega"
+                    min="<?php echo $date ?>">
                 </div>
                 <div class="col-md-12">
                   <label for="descripcion">Observaciones:</label>
@@ -467,11 +469,11 @@ require_once("../config/db_config.php");
           }
         },
         "columns": [
-            null, // Primera columna (Nombre) - Será searchable
-            {"searchable": false}, // Segunda columna (Edad) - No será searchable
-            null,
-            null,
-            null // Tercera columna (Ciudad) - Será searchable
+          null, // Primera columna (Nombre) - Será searchable
+          { "searchable": false }, // Segunda columna (Edad) - No será searchable
+          null,
+          null,
+          null // Tercera columna (Ciudad) - Será searchable
         ]
       });
 
@@ -518,6 +520,16 @@ require_once("../config/db_config.php");
         var selectMar = document.getElementById("categoria");
         var categoria = selectMar.options[selectMar.selectedIndex].text;
         var precio = document.getElementById("nit").value;
+
+        if (precio === '') {
+          iziToast.warning({
+            title: 'Error:',
+            message: 'Debe agregar una opción Valida',
+            position: 'topCenter',
+            timeout: 2000,
+          });
+          return;
+        }
 
         var i = 1; //contador para asignar id al boton que borrara la fila
         var fila =
@@ -680,7 +692,7 @@ require_once("../config/db_config.php");
           dineroCuenta: dineroCuenta,
           resta: resta,
           fechaEntrega: fechaEntrega,
-          obervaciones:obervaciones
+          obervaciones: obervaciones
         }, // Datos a enviar
         success: function (response) {
           // Maneja la respuesta del servidor
