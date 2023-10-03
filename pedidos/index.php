@@ -122,19 +122,19 @@ require_once("../config/db_config.php");
       <li class="nav-item">
         <a class="nav-link " href="index.php">
           <i class="bi bi-grid"></i>
-          <span>Panel Principal</span>
+          <span>Crear Nueva Nota</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="../consultaPedido/index.php">
           <i class="bi bi-grid"></i>
-          <span>Historial de Pedidos</span>
+          <span>Notas Entregadas</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../inventario/inventario.php">
-          <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
+          <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
         </a>
       </li><!-- End Components Nav -->
 
@@ -160,7 +160,7 @@ require_once("../config/db_config.php");
       <li class="nav-item">
         <a class="nav-link collapsed" href="../clientes/clientes.php">
           <i class="bi bi-person"></i>
-          <span>Clientes</span>
+          <span>Control de Clientes</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
