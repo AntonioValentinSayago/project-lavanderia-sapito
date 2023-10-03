@@ -39,6 +39,8 @@ if (!isset($_SESSION['cargo'])) {
   <link rel="stylesheet" href="../css/main.css">
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -199,7 +201,7 @@ if (!isset($_SESSION['cargo'])) {
       <h1>Cartera de Clientes</h1>
       <div style="margin-left: auto;">
         <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
-              class="bi bi-plus me-1"></i>Cliente</button></a>
+              class="bi bi-plus me-1"></i>Agregar Nuevo Cliente</button></a>
         <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
               class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>

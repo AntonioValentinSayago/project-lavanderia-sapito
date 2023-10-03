@@ -188,7 +188,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <main id="main" class="main">
 
         <div class="pagetitle" style="display: flex;">
-            <h1>Cartera de Clientes</h1>
+            <h1>Agregar Nuevo Cliente</h1>
             <nav>
                 <!--         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
