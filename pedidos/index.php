@@ -345,7 +345,18 @@ require_once("../config/db_config.php");
                   <input type="datetime-local" class="form-control" required id="fechaEntrega"
                     min="<?php echo $date ?>">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-4">
+                  <label for="">Horario de Entrega:</label>
+                  <select name="hora-entrega" id="hora-entrega" class="form-control">
+                  <option value="11:00am">11:00 am</option>
+                    <option value="11:00am">12:00 pm</option>
+                    <option value="11:00am">02:00 pm</option>
+                    <option value="11:00am">04:00 pm</option>
+                    <option value="11:00am">06:00 pm</option>
+                    <option value="11:00am">08:00 pm</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
                   <label for="descripcion">Observaciones:</label>
                   <input type="text" class="form-control" required id="obervaciones">
                 </div>
