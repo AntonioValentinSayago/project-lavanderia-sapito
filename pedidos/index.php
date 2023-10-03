@@ -348,7 +348,7 @@ require_once("../config/db_config.php");
                 <div class="col-md-4">
                   <label for="">Horario de Entrega:</label>
                   <select name="hora-entrega" id="hora-entrega" class="form-control">
-                  <option value="11:00am">11:00 am</option>
+                    <option value="11:00am">11:00 am</option>
                     <option value="11:00am">12:00 pm</option>
                     <option value="11:00am">02:00 pm</option>
                     <option value="11:00am">04:00 pm</option>
@@ -361,7 +361,9 @@ require_once("../config/db_config.php");
                   <input type="text" class="form-control" required id="obervaciones">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button>
+                  <!-- <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button> -->
+                  <button type="button" class="btn btn-success" onclick="alertaMensaje()"><i class="bi bi-save"></i>
+                    Crear Pedido</button>
                   <button type="reset" onclick="resetFormulario()" class="btn btn-danger"><i
                       class="bi bi-trash3"></i></button>
                 </div>
@@ -519,6 +521,14 @@ require_once("../config/db_config.php");
   </script>
   <script>
 
+    function alertaMensaje() {
+      iziToast.warning({
+        title: 'Error:',
+        message: 'Servicio en Mantenimiento',
+        position: 'topCenter',
+        timeout: 4000,
+      });
+    }
     function selectNit(e) {
       var nit = e.target.selectedOptions[0].getAttribute("data-nit")
       document.getElementById("nit").value = nit;
