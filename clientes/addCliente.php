@@ -229,19 +229,19 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <form class="row g-3 mt-2" action="newCliente.php" method="post">
                                 <div class="col-md-6">
                                     <label for="">Nombre Completo*</label>
-                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre Completo*">
+                                    <input type="text" class="form-control" name="nombre" id="nombreCliente" placeholder="Nombre Completo*">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Telefono*</label>
-                                    <input type="number" class="form-control" name="telefono" placeholder="Telefono">
+                                    <input type="number" class="form-control" name="telefono" id="telefononCliente" placeholder="Telefono">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="">Dirección*</label>
                                     <input type="text" class="form-control" name="direccion" placeholder="Dirección">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success"><i class="bi bi-save-fill"></i>
-                                        Guardar</button>
+                                    <button type="submit" class="btn btn-success" id="registroButton"><i class="bi bi-save-fill"></i>
+                                        Guardar Nuevo Cliente</button>
                                     <a href="clientes.php"><button type="button"
                                             class="btn btn-secondary">Cancelar</button></a>
                                 </div>
@@ -257,7 +257,29 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </section>
 
     </main><!-- End #main -->
+    
+    <script>
+        $(document).ready(function () {
+            $("#nombreCliente").on("blur", function () {
+                let nombre = $(this).val();
+                $.ajax({
+                    url: 'validarDatos.php',
+                    type: 'post',
+                    data: { valor: nombre },
+                    success: function (response) {
+                        $("#nombreStatus").html(response);
+                        if (response.trim() == "¡Este Nombre ya existe en la base de datos!") {
+                            $("#registroButton").prop('disabled', true);
+                        } else {
+                            $("#registroButton").prop('disabled', false);
+                        }
+                    }
+                });
+            });
+        });
 
+    </script>
+    <br><br><br><br><br><br><br>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">

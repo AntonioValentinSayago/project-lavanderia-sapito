@@ -45,7 +45,7 @@ if (isset($_SESSION['id'])) {
             <div class="alert alert-warning" role="alert">
               Servicio en Mantenimiento :)
             </div>
-            <h3>Lavandería<strong>Sapito</strong> <h6>V2.0.0</h6> </h3>
+            <h3>Lavandería<strong>Sapito</strong></h3>
             <div class="form-group first">
               <label for="username">Correo Electronico</label>
               <input type="text" class="form-control" placeholder="your-email@gmail.com" id="user" />
