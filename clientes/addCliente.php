@@ -191,31 +191,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
         <div class="pagetitle" style="display: flex;">
             <h1>Agregar Nuevo Cliente</h1>
-            <nav>
-                <!--         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-          <li class="breadcrumb-item active">Panel Principal</li>
-        </ol>  -->
-            </nav>
-            <div style="margin-left: auto;">
-                <button type="button" class="btn btn-primary btn-add" onclick="example()"><i
-                        class="bi bi-plus me-1"></i>Cliente</button>
-                <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i>
-                    Generar Reporte</button>
-            
-            </div>
         </div><!-- End Page Title -->
-
-        <script>
-            function example() {
-                iziToast.warning({
-                    title: 'Error:',
-                    message: 'Comunicación con el servidor, servicio en mantenimiento',
-                    position: 'topCenter',
-                    timeout: 3000,
-                });
-            }
-        </script>
 
         <!--Inicio del Section Principal-->
         <section class="section dashboard">
