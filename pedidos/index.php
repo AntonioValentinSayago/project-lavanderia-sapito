@@ -555,12 +555,12 @@ require_once("../config/db_config.php");
 
         var i = 1; //contador para asignar id al boton que borrara la fila
         var fila =
-          '<tr id="row' + i + '">' +
-          '<th style="color:blue; display:none">' + setCategoria + '</th>' +
+        '<tr id="row' + i + '">' +
+          '<td><span class="btn btn-danger btn-xs quitarProducto" idProducto="' + setCategoria + '"><i class="bi bi-trash"></i></span></td>' +
           '<td>' + categoria + '</td>' +
           '<td><input type="number" step="any" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="0" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
           '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
-          '</tr>';
+        '</tr>';
         i++;
         var totalPrecio = 0;
         var precioFila = parseFloat(precio);
@@ -593,7 +593,7 @@ require_once("../config/db_config.php");
       $(document).on('click', '.btn_remove', function () {
         var button_id = $(this).attr("idProducto");
         $(this).closest('tr').remove(); //borra la fila
-        
+
         var nFilas = $("#miTabla tr").length;
 
         //restar la cantidad
