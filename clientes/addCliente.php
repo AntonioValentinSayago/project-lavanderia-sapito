@@ -128,13 +128,19 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link collapsed " href="../pedidos/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Panel Principal</span>
+                    <span>Crear Nueva Nota</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../consultaPedido/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Notas Entregadas</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
+                    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
                 </a>
             </li><!-- End Components Nav -->
 
@@ -159,7 +165,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link " href="users-profile.html">
                     <i class="bi bi-person"></i>
-                    <span>Clientes</span>
+                    <span>Control de Clientes</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
@@ -207,20 +213,24 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <form class="row g-3 mt-2" action="newCliente.php" method="post">
                                 <div class="col-md-6">
                                     <label for="">Nombre Completo*</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombreCliente" placeholder="Nombre Completo*">
+                                    <input type="text" class="form-control" name="nombre" id="nombreCliente"
+                                        placeholder="Nombre Completo*" required>
                                     <span id="nombreStatus" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Telefono*</label>
-                                    <input type="number" class="form-control" name="telefono" id="telefonoCliente" placeholder="Telefono">
+                                    <input type="number" class="form-control" name="telefono" id="telefonoCliente"
+                                        placeholder="Telefono" required>
                                     <span id="telefonoStatus" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label for="">Dirección*</label>
-                                    <input type="text" class="form-control" name="direccion" placeholder="Dirección">
+                                    <input type="text" class="form-control" name="direccion" placeholder="Dirección"
+                                        required>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success" id="registroButton"><i class="bi bi-save-fill"></i>
+                                    <button type="submit" class="btn btn-success" id="registroButton"><i
+                                            class="bi bi-save-fill"></i>
                                         Guardar Nuevo Cliente</button>
                                     <a href="clientes.php"><button type="button"
                                             class="btn btn-secondary">Cancelar</button></a>
@@ -237,7 +247,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         </section>
 
     </main><!-- End #main -->
-    
+
     <script>
         $(document).ready(function () {
             $("#nombreCliente").on("blur", function () {
