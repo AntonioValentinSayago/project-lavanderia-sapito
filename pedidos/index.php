@@ -320,6 +320,7 @@ require_once("../config/db_config.php");
                   <table class="table table-bordered table-hover " id="miTabla">
                     <tr style="font-size:10px; font-weight: 900;color:black">
                       <!-- <td scope="col" >#</td> -->
+                      <td scope="col">-</td>
                       <td scope="col">Nombre</td>
                       <td scope="col">Cantidad o KG:</td>
                       <td scope="col">Total:</td>
