@@ -212,7 +212,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Telefono*</label>
-                                    <input type="number" class="form-control" name="telefono" id="telefononCliente" placeholder="Telefono">
+                                    <input type="number" class="form-control" name="telefono" id="telefonoCliente" placeholder="Telefono">
+                                    <span id="telefonoStatus" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label for="">Dirección*</label>
@@ -255,6 +256,26 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     }
                 });
             });
+        });
+        $(document).ready(function () {
+            $("#telefonoCliente").on("blur", function () {
+                let telefono = $(this).val();
+                console.log("entre")
+                $.ajax({
+                    url: 'validarTelefono.php',
+                    type: 'post',
+                    data: { valor: telefono },
+                    success: function (response) {
+                        $("#telefonoStatus").html(response);
+                        if (response.trim() == "¡Este Telefono ya existe en la base de datos!") {
+                            $("#registroButton").prop('disabled', true);
+                        } else {
+                            $("#registroButton").prop('disabled', false);
+                        }
+                    }
+                });
+            })
+
         });
 
     </script>
