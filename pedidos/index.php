@@ -590,7 +590,7 @@ require_once("../config/db_config.php");
 
 
       //Remover la categoría de la venta
-      $(document).on('click', '.btn_remove', function () {
+      $(document).on('click', '.quitarProducto', function () {
         var button_id = $(this).attr("idProducto");
         $(this).closest('tr').remove(); //borra la fila
 
