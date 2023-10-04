@@ -591,9 +591,9 @@ require_once("../config/db_config.php");
 
       //Remover la categoría de la venta
       $(document).on('click', '.btn_remove', function () {
-        var button_id = $(this).attr("id");
-        //cuando da click obtenemos el id del boton
-        $('#row' + button_id + '').remove(); //borra la fila
+        var button_id = $(this).attr("idProducto");
+        $(this).closest('tr').remove(); //borra la fila
+        
         var nFilas = $("#miTabla tr").length;
 
         //restar la cantidad
@@ -602,10 +602,9 @@ require_once("../config/db_config.php");
         var total = precioSubTotal - precio1.attr("precioReal");
         $("#total").val(total);
 
-        var precioTotal = document.getElementById('resta').value;
-        var precio2 = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
-        var precioFinal2 = precioTotal - precio2.attr("precioReal")
-        $("#resta").val(precioFinal2);
+        let precioTotalVenta =document.getElementById('resta').value;
+        let totalVenta =precioTotalVenta - precio1.attr("precioReal");
+        $("#resta").val(totalVenta);
 
 
       });

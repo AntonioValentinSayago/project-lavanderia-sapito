@@ -289,7 +289,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         });
 
     </script>
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
