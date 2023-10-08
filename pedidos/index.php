@@ -208,72 +208,55 @@ require_once("../config/db_config.php");
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-        <div class="col-lg-5">
-          <div class="row">
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-                <div class="card-body mt-2">
-                  <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-                    <?php date_default_timezone_set("America/Mexico_City");
-                    echo date('d \d\e F \d\e Y'); ?>
-                  </h5>
-                  <hr>
-                  <!-- No Labels Form -->
-                  <form class="row g-3">
-                    <div class="col-md-8">
-                      <label for="">Categoría</label>
-                      <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
-                        <option value="null" selected>Seleccione una Opción</option>
-                        <?php
-                        $consultaCategoria = "SELECT * FROM ctl_categorias";
-                        $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
-                        if (mysqli_num_rows($stmtCategoria) > 0) {
-                          while ($fila = mysqli_fetch_array($stmtCategoria)) {
-                            ?>
-                            <option data-nit="<?php echo $fila["precio"]; ?>"
-                              value="<?php echo $fila["id_ctl_categorias"]; ?>">
-                              <?php echo $fila["nombreCategoria"]; ?>
-                            </option>
-                            <?php
-                          }
-                        } else {
-                          ?>
-                          <option value="null" selected>No existen Categorías</option>
-                          <?php
-                        }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="">Precio $</label>
-                      <input type="number" class="form-control" id="nit">
-                    </div>
-                    <div class="col-md-12">
-                      <button type="button" class="btn btn-primary" id="adicionar">Agregar</button>
-                      <button type="reset" class="btn btn-secondary">Limpiar</button>
-                    </div>
-                  </form><!-- End No Labels Form -->
-                </div>
-              </div>
-            </div><!-- End Recent Sales -->
-          </div>
-        </div>
         <div class="col-lg-7">
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-                <?php date_default_timezone_set("America/Mexico_City");
-                $date = date("d-m-Y"); // Establece la configuración regional en español para México
-                echo $fecha = date('Y-m-d', strtotime($date)); ?>
+              <?php date_default_timezone_set("America/Mexico_City");
+                    echo date('d \d\e F \d\e Y'); ?>
               </h5>
               <hr>
+              <!-- No Labels Form -->
+              <form class="row g-3">
+                <div class="col-md-8">
+                  <label for="">Categoría</label>
+                  <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
+                    <option value="null" selected>Seleccione una Opción</option>
+                    <?php
+                    $consultaCategoria = "SELECT * FROM ctl_categorias";
+                    $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
+                    if (mysqli_num_rows($stmtCategoria) > 0) {
+                      while ($fila = mysqli_fetch_array($stmtCategoria)) {
+                        ?>
+                        <option data-nit="<?php echo $fila["precio"]; ?>" value="<?php echo $fila["id_ctl_categorias"]; ?>">
+                          <?php echo $fila["nombreCategoria"]; ?>
+                        </option>
+                        <?php
+                      }
+                    } else {
+                      ?>
+                      <option value="null" selected>No existen Categorías</option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="">Precio $</label>
+                  <input type="number" class="form-control" id="nit">
+                </div>
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary" id="adicionar">Agregar</button>
+                  <button type="reset" class="btn btn-secondary">Limpiar</button>
+                </div>
+              </form><!-- End No Labels Form -->
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
                   <label for="id_cliente">Cliente</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control" type="text" id="id_cliente" required>
+                  <select class="form-control" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
                     <option value="">Seleccione Cliente...</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
@@ -343,13 +326,12 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="date" class="form-control" required id="fechaEntrega"
-                    min="<?php echo $date ?>">
+                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo $date ?>">
                 </div>
                 <div class="col-md-4">
                   <label for="">Horario de Entrega:</label>
                   <select name="hora-entrega" id="hora-entrega" class="form-control" required>
-                   <option value="" select>Seleccione Horario....</option>
+                    <option value="" select>Seleccione Horario....</option>
                     <option value="11:00am">11:00 am</option>
                     <option value="12:00pm">12:00 pm</option>
                     <option value="02:00pm">02:00 pm</option>
@@ -364,7 +346,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="text-center">
                   <!-- <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button> -->
-                  <button type="button" class="btn btn-success" onclick="alertaMensaje()"><i class="bi bi-save"></i>
+                  <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4" ><i class="bi bi-save"></i>
                     Crear Pedido</button>
                   <button type="reset" onclick="resetFormulario()" class="btn btn-danger"><i
                       class="bi bi-trash3"></i></button>
@@ -556,12 +538,12 @@ require_once("../config/db_config.php");
 
         var i = 1; //contador para asignar id al boton que borrara la fila
         var fila =
-        '<tr id="row' + i + '">' +
+          '<tr id="row' + i + '">' +
           '<td><span class="btn btn-danger btn-xs quitarProducto" idProducto="' + setCategoria + '"><i class="bi bi-trash"></i></span></td>' +
           '<td>' + categoria + '</td>' +
           '<td><input type="number" step="any" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="0" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
           '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
-        '</tr>';
+          '</tr>';
         i++;
         var totalPrecio = 0;
         var precioFila = parseFloat(precio);
@@ -603,8 +585,8 @@ require_once("../config/db_config.php");
         var total = precioSubTotal - precio1.attr("precioReal");
         $("#total").val(total);
 
-        let precioTotalVenta =document.getElementById('resta').value;
-        let totalVenta =precioTotalVenta - precio1.attr("precioReal");
+        let precioTotalVenta = document.getElementById('resta').value;
+        let totalVenta = precioTotalVenta - precio1.attr("precioReal");
         $("#resta").val(totalVenta);
 
 
@@ -683,15 +665,15 @@ require_once("../config/db_config.php");
       var valoresColumna = [];
 
       // Se valida de que existan productos en la venta
-      if(total === '' ){
+      if (total === '') {
         iziToast.warning({
-            title: 'Error:',
-            message: 'Debe agregar Productos a la Venta',
-            position: 'topCenter',
-            timeout: 2000,
-          });
-          return;
-        }
+          title: 'Error:',
+          message: 'Debe agregar Productos a la Venta',
+          position: 'topCenter',
+          timeout: 2000,
+        });
+        return;
+      }
 
       // Itera sobre las filas de la tabla (comenzando desde el índice 1 para omitir la cabecera)
       for (var i = 1; i < tabla.rows.length; i++) {
