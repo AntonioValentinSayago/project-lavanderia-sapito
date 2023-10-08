@@ -200,7 +200,7 @@ require_once("../config/db_config.php");
         <a href="../clientes/addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-person-fill-add"></i> Nuevo
             Cliente</button></a>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn"   style="background:#34d399; color:#f0fdf4" data-bs-toggle="modal" data-bs-target="#exampleModal"
           id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
@@ -208,7 +208,7 @@ require_once("../config/db_config.php");
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-12">
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
@@ -219,9 +219,9 @@ require_once("../config/db_config.php");
               <!-- No Labels Form -->
               <form class="row g-3">
                 <div class="col-md-8">
-                  <label for="">Categoría</label>
+                  <label for="">Lista de Categoría</label>
                   <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
-                    <option value="null" selected>Seleccione una Opción</option>
+                    <option value="null" selected> - Seleccione una Opción - </option>
                     <?php
                     $consultaCategoria = "SELECT * FROM ctl_categorias";
                     $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
@@ -246,8 +246,8 @@ require_once("../config/db_config.php");
                   <input type="number" class="form-control" id="nit">
                 </div>
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-primary" id="adicionar">Agregar</button>
-                  <button type="reset" class="btn btn-secondary">Limpiar</button>
+                  <button type="button" class="btn" id="adicionar"  style="background:#34d399; color:#f0fdf4">Agregar</button>
+                  <button type="reset" class="btn btn-secondary" style="background: #083344">Limpiar</button>
                 </div>
               </form><!-- End No Labels Form -->
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
