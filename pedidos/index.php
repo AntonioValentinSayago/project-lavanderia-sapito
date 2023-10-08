@@ -218,7 +218,7 @@ require_once("../config/db_config.php");
               <hr>
               <!-- No Labels Form -->
               <form class="row g-3">
-                <div class="col-md-8">
+                <div class="col-md-4">
                   <label for="">Lista de Categoría</label>
                   <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
                     <option value="null" selected> - Seleccione una Opción - </option>
@@ -243,13 +243,14 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Precio $</label>
-                  <input type="number" class="form-control" id="nit">
+                  <input type="number" class="form-control" id="nit" disabled>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-4">
                   <button type="button" class="btn" id="adicionar"  style="background:#34d399; color:#f0fdf4">Agregar</button>
                   <button type="reset" class="btn btn-secondary" style="background: #083344">Limpiar</button>
                 </div>
               </form><!-- End No Labels Form -->
+              <hr>
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
