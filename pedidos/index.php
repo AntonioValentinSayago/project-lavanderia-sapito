@@ -245,9 +245,10 @@ require_once("../config/db_config.php");
                   <label for="">Precio $</label>
                   <input type="number" class="form-control" id="nit" disabled>
                 </div>
-                <div class="col-md-4">
-                  <button type="button" class="btn" id="adicionar"  style="background:#34d399; color:#f0fdf4">Agregar</button>
-                  <button type="reset" class="btn btn-secondary" style="background: #083344">Limpiar</button>
+                  k
+                <div class="col-md-4" >
+                  <button type="button" class="btn btn-block" id="adicionar"  style="background:#34d399; color:#f0fdf4; width:100%">Agregar al Pedido</button>
+                  <!-- <button type="reset" class="btn btn-secondary btn-block" style="background: #083344">Limpiar</button> -->
                 </div>
               </form><!-- End No Labels Form -->
               <hr>
