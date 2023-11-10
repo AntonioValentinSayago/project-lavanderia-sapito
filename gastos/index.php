@@ -158,6 +158,13 @@ if (!isset($_SESSION['cargo'])) {
                 </a>
             </li><!-- End Tables Nav -->
 
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../reportes/diarios.php">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+                </a>
+            </li><!-- End Tables Nav -->
+
             <li class="nav-item">
                 <a class="nav-link">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>

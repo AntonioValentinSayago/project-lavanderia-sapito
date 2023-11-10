@@ -151,6 +151,12 @@ require_once("../config/db_config.php");
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="../reportes/diarios.php">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+        </a>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="../gastos/index.php">
           <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
         </a>
@@ -167,7 +173,7 @@ require_once("../config/db_config.php");
       <li class="nav-item">
         <a class="nav-link collapsed" href="../systemUser/index.php">
           <i class="bi bi-person-add"></i>
-          <span>Empleados</span>
+          <span>Control de Empleados</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
