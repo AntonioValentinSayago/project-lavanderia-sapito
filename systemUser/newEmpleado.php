@@ -42,6 +42,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
 </head>
+
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -106,19 +107,46 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link collapsed " href="../pedidos/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Panel Principal</span>
+                    <span>Crear Nueva Nota</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
+                <a class="nav-link collapsed" href="../consultaPedido/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Notas Entregadas</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../inventario/inventario.php">
+                    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
                 </a>
             </li><!-- End Components Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
                 </a>
             </li><!-- End Tables Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../categorias/index.php">
+                    <i class="bi bi-tags"></i><span>Control Categorias</span>
+                </a>
+            </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../reportes/index.php">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
+                </a>
+            </li><!-- End Tables Nav -->
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../reportes/diarios.php">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+                </a>
+            </li><!-- End Tables Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
@@ -127,13 +155,13 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../clientes/clientes.php">
                     <i class="bi bi-person"></i>
-                    <span>Clientes</span>
+                    <span>Control de Clientes</span>
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="bi bi-person-add"></i>
-                    <span>Empleados</span>
+                    <span>Control de Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
@@ -172,7 +200,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <div class="card recent-sales overflow-auto">
                                 <div class="card-body">
                                     <h4 class="card-title">Control de Inventario</h4>
-                                    <p>Fecha de Registro: <?php  echo date('d-m-Y') ?></p>
+                                    <p>Fecha de Registro:
+                                        <?php echo date('d-m-Y') ?>
+                                    </p>
                                     <!-- No Labels Form -->
                                     <form class="row g-3" action="guardarEmpleado.php" method="post">
                                         <div class="col-md-6">
@@ -181,30 +211,31 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 name="nombreEmp">
                                         </div>
                                         <div class="col-md-6">
-                                        <label>Apellidos (s)</label>
+                                            <label>Apellidos (s)</label>
                                             <input type="text" class="form-control" placeholder="Apellido (S)"
                                                 name="lastEmp">
                                         </div>
                                         <div class="col-md-4">
-                                        <label>Correo Electronico</label>
+                                            <label>Correo Electronico</label>
                                             <input type="text" class="form-control" placeholder="Correo Electronico"
                                                 name="email">
                                         </div>
                                         <div class="col-md-3">
-                                        <label>Telefono</label>
+                                            <label>Telefono</label>
                                             <input type="number" class="form-control" placeholder="Telefono"
                                                 name="telefono">
                                         </div>
                                         <div class="col-md-3">
-                                        <label>Privilegios</label>
-                                            <select name="cargo" class="form-control" placeholder="Seleccione una opcion">
+                                            <label>Privilegios</label>
+                                            <select name="cargo" class="form-control"
+                                                placeholder="Seleccione una opcion">
                                                 <option value="" disabled selected>Seleccione...</option>
                                                 <option value="0">Empleado</option>
                                                 <option value="1">Administrador</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                        <label># Empleado</label>
+                                            <label># Empleado</label>
                                             <input type="d" class="form-control" placeholder="Numero de Empleado"
                                                 name="numEmp" value="LS-EMP101">
                                         </div>

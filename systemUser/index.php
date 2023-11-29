@@ -182,7 +182,7 @@ if (!isset($_SESSION['cargo'])) {
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="bi bi-person-add"></i>
-          <span>Empleados</span>
+          <span>Control de Empleados</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
