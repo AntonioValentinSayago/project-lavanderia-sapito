@@ -356,7 +356,7 @@ require_once("../config/db_config.php");
                   <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4" ><i class="bi bi-save"></i>
                     Crear Pedido</button>
                   <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b; color:white"><i
-                      class="bi bi-trash3"></i></button>
+                      class="bi bi-trash3"></i> Cancelar Pedido</button>
                 </div>
               </form><!-- End No Labels Form -->
             </div>
