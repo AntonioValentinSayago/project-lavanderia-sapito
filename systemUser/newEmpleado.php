@@ -124,12 +124,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </li><!-- End Components Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
-
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="../categorias/index.php">
                     <i class="bi bi-tags"></i><span>Control Categorias</span>
                 </a>
