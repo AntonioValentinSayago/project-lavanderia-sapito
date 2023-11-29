@@ -355,7 +355,7 @@ require_once("../config/db_config.php");
                   <!-- <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button> -->
                   <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4" ><i class="bi bi-save"></i>
                     Crear Pedido</button>
-                  <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b"><i
+                  <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b; color:white"><i
                       class="bi bi-trash3"></i></button>
                 </div>
               </form><!-- End No Labels Form -->
@@ -369,7 +369,7 @@ require_once("../config/db_config.php");
             <div class="col-md-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                  <p>Cartera de Pedidos</p>
+                  <p class="mt-5">Control de Pedidos Activos</p>
                   <hr>
                   <table class="table table-borderless" id="example1">
                     <thead>

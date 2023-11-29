@@ -114,29 +114,38 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php">
+        <li class="nav-item">
+                <a class="nav-link collapsed" href="../pedidos/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Panel Principal</span>
+                    <span>Crear Nueva Nota</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-
             <li class="nav-item">
-                <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
+                <a class="nav-link collapsed" href="../consultaPedido/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Notas Entregadas</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
                 </a>
             </li><!-- End Components Nav -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../categorias/index.php">
                     <i class="bi bi-tags"></i><span>Control Categorias</span>
                 </a>
             </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../reportes/index.php">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
+                </a>
+            </li><!-- End Tables Nav -->
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
+                <a class="nav-link collapsed" href="../reportes/diarios.php">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
                 </a>
             </li><!-- End Tables Nav -->
 
@@ -145,16 +154,20 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                     <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
-
             <li class="nav-item">
-                <a class="nav-link collapsed" href="clientes.php">
+                <a class="nav-link collapsed" href="../clientes/clientes.php">
                     <i class="bi bi-person"></i>
-                    <span>Clientes</span>
+                    <span>Control de Clientes</span>
                 </a>
             </li><!-- End Profile Page Nav -->
-
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
+                <a class="nav-link collapsed" href="../systemUser/index.php">
+                    <i class="bi bi-person-add"></i>
+                    <span>Empleados</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
                     <i class="bi bi-question-circle"></i>
                     <span>Manual de Usuario</span>
                 </a>
