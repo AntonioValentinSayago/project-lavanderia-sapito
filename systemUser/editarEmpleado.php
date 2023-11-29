@@ -42,6 +42,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
 </head>
+
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -172,7 +173,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <div class="card recent-sales overflow-auto">
                                 <div class="card-body">
                                     <h4 class="card-title">Control de Inventario</h4>
-                                    <p>Fecha de Actualización: <?php  echo date('d-m-Y') ?></p>
+                                    <p>Fecha de Actualización:
+                                        <?php echo date('d-m-Y') ?>
+                                    </p>
                                     <!-- No Labels Form -->
                                     <?php
                                     $id_ctlUserSystem = $_GET["id_ctlUserSystem"];
@@ -183,44 +186,56 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                     if (mysqli_num_rows($stmt) > 0) {
                                         while ($fila = mysqli_fetch_array($stmt)) {
                                             ?>
-                                    <form class="row g-3" action="updateEmpleado.php" method="post">
-                                        <div class="col-md-6">
-                                            <label>Nombre Completo</label>
-                                            <input type="hidden"  value="<?php echo $fila["id_ctlUserSystem"]; ?>" name="id_ctlUserSystem">
-                                            <input type="text" class="form-control" value="<?php echo $fila["nombreCompleto"]; ?>" name="nombreEmp">
-                                        </div>
-                                        <div class="col-md-6">
-                                        <label>Apellidos (s)</label>
-                                            <input type="text" class="form-control" value="<?php echo $fila["apellidoCompleto"]; ?>" name="lastEmp">
-                                        </div>
-                                        <div class="col-md-4">
-                                        <label>Correo Electronico</label>
-                                            <input type="text" class="form-control" value="<?php echo $fila["email_correo"]; ?>" name="email">
-                                        </div>
-                                        <div class="col-md-3">
-                                        <label>Telefono</label>
-                                            <input type="number" class="form-control" value="<?php echo $fila["telefono"]; ?>" name="telefono">
-                                        </div>
-                                        <div class="col-md-3">
-                                        <label>Privilegios</label>
-                                            <select name="cargo" class="form-control" placeholder="Seleccione una opcion" required>
-                                                <option value="" disabled selected>Seleccione...</option>
-                                                <option value="0">Empleado</option>
-                                                <option value="1">Administrador</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                        <label># Empleado</label>
-                                            <input type="d" class="form-control" name="numEmp" value="<?php echo $fila["num_empleado"]; ?>">
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-success"><i
-                                                    class="bi bi-save-fill"></i> Guardar</button>
-                                            <a href="index.php"><button type="button"
-                                                    class="btn btn-secondary">Cancelar</button></a>
-                                        </div>
-                                    </form><!-- End No Labels Form -->
-                                    <?php
+                                            <form class="row g-3" action="updateEmpleado.php" method="post">
+                                                <div class="col-md-6">
+                                                    <label>Nombre Completo</label>
+                                                    <input type="hidden" value="<?php echo $fila["id_ctlUserSystem"]; ?>"
+                                                        name="id_ctlUserSystem">
+                                                    <input type="text" class="form-control"
+                                                        value="<?php echo $fila["nombreCompleto"]; ?>" name="nombreEmp">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Apellidos (s)</label>
+                                                    <input type="text" class="form-control"
+                                                        value="<?php echo $fila["apellidoCompleto"]; ?>" name="lastEmp">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Correo Electronico</label>
+                                                    <input type="text" class="form-control"
+                                                        value="<?php echo $fila["email_correo"]; ?>" name="email">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>Telefono</label>
+                                                    <input type="number" class="form-control"
+                                                        value="<?php echo $fila["telefono"]; ?>" name="telefono">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>Privilegios</label>
+                                                    <select name="cargo" class="form-control"
+                                                        placeholder="Seleccione una opcion" required>
+                                                        <option value="" disabled selected>Seleccione...</option>
+                                                        <option value="0">Empleado</option>
+                                                        <option value="1">Administrador</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label># Empleado</label>
+                                                    <input type="d" class="form-control" name="numEmp"
+                                                        value="<?php echo $fila["num_empleado"]; ?>">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Contraseña</label>
+                                                    <input type="text" class="form-control" value="<?php echo $fila["clave"]; ?>"
+                                                        name="password">
+                                                </div>
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-success"><i
+                                                            class="bi bi-save-fill"></i> Guardar</button>
+                                                    <a href="index.php"><button type="button"
+                                                            class="btn btn-secondary">Cancelar</button></a>
+                                                </div>
+                                            </form><!-- End No Labels Form -->
+                                            <?php
                                         }
                                     }
                                     ?>
