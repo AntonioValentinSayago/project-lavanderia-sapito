@@ -195,7 +195,7 @@ require_once("../config/db_config.php");
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Panel de Pedidos</h1>
+      <h1>Generar Nueva Venta</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -427,7 +427,7 @@ require_once("../config/db_config.php");
                         }
                       } else {
                         ?>
-                        <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                        <h5 class="alert alert-danger">No hay registros actuales de pedidos</h5>
                         <?php
                       }
                       ?>
