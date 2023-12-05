@@ -423,7 +423,7 @@ if (!isset($_SESSION['cargo'])) {
   <script>
     function error() {
       alertify
-        .alert("Error de Servidor", function () {
+        .alert("Servicio en Mantenimiento", function () {
           alertify.message('OK');
         });
     }
