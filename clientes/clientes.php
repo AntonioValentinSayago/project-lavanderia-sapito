@@ -208,7 +208,7 @@ if (!isset($_SESSION['cargo'])) {
         <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Agregar Nuevo Cliente</button></a>
         <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
-              class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+              class="bi bi-filetype-pdf"></i> Generar Reporte de Clientes con Pedido</button></a>
       </div>
     </div><!-- End Page Title -->
     <!--Inicio del Section Principal-->
@@ -217,7 +217,7 @@ if (!isset($_SESSION['cargo'])) {
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
-              <h5 class="card-title">Clientes con Pedido</h5>
+              <h5 class="card-title">CLIENTES CON PEDIDO</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -225,10 +225,10 @@ if (!isset($_SESSION['cargo'])) {
                   <table class="table table-striped" id="example1">
                     <thead>
                       <tr style="background:#F4f4f8;">
-                        <th scope="col">Cliente</th>
+                        <th scope="col">Nombre del Cliente</th>
                         <th scope="col">Direccion</th>
-                        <th scope="col">Folio</th>
-                        <th scope="col">Estatus</th>
+                        <th scope="col">No° Folio</th>
+                        <th scope="col">Estatus Actual</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -243,7 +243,7 @@ if (!isset($_SESSION['cargo'])) {
                         while ($fila = mysqli_fetch_array($stmt)) {
                           $Estatus = $fila["estatus"];
                           ?>
-                          <tr style="text-align:center">
+                          <tr style="text-align:center; text-transform: uppercase;">
                             <td>
                               <?php echo $fila["nombreCompleto"]; ?>
                             </td>
