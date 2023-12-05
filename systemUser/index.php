@@ -42,15 +42,15 @@ if (!isset($_SESSION['cargo'])) {
   <link rel="stylesheet" href="../css/main.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
 
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
-    <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
+  <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 
 </head>
 
@@ -158,7 +158,7 @@ if (!isset($_SESSION['cargo'])) {
         </a>
       </li><!-- End Tables Nav -->
 
-      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="../reportes/diarios.php">
           <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
@@ -206,10 +206,10 @@ if (!isset($_SESSION['cargo'])) {
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Control de Acceso</h1>
+      <h1>Registro de Empleados</h1>
       <div style="margin-left: auto;">
         <a href="newEmpleado.php"><button type="button" class="btn btn-primary btn-add"><i
-              class="bi bi-plus me-1"></i>Usuario</button></a>
+              class="bi bi-plus me-1"></i>Registrar Nuevo Empleado</button></a>
         <a href="../pdf/empleado/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
               class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
       </div>
@@ -240,7 +240,7 @@ if (!isset($_SESSION['cargo'])) {
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                   <!-- Active Table -->
-                  <table class="table table-borderless datatable">
+                  <table class="table table-borderless datatable" id="example1">
                     <thead>
                       <tr>
                         <th scope="col">Nombre (s)</th>
@@ -329,44 +329,84 @@ if (!isset($_SESSION['cargo'])) {
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-      <script>
-        $(document).ready(function () {
+  <script>
+    $(document).ready(function () {
 
-            // Delete 
-            $('.delete').click(function () {
-                var el = this;
+      // Delete 
+      $('.delete').click(function () {
+        var el = this;
 
-                // Delete id
-                var deleteid = $(this).data('id');
-                console.log(deleteid)
+        // Delete id
+        var deleteid = $(this).data('id');
+        console.log(deleteid)
 
-                // Confirm box
-                bootbox.confirm("¿Seguro de borrar este Empleado?", function (result) {
+        // Confirm box
+        bootbox.confirm("¿Seguro de borrar este Empleado?", function (result) {
 
-                    if (result) {
-                        // AJAX Request
-                        $.ajax({
-                            url: 'eliminar.php',
-                            type: 'POST',
-                            data: { id: deleteid },
-                            success: function (response) {
-                                // Removing row from HTML Table
-                                if (response == 1) {
-                                    $(el).closest('tr').css('background', 'tomato');
-                                    $(el).closest('tr').fadeOut(800, function () {
-                                        $(this).remove();
-                                    });
-                                } else {
-                                    bootbox.alert('Record not deleted.');
-                                }
-                            }
-                        });
-                    }
-                });
+          if (result) {
+            // AJAX Request
+            $.ajax({
+              url: 'eliminar.php',
+              type: 'POST',
+              data: { id: deleteid },
+              success: function (response) {
+                // Removing row from HTML Table
+                if (response == 1) {
+                  $(el).closest('tr').css('background', 'tomato');
+                  $(el).closest('tr').fadeOut(800, function () {
+                    $(this).remove();
+                  });
+                } else {
+                  bootbox.alert('Record not deleted.');
+                }
+              }
             });
+          }
         });
-    </script>
+      });
+    });
+  </script>
 
+  <script>
+    /* ---------------------------------------------------*/
+    $(function () {
+      initDataTableCategory();
+    })
+
+    function initDataTableCategory() {
+      tblDeliveryView = $("#example1").DataTable({
+        fixedMeader: true,
+        "language": {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": " _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar Pedido:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+        "columns": [
+          null, // Primera columna (Nombre) - Será searchable
+          { "searchable": false }, // Segunda columna (Edad) - No será searchable
+          null,
+          null,
+          null // Tercera columna (Ciudad) - Será searchable
+        ]
+      });
+
+    }
+  </script>
   <!-- Vendor JS Files -->
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/chart.js/chart.umd.js"></script>
