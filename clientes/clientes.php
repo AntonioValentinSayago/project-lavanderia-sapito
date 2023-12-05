@@ -217,7 +217,7 @@ if (!isset($_SESSION['cargo'])) {
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
-              <h5 class="card-title">CLIENTES CON PEDIDO</h5>
+              <h5 class="card-title">Clientes con Pedido</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
