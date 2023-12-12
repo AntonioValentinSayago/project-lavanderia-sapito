@@ -125,7 +125,7 @@ require_once("../config/db_config.php");
       <li class="nav-item">
         <a class="nav-link collapsed" href="../consultaPedido/index.php">
           <i class="bi bi-grid"></i>
-          <span>Notas Entregadas</span>
+          <span>Historia de Notas Entregadas</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -143,22 +143,15 @@ require_once("../config/db_config.php");
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../reportes/index.php">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-        </a>
-      </li><!-- End Tables Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../reportes/diarios.php">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios <span>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../gastos/index.php">
-          <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
+          <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
         </a>
       </li><!-- End Charts Nav -->
-
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../clientes/clientes.php">
@@ -183,7 +176,7 @@ require_once("../config/db_config.php");
       <li class="nav-item">
         <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
           <i class="bi bi-box-arrow-right"></i>
-          <span>Cerrar Sesión</span>
+          <span>Salir del  Sistema</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
     </ul>
