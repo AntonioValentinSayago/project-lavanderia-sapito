@@ -205,9 +205,9 @@ if (!isset($_SESSION['cargo'])) {
   <div class="pagetitle" style="display: flex; width:100%">
       <h1>Historial de Pedidos</h1>
       <div style="margin-left: auto; display:flex; gap:20px">
-        <form action="../pdf/pedidos/consultaFecha/fecha.php" style="display:flex; gap: 10px" target="_blank" method="POST">
+        <form action="../pdf/pedidos/consultaFecha/fecha.php" style="display:flex; gap: 10px; padding:0 10px 0 0; border-right: 1px solid black" target="_blank" method="POST">
           <input type="date" class="form-control" name="fecha" required>
-          <button type="submit" class="btn btn-warning btn-sm" style="width: 100%;"><i class="bi bi-filetype-pdf"></i> Generar Reporte</button>
+          <button type="submit" class="btn btn-warning btn-sm" style="width: 100%; background-color: #f59e0b; font-weight: 900"><i class="bi bi-filetype-pdf"></i> Generar Reporte</button>
         </form>
         <a href="../pdf/pedidos/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
               class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
