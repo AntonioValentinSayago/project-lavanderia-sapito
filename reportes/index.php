@@ -236,6 +236,41 @@ if (!isset($_SESSION['cargo'])) {
               <div class="card info-card revenue-card">
 
                 <div class="card-body">
+                  <h5 class="card-title">Reportes <span>| Ingresos Diarios</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <?php
+                      $consulta = "SELECT *
+                      from inventario";
+                      $stmt = mysqli_query($conexion, $consulta);
+                      if (mysqli_num_rows($stmt) > 0) {
+                        $totalRegistros = mysqli_num_rows($stmt);
+                        ?>
+                        <h6>
+                          <?php echo $totalRegistros ?>
+                        </h6>
+                        <?php
+                      } ?>
+                      <a href="../pdf/inventario/pdf.php" target="_target"><span
+                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
+                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
                   <h5 class="card-title">Inventario <span>| En bodega</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -267,7 +302,7 @@ if (!isset($_SESSION['cargo'])) {
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-xxl-4 col-xl-6">
               <div class="card info-card customers-card">
                 <div class="card-body">
                   <h5 class="card-title">Clientes <span>| Cartera Disponible</span></h5>
@@ -402,8 +437,8 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href="../pdf/empleado/pdf.php" target="_target"><span
-                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
-                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                          class="text-success small pt-1 fw-bold text-black"></span> <span
+                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
                     </div>
                   </div>
