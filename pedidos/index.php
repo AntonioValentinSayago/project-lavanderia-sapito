@@ -225,7 +225,7 @@ require_once("../config/db_config.php");
               <!-- No Labels Form -->
               <form class="row g-3">
                 <div class="col-md-4">
-                  <label for="categoria">Lista de Categoría Disponibles</label>
+                  <label for="categoria">Lista de Categorías Disponibles</label>
                   <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
                     <option value="null" selected> - Seleccione una Opción - </option>
                     <?php
@@ -319,7 +319,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-2 text-center">
                   <label for="">Subtotal a Pagar</label><br>
-                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled>
+                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled style="background-color: #cbd5e1; font-weight: 900;">
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
@@ -329,7 +329,7 @@ require_once("../config/db_config.php");
                 <div class="col-md-4 ingresoRestaPrecio">
                   <label for="">Total:</label><br>
                   <input type="number" class="form-control restaPrecioProducto" id="resta" totalResta=""
-                    placeholder="00.00" disabled>
+                    placeholder="00.00" disabled style="background-color: #cbd5e1; font-weight: 900;">
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
@@ -354,7 +354,7 @@ require_once("../config/db_config.php");
                 <div class="text-center">
                   <!-- <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button> -->
                   <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4" ><i class="bi bi-save"></i>
-                    Crear Pedido</button>
+                    Crear y guardar Pedido</button>
                   <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b; color:white"><i
                       class="bi bi-trash3"></i> Cancelar Pedido</button>
                 </div>
@@ -369,7 +369,7 @@ require_once("../config/db_config.php");
             <div class="col-md-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                  <p class="mt-5">Control de Pedidos Activos</p>
+                  <p class="mt-5" style="font-weight: 900;">CONTROL DE PEDIDOS ACTIVOS</p>
                   <hr>
                   <table class="table table-borderless" id="example1">
                     <thead>
@@ -377,8 +377,8 @@ require_once("../config/db_config.php");
                         <th scope="col">$ Folio de Nota</th>
                         <th scope="col">$ Total</th>
                         <th scope="col">Estatus</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Ver</th>
+                        <th scope="col">Nombre del Cliente</th>
+                        <th scope="col">Detalles</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -427,7 +427,7 @@ require_once("../config/db_config.php");
                         }
                       } else {
                         ?>
-                        <h5 class="alert alert-danger">No hay registros actuales de pedidos</h5>
+                        <h5 class="alert" style="background-color: #fbbf24; font-weight: 900;">No hay registros actuales de pedidos</h5>
                         <?php
                       }
                       ?>
