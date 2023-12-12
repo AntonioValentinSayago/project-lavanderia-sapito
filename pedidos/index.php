@@ -208,14 +208,23 @@ require_once("../config/db_config.php");
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-              <?php date_default_timezone_set("America/Mexico_City");
-                    echo date('d \d\e F \d\e Y'); ?>
+              <?php 
+                    // Establecer la zona horaria a la Ciudad de México
+                    date_default_timezone_set('America/Mexico_City');
+                    
+                    // Crear un objeto DateTimeImmutable con la fecha y hora actuales
+                    $fecha_actual = new DateTimeImmutable();
+                    // Obtener la fecha formateada
+                    $fecha_formateada = $fecha_actual->format('Y-m-d H:i:s');
+
+                    // Imprimir la fecha
+                    echo "Fecha actual en la Ciudad de México: $fecha_formateada";
               </h5>
               <hr>
               <!-- No Labels Form -->
               <form class="row g-3">
                 <div class="col-md-4">
-                  <label for="">Lista de Categoría</label>
+                  <label for="categoria">Lista de Categoría Disponibles</label>
                   <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
                     <option value="null" selected> - Seleccione una Opción - </option>
                     <?php
@@ -238,7 +247,7 @@ require_once("../config/db_config.php");
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <label for="">Precio $</label>
+                  <label for="nit">PRECIO $</label>
                   <input type="number" class="form-control" id="nit" disabled>
                 </div>
                 <div class="col-md-4" >
@@ -250,7 +259,7 @@ require_once("../config/db_config.php");
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
-                  <label for="id_cliente">Cliente</label>
+                  <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
                   <select class="form-control" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
@@ -275,7 +284,7 @@ require_once("../config/db_config.php");
                   </select>
                 </div>
                 <div class="col-md-3">
-                  <label for="">Folio Nota</label>
+                  <label for="">Número de Folio</label>
                   <?php
                   //$numero = random_int(1, 99);
                   //$letra_aleatoria = chr(rand(65, 90));
@@ -296,18 +305,18 @@ require_once("../config/db_config.php");
                   }
                   ?>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <table class="table table-bordered table-hover " id="miTabla">
                     <tr style="font-size:10px; font-weight: 900;color:black">
                       <!-- <td scope="col" >#</td> -->
-                      <td scope="col">-</td>
-                      <td scope="col">Nombre</td>
+                      <td scope="col" class="text-center">-</td>
+                      <td scope="col">Producto</td>
                       <td scope="col">Cantidad o KG:</td>
-                      <td scope="col">Total:</td>
+                      <td scope="col">Total $:</td>
                     </tr>
                   </table>
                 </div>
-                <div class="col-md-3 text-center">
+                <div class="col-md-2 text-center">
                   <label for="">Subtotal a Pagar</label><br>
                   <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled>
                 </div>
