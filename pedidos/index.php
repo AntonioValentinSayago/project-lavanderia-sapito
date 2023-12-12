@@ -219,6 +219,7 @@ require_once("../config/db_config.php");
 
                     // Imprimir la fecha
                     echo "Fecha actual en la Ciudad de México: $fecha_formateada";
+              ?>
               </h5>
               <hr>
               <!-- No Labels Form -->
