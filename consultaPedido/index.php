@@ -81,7 +81,7 @@ if (!isset($_SESSION['cargo'])) {
             <img src="<?php echo ucfirst($_SESSION['img']); ?>" alt="<?php echo ucfirst($_SESSION['nombre']); ?>"
               class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              <?php echo ucfirst($_SESSION['nombre']); ?>
+              <?php echo ucfirst($_SESSION['email']); ?>
             </span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -90,7 +90,6 @@ if (!isset($_SESSION['cargo'])) {
               <h6>
                 <?php echo ucfirst($_SESSION['nombre']); ?>
               </h6>
-              <span>Empleado</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -135,7 +134,7 @@ if (!isset($_SESSION['cargo'])) {
       <li class="nav-item">
         <a class="nav-link " href="">
           <i class="bi bi-grid"></i>
-          <span>Notas Entregadas</span>
+          <span>Historia de Notas Entregadas</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -152,23 +151,15 @@ if (!isset($_SESSION['cargo'])) {
       </li><!-- End Components Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="../reportes/index.php">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-        </a>
-      </li><!-- End Tables Nav -->
-
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../reportes/diarios.php">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../gastos/index.php">
-          <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
+          <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
         </a>
       </li><!-- End Charts Nav -->
-
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../clientes/clientes.php">
@@ -180,7 +171,7 @@ if (!isset($_SESSION['cargo'])) {
       <li class="nav-item">
         <a class="nav-link collapsed" href="../systemUser/index.php">
           <i class="bi bi-person-add"></i>
-          <span>Empleados</span>
+          <span>Control de Empleados</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
@@ -193,7 +184,7 @@ if (!isset($_SESSION['cargo'])) {
       <li class="nav-item">
         <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
           <i class="bi bi-box-arrow-right"></i>
-          <span>Cerrar Sesión</span>
+          <span>Salir del Sistema</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
@@ -228,11 +219,10 @@ if (!isset($_SESSION['cargo'])) {
                     <thead>
                       <tr style="background:#F4f4f8;">
                         <th scope="col">Folio Nota</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Telefono</th>
+                        <th scope="col">Nombre de Cliente</th>
                         <th scope="col">Estatus</th>
-                        <th scope="col">Empleado</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Nombre de Empleado</th>
+                        <th scope="col">Total: $</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Fecha de entrega</th>
                       </tr>
@@ -252,9 +242,6 @@ if (!isset($_SESSION['cargo'])) {
                             </td>
                             <td>
                               <?php echo $fila["cliente"]; ?>
-                            </td>
-                            <td>
-                              <?php echo $fila["telefono_cliente"]; ?>
                             </td>
                             <td style="color:white">
                             <span
@@ -279,8 +266,8 @@ if (!isset($_SESSION['cargo'])) {
                         }
                       } else {
                         ?>
-                        <div class="alert alert-danger" role="alert">
-                          No existen Pedidos
+                        <div class="alert" role="alert" style="background-color: #fbbf24; font-weight: 900;">
+                          No existe Historial de Pedidos Recientes
                         </div>
                         <?php
                       }
@@ -344,7 +331,7 @@ if (!isset($_SESSION['cargo'])) {
       &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+      Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito 2024</a>
     </div>
   </footer><!-- End Footer -->
 

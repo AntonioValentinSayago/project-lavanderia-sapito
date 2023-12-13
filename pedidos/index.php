@@ -1,6 +1,6 @@
 <?php
 session_start();
-setlocale(LC_TIME, 'es_MX.UTF-8');
+
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   header('location: ../index.php');
@@ -98,7 +98,6 @@ require_once("../config/db_config.php");
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="../login/controller/cerrarSesion.php">
                 <i class="bi bi-box-arrow-right"></i>
@@ -780,7 +779,7 @@ require_once("../config/db_config.php");
         </div>
         <div class="modal-body">
           <table class="table table-striped table-hover" id="example2">
-            <thead style="background:#0f172a; color: white; font-wight: 900">
+            <thead style="background:#fed7aa;font-wight: 900">
               <tr>
                 <th scope="col">Categoría Disponible</th>
                 <th scope="col">$ Precio</th>
