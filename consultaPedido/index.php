@@ -61,7 +61,7 @@ if (!isset($_SESSION['cargo'])) {
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-        <span class="d-none d-lg-block">Sapito</span>
+        <span class="d-none d-lg-block">Lavandería Sapito</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -78,10 +78,8 @@ if (!isset($_SESSION['cargo'])) {
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo ucfirst($_SESSION['img']); ?>" alt="<?php echo ucfirst($_SESSION['nombre']); ?>"
-              class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              <?php echo ucfirst($_SESSION['email']); ?>
+              <?php echo ($_SESSION['email']); ?>
             </span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -253,7 +251,7 @@ if (!isset($_SESSION['cargo'])) {
                               <?php echo $fila["empleado"]; ?>
                             </td>
                             <td>
-                              <?php echo $fila["total_pedido"]; ?>
+                              $ <?php echo $fila["total_pedido"]; ?>
                             </td>
                             <td>
                               <?php echo $fila["descripcion"]; ?>

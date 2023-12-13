@@ -74,10 +74,8 @@ require_once("../config/db_config.php");
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
-                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                            <?php echo ($_SESSION['email']); ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -85,7 +83,6 @@ require_once("../config/db_config.php");
                             <h6>
                                 <?php echo ucfirst($_SESSION['nombre']); ?>
                             </h6>
-                            <span>Administracion</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -124,7 +121,7 @@ require_once("../config/db_config.php");
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../consultaPedido/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Notas Entregadas</span>
+                    <span>Historia de Notas Entregadas</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
@@ -139,20 +136,13 @@ require_once("../config/db_config.php");
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../reportes/index.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../reportes/diarios.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
                 </a>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
-                    <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
+                    <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
             <li class="nav-item">
@@ -164,7 +154,7 @@ require_once("../config/db_config.php");
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../systemUser/index.php">
                     <i class="bi bi-person-add"></i>
-                    <span>Empleados</span>
+                    <span>Control de Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
@@ -176,23 +166,17 @@ require_once("../config/db_config.php");
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
                     <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
+                    <span>Salir del Sistema</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
         </ul>
     </aside><!-- End Sidebar-->
     <main id="main" class="main">
         <div class="pagetitle" style="display: flex;">
-            <h1>Control de Inventario</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php"></a></li>
-                    <li class="breadcrumb-item active"></li>
-                </ol>
-            </nav>
+            <h1>CONTROL DE INVENTARIOS</h1>
             <div style="margin-left: auto;">
-                <a href="nuevoInventario.php"><button type="button" class="btn btn-primary btn-add"><i
-                            class="bi bi-plus me-1"></i>Producto</button></a>
+                <a href="nuevoInventario.php"><button type="button" class="btn btn-add" style="background-color: #0f172a; color:white;"><i
+                            class="bi bi-plus me-1"></i>Registrar Nuevo Producto</button></a>
                 <?php $consultaRows = "SELECT * FROM inventario ";
                 $stmtRows = mysqli_query($conexion, $consultaRows);
                 if (mysqli_num_rows($stmtRows) > 0) {
@@ -377,7 +361,7 @@ require_once("../config/db_config.php");
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito 2024 </a>
         </div>
     </footer><!-- End Footer -->
 
