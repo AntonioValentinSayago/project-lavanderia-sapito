@@ -80,7 +80,7 @@ if (!isset($_SESSION['cargo'])) {
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              <?php echo ucfirst($_SESSION['email']); ?>
+              <?php echo ($_SESSION['email']); ?>
             </span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -196,7 +196,7 @@ if (!isset($_SESSION['cargo'])) {
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Registro de Empleados</h1>
+      <h1>Control de Empleados Registrados</h1>
       <div style="margin-left: auto;">
         <a href="newEmpleado.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Registrar Nuevo Empleado</button></a>
@@ -290,7 +290,7 @@ if (!isset($_SESSION['cargo'])) {
                         }
                       } else {
                         ?>
-                        <h1>Error</h1>
+                        <h5 class="alert" style="background-color: #fbbf24; font-weight: 900;">No hay registros actuales de Empleados</h5>
                         <?php
                       }
                       mysqli_close($conexion);
@@ -312,7 +312,7 @@ if (!isset($_SESSION['cargo'])) {
       &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+      Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024</a>
     </div>
   </footer><!-- End Footer -->
 
