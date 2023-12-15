@@ -49,7 +49,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-                <span class="d-none d-lg-block">Sapito</span>
+                <span class="d-none d-lg-block">lavandería Sapito</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -62,10 +62,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </li><!-- End Search Icon-->
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
-                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                            <?php echo $_SESSION['email']; ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -185,7 +183,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
                                 <div class="card-body">
-                                    <h4 class="card-title">Control de Inventario</h4>
+                                    <h4 class="card-title">Datos del Nuevo Empleado</h4>
                                     <p>Fecha de Registro:
                                         <?php echo date('d-m-Y') ?>
                                     </p>
