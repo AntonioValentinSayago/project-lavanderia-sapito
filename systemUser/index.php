@@ -250,7 +250,7 @@ if (!isset($_SESSION['cargo'])) {
                       from ctl_usersystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
-                        while ($fila = mysqli_fetch_array($stmt)) {
+                        while (strtoupper($fila) = mysqli_fetch_array($stmt)) {
                           $cargo = $fila["cargo"];
                           ?>
                           <tr>
