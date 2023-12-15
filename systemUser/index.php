@@ -270,7 +270,7 @@ if (!isset($_SESSION['cargo'])) {
                               <?php echo $fila["telefono"]; ?>
                             </td>
                             <td>
-                              <span class="badge <?php echo ($cargo == 0) ? 'bg-light' : 'bg-secondary' ?> text-dark">
+                              <span class="badge <?php echo ($cargo == 0) ? 'bg-success' : 'bg-info' ?> text-dark">
                                 <?php echo ($cargo == 0) ? "EMPLEADO" : "ADMINISTRADOR" ?>
                               </span>
                             </td>
