@@ -250,12 +250,12 @@ if (!isset($_SESSION['cargo'])) {
                       from ctl_usersystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
-                        while (strtoupper($fila) = mysqli_fetch_array($stmt)) {
+                        while ($fila = mysqli_fetch_array($stmt)) {
                           $cargo = $fila["cargo"];
                           ?>
                           <tr>
                             <td>
-                              <?php echo $fila["nombreCompleto"]; ?>
+                              <?php echo strtoupper($fila["nombreCompleto"]); ?>
                             </td>
                             <td>
                               <?php echo $fila["apellidoCompleto"]; ?>
