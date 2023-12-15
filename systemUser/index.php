@@ -258,10 +258,10 @@ if (!isset($_SESSION['cargo'])) {
                               <?php echo strtoupper($fila["nombreCompleto"]); ?>
                             </td>
                             <td>
-                              <?php echo $fila["apellidoCompleto"]; ?>
+                              <?php echo strtoupper($fila["apellidoCompleto"]); ?>
                             </td>
                             <td>
-                              <?php echo $fila["email_correo"]; ?>
+                              <?php echo strtoupper($fila["email_correo"]); ?>
                             </td>
                             <td>
                               <?php echo $fila["num_empleado"]; ?>
@@ -271,7 +271,7 @@ if (!isset($_SESSION['cargo'])) {
                             </td>
                             <td>
                               <span class="badge <?php echo ($cargo == 0) ? 'bg-light' : 'bg-secondary' ?> text-dark">
-                                <?php echo ($cargo == 0) ? "Empleado" : "Administrador" ?>
+                                <?php echo ($cargo == 0) ? "EMPLEADO" : "ADMINISTRADOR" ?>
                               </span>
                             </td>
                             <td>

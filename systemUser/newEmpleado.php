@@ -73,7 +73,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <h6>
                                 <?php echo ucfirst($_SESSION['nombre']); ?>
                             </h6>
-                            <span>Empleado</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -113,7 +112,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../consultaPedido/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Notas Entregadas</span>
+                    <span>Historial de Notas Entregadas</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
@@ -130,20 +129,13 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../reportes/index.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../reportes/diarios.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Reportes/Reportes Diarios</span>
                 </a>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
-                    <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
+                    <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
             <li class="nav-item">
@@ -167,7 +159,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
                     <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
+                    <span>Salir del Sistema</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
         </ul>
@@ -202,17 +194,17 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                         <div class="col-md-6">
                                             <label>Nombre Completo</label>
                                             <input type="text" class="form-control" placeholder="Nombre (S)"
-                                                name="nombreEmp">
+                                                name="nombreEmp" style="text-transform:uppercase">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Apellidos (s)</label>
                                             <input type="text" class="form-control" placeholder="Apellido (S)"
-                                                name="lastEmp">
+                                                name="lastEmp" style="text-transform:uppercase">
                                         </div>
                                         <div class="col-md-4">
                                             <label>Correo Electronico</label>
                                             <input type="text" class="form-control" placeholder="Correo Electronico"
-                                                name="email">
+                                                name="email" style="text-transform:uppercase">
                                         </div>
                                         <div class="col-md-3">
                                             <label>Telefono</label>
@@ -224,8 +216,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             <select name="cargo" class="form-control"
                                                 placeholder="Seleccione una opcion">
                                                 <option value="" disabled selected>Seleccione...</option>
-                                                <option value="0">Empleado</option>
-                                                <option value="1">Administrador</option>
+                                                <option value="0">EMPLEADO</option>
+                                                <option value="1">ADMINISTRADOR</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2">
@@ -239,10 +231,10 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 name="password">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-success"><i
-                                                    class="bi bi-save-fill"></i> Guardar</button>
+                                            <button type="submit" class="btn"><i
+                                                    class="bi bi-save-fill" style="background:#34d399; color:#f0fdf4"></i> Guardar Nuevo Empleado</button>
                                             <a href="index.php"><button type="button"
-                                                    class="btn btn-secondary">Cancelar</button></a>
+                                                    class="btn btn-default" style="background: #991b1b; color:white">Cancelar/regresar</button></a>
                                         </div>
                                     </form><!-- End No Labels Form -->
                                 </div>
