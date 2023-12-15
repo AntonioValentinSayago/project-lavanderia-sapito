@@ -229,8 +229,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 name="password">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn"><i
-                                                    class="bi bi-save-fill" style="background:#34d399; color:#f0fdf4"></i> Guardar Nuevo Empleado</button>
+                                            <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4"><i
+                                                    class="bi bi-save-fill"></i> Guardar Nuevo Empleado</button>
                                             <a href="index.php"><button type="button"
                                                     class="btn btn-default" style="background: #991b1b; color:white">Cancelar/regresar</button></a>
                                         </div>
@@ -250,7 +250,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024</a>
         </div>
     </footer><!-- End Footer -->
 
