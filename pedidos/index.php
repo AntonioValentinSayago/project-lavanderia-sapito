@@ -360,88 +360,12 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="text-center">
                   <!-- <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button> -->
-                  <button type="button" class="btn" onclick="alertaMensaje()"  style="background: #991b1b; color:white" ><i class="bi bi-save"></i>
+                  <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4;" ><i class="bi bi-save"></i>
                     Crear y guardar Pedido</button>
                   <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b; color:white"><i
                       class="bi bi-trash3"></i> Cancelar Pedido</button>
                 </div>
               </form><!-- End No Labels Form -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card recent-sales overflow-auto">
-                <div class="card-body">
-                  <p class="mt-5" style="font-weight: 900;">CONTROL DE PEDIDOS ACTIVOS</p>
-                  <hr>
-                  <table class="table table-borderless" id="example1">
-                    <thead>
-                      <tr>
-                        <th scope="col">$ Folio de Nota</th>
-                        <th scope="col">$ Total</th>
-                        <th scope="col">Estatus</th>
-                        <th scope="col">Nombre del Cliente</th>
-                        <th scope="col">Detalles</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $consulta = "SELECT DISTINCT folio_nota,
-                      ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,
-                      cl.nombreCompleto as nombreCliente,
-                      cata.id_ctl_ventapedidos 
-                                    FROM ctl_catalogo cata
-                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
-                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
-                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
-                                    JOIN ctl_usersystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
-                      $stmt = mysqli_query($conexion, $consulta);
-                      if (mysqli_num_rows($stmt) > 0) {
-                        while ($fila = mysqli_fetch_array($stmt)) {
-                          $Estatus = $fila["estatus"];
-                          ?>
-                          <tr>
-                            <th scope="row">
-                              <?php echo $fila["folio_nota"]; ?>
-                            </th>
-                            <td>
-                              <?php echo $fila["costoPagar"]; ?>
-                            </td>
-                            <td>
-                              <span
-                                class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
-                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
-                              </span>
-                            </td>
-                            <td>
-                              <?php echo $fila["nombreCliente"]; ?>
-                            </td>
-                            <td>
-                              <a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
-                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
-
-                              <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"
-                                target="_black"><span class="badge bg-warning"><i
-                                    class="bi bi-file-earmark-medical-fill"></i></span></a>
-
-                            </td>
-                          </tr>
-                          <?php
-                        }
-                      } else {
-                        ?>
-                        <h5 class="alert" style="background-color: #fbbf24; font-weight: 900;">No hay registros actuales de pedidos</h5>
-                        <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
           </div>
         </div>
