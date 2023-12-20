@@ -123,8 +123,8 @@ if (!isset($_SESSION['cargo'])) {
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item collapsed">
-        <a class="nav-link " href="index.php">
+      <li class="nav-item ">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Crear Nueva Nota</span>
         </a>
@@ -208,7 +208,7 @@ if (!isset($_SESSION['cargo'])) {
             </nav>
             <div style="margin-left: auto;">
                 <a href="nuevoGastos.php"><button type="button" class="btn btn-primary btn-add"><i
-                            class="bi bi-plus me-1"></i>Gasto</button></a>
+                            class="bi bi-plus me-1"></i>Nuevo Gasto</button></a>
                 <a href="../pdf/gastos/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
                             class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
             </div>
