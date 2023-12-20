@@ -14,7 +14,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - Lavanderia Sapito</title>
+    <title>Control de Clientes - Lavanderia Sapito</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -57,7 +57,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-                <span class="d-none d-lg-block">Sapito</span>
+                <span class="d-none d-lg-block">lavandería Sapito</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -74,10 +74,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
-                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                            <?php echo $_SESSION['email']; ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -86,7 +84,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <h6>
                                 <?php echo ucfirst($_SESSION['nombre']); ?>
                             </h6>
-                            <span>Empleado</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -121,67 +118,82 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed " href="../pedidos/index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Panel Principal</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed " href="../pedidos/index.php">
+    <i class="bi bi-grid"></i>
+    <span>Crear Nueva Nota</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
-                </a>
-            </li><!-- End Components Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+    <i class="bi bi-grid"></i>
+    <span>Control de Pedidos Activos</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../categorias/index.php">
-                    <i class="bi bi-tags"></i><span>Control Categorias</span>
-                </a>
-            </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../consultaPedido/index.php">
+    <i class="bi bi-grid"></i>
+    <span>Historial de Notas Entregadas</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../gastos/index.php">
-                    <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
-                </a>
-            </li><!-- End Charts Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
+    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
+  </a>
+</li><!-- End Components Nav -->
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../categorias/index.php">
+    <i class="bi bi-tags"></i><span>Control de Categorias</span>
+  </a>
+</li><!-- End Components Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../reportes/index.php">
+    <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
+  </a>
+</li><!-- End Tables Nav -->
 
 
-            <li class="nav-item">
-                <a class="nav-link " href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>Clientes</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../gastos/index.php">
+    <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
+  </a>
+</li><!-- End Charts Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../systemUser/index.php">
-                    <i class="bi bi-person-add"></i>
-                    <span>Empleados</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
-                    <i class="bi bi-question-circle"></i>
-                    <span>Manual de Usuario</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
+<li class="nav-item">
+  <a class="nav-link ">
+    <i class="bi bi-person"></i>
+    <span>Control de Clientes</span>
+  </a>
+</li><!-- End Profile Page Nav -->
 
-        </ul>
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../systemUser/index.php">
+    <i class="bi bi-person-add"></i>
+    <span>Control de Empleados</span>
+  </a>
+</li><!-- End Profile Page Nav -->
+
+<li class="nav-item">
+  <a class="nav-link collapsed">
+    <i class="bi bi-question-circle"></i>
+    <span>Manual de Usuario</span>
+  </a>
+</li><!-- End F.A.Q Page Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+    <i class="bi bi-box-arrow-right"></i>
+    <span>Salir del Sistema</span>
+  </a>
+</li><!-- End F.A.Q Page Nav -->
+
+</ul>
 
     </aside><!-- End Sidebar-->
 
