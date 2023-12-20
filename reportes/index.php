@@ -232,11 +232,19 @@ if (!isset($_SESSION['cargo'])) {
                         ?>
                         <h6>
                           <?php echo $totalRegistros ?>
+                          <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
+                              class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
                         <?php
-                      } ?>
-                      <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
-                          class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      }else {
+                        ?>
+                          <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                          No existen pedidos registrados
+                        </p>
+                        <?php
+                      }
+                      
+                      ?>
                     </div>
                   </div>
                 </div>
