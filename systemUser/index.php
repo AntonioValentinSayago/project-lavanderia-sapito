@@ -122,14 +122,21 @@ if (!isset($_SESSION['cargo'])) {
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
+  <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
         <a class="nav-link collapsed " href="../pedidos/index.php">
           <i class="bi bi-grid"></i>
           <span>Crear Nueva Nota</span>
         </a>
       </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="../consultaPedido/index.php">
           <i class="bi bi-grid"></i>
@@ -145,19 +152,20 @@ if (!isset($_SESSION['cargo'])) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../categorias/index.php">
-          <i class="bi bi-tags"></i><span>Control Categorias</span>
+          <i class="bi bi-tags"></i><span>Control de Categorias</span>
         </a>
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../reportes/index.php">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Reportes/ReportesDiarios</span>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
         </a>
       </li><!-- End Tables Nav -->
 
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="../gastos/index.php">
-          <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
+          <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
         </a>
       </li><!-- End Charts Nav -->
 
@@ -188,7 +196,6 @@ if (!isset($_SESSION['cargo'])) {
           <span>Salir del Sistema</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
-
     </ul>
 
   </aside><!-- End Sidebar-->

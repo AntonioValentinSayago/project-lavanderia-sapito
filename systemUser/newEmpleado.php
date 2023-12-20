@@ -100,67 +100,81 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     </header><!-- End Header -->
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-        <ul class="sidebar-nav" id="sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link collapsed " href="../pedidos/index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Crear Nueva Nota</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../consultaPedido/index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Historial de Notas Entregadas</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+        <a class="nav-link collapsed " href="../pedidos/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Crear Nueva Nota</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../inventario/inventario.php">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
-                </a>
-            </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../categorias/index.php">
-                    <i class="bi bi-tags"></i><span>Control Categorias</span>
-                </a>
-            </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../reportes/index.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Reportes/Reportes Diarios</span>
-                </a>
-            </li><!-- End Tables Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historial de Notas Entregadas</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../gastos/index.php">
-                    <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
-                </a>
-            </li><!-- End Charts Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../clientes/clientes.php">
-                    <i class="bi bi-person"></i>
-                    <span>Control de Clientes</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-person-add"></i>
-                    <span>Control de Empleados</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" onclick="example()">
-                    <i class="bi bi-question-circle"></i>
-                    <span>Manual de Usuario</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Salir del Sistema</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../inventario/inventario.php">
+          <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
+        </a>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control de Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../reportes/index.php">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
+        </a>
+      </li><!-- End Tables Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../gastos/index.php">
+          <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
+        </a>
+      </li><!-- End Charts Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../clientes/clientes.php">
+          <i class="bi bi-person"></i>
+          <span>Control de Clientes</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-person-add"></i>
+          <span>Control de Empleados</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" onclick="example()">
+          <i class="bi bi-question-circle"></i>
+          <span>Manual de Usuario</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Salir del Sistema</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+    </ul>
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
