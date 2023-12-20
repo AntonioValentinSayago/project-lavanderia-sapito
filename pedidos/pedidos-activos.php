@@ -116,14 +116,14 @@ require_once("../config/db_config.php");
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Crear Nueva Nota</span>
         </a>
       </li><!-- End Dashboard Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pedidos-acitvos.php">
+        <a class="nav-link" href="#">
           <i class="bi bi-grid"></i>
           <span>Control de Pedidos Activos</span>
         </a>
@@ -192,20 +192,7 @@ require_once("../config/db_config.php");
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Generar Nueva Venta</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php"></a></li>
-          <li class="breadcrumb-item active"></li>
-        </ol>
-      </nav>
-      <div style="margin-left: auto;">
-        <a href="../clientes/addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
-              class="bi bi-person-fill-add"></i> Nuevo
-            Cliente</button></a>
-        <button type="button" class="btn"   style="background:#34d399; color:#f0fdf4" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
-      </div>
+      <h1>Control de Pedidos Activos</h1>
     </div><!-- End Page Title -->
 
     <!--Inicio del Section Principal-->
@@ -216,7 +203,21 @@ require_once("../config/db_config.php");
             <div class="col-md-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                  <p class="mt-5" style="font-weight: 900;">CONTROL DE PEDIDOS ACTIVOS</p>
+                  <p class="mt-5" style="font-weight: 900;">
+                
+                  <?php 
+                    // Establecer la zona horaria a la Ciudad de México
+                    date_default_timezone_set('America/Mexico_City');
+                    
+                    // Crear un objeto DateTimeImmutable con la fecha y hora actuales
+                    $fecha_actual = new DateTimeImmutable();
+                    // Obtener la fecha formateada
+                    $fecha_formateada = $fecha_actual->format('Y-m-d H:i:s');
+
+                    // Imprimir la fecha
+                    echo "Fecha actual en la Ciudad de México: $fecha_formateada";
+              ?>
+                    </p>
                   <hr>
                   <table class="table table-borderless" id="example1">
                     <thead>
