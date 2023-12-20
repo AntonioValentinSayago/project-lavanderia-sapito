@@ -236,7 +236,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
-                          class="text-muted small pt-2 ps-1" style="color: #7f1d1d;"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                          class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                     </div>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ if (!isset($_SESSION['cargo'])) {
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Reportes <span>| Ingresos Diarios</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -283,7 +283,7 @@ if (!isset($_SESSION['cargo'])) {
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Inventario <span>| En bodega</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -317,7 +317,7 @@ if (!isset($_SESSION['cargo'])) {
             <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-6">
               <div class="card info-card customers-card">
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Clientes <span>| Cartera Disponible</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -358,7 +358,7 @@ if (!isset($_SESSION['cargo'])) {
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Categorías <span>| Disponibles</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -393,7 +393,7 @@ if (!isset($_SESSION['cargo'])) {
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Gastos generales <span>| Más recientes</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -429,7 +429,7 @@ if (!isset($_SESSION['cargo'])) {
 
               <div class="card info-card customers-card">
 
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Empleados <span>| Disponibles</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -439,7 +439,7 @@ if (!isset($_SESSION['cargo'])) {
                     <div class="ps-3">
                       <?php
                       $consulta = "SELECT *
-                      from ctl_userSystem";
+                      from ctl_usersystem";
                       $stmt = mysqli_query($conexion, $consulta);
                       if (mysqli_num_rows($stmt) > 0) {
                         $totalRegistros = mysqli_num_rows($stmt);
