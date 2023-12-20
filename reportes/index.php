@@ -396,12 +396,12 @@ if (!isset($_SESSION['cargo'])) {
                       if (mysqli_num_rows($stmt) > 0) {
                         $totalRegistros = mysqli_num_rows($stmt);
                         ?>
-                        <h6>
+                        <h3>
                           <?php echo $totalRegistros ?>
                           <a href="../pdf/categorias/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                               class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                                 class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
-                        </h6>
+                        </h3>
                         <?php
                       } ?>
 
