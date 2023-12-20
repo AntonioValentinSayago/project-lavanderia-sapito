@@ -268,7 +268,7 @@ if (!isset($_SESSION['cargo'])) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/inventario/pdf.php" target="_target"><span
+                      <a href="../pdf/inventario/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                           class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
@@ -302,8 +302,16 @@ if (!isset($_SESSION['cargo'])) {
                           <?php echo $totalRegistros ?>
                         </h6>
                         <?php
-                      } ?>
-                      <a href="../pdf/inventario/pdf.php" target="_target"><span
+                      }else {
+                        ?>
+                        <h6 class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                          No hay productos existentes
+                        </h6>
+                        <?php
+                      } 
+                      
+                      ?>
+                      <a href="../pdf/inventario/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                           class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
@@ -337,7 +345,7 @@ if (!isset($_SESSION['cargo'])) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/clientes/pdf.php" target="_target"><span
+                      <a href="../pdf/clientes/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                           class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
@@ -378,7 +386,7 @@ if (!isset($_SESSION['cargo'])) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/categorias/pdf.php" target="_target"><span
+                      <a href="../pdf/categorias/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                           class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
@@ -413,7 +421,7 @@ if (!isset($_SESSION['cargo'])) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/gastos/pdf.php" target="_target"><span
+                      <a href="../pdf/gastos/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                           class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                             class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
@@ -449,7 +457,7 @@ if (!isset($_SESSION['cargo'])) {
                         </h6>
                         <?php
                       } ?>
-                      <a href="../pdf/empleado/pdf.php" target="_target"><span
+                      <a href="../pdf/empleado/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
                           class="text-success small pt-1 fw-bold text-black"></span> <span
                           class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
 
