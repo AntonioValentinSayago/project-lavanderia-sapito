@@ -341,12 +341,20 @@ if (!isset($_SESSION['cargo'])) {
                         ?>
                         <h6>
                           <?php echo $totalRegistros ?>
+                          <a href="../pdf/clientes/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
+                              class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
+                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
                         <?php
-                      } ?>
-                      <a href="../pdf/clientes/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
-                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
-                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      }else {
+                        ?>
+                        <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                          No existen clientes registrados
+                        </p>
+                        <?php
+                      }
+                      
+                      ?>
 
                     </div>
                   </div>
@@ -417,12 +425,20 @@ if (!isset($_SESSION['cargo'])) {
                         ?>
                         <h6>
                           <?php echo $totalRegistros ?>
+                          <a href="../pdf/gastos/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
+                              class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
+                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
                         <?php
-                      } ?>
-                      <a href="../pdf/gastos/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
-                          class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
-                            class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                      } else {
+                        ?>
+                         <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                          No existen gastos registrados
+                        </p>
+                        <?php
+                      } 
+                      
+                      ?>
 
                     </div>
                   </div>
@@ -479,7 +495,7 @@ if (!isset($_SESSION['cargo'])) {
       &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+      Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024</a>
     </div>
   </footer><!-- End Footer -->
 
