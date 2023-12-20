@@ -119,6 +119,12 @@ require_once("../config/db_config.php");
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="../consultaPedido/index.php">
                     <i class="bi bi-grid"></i>
                     <span>Historia de Notas Entregadas</span>

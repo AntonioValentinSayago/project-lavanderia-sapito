@@ -68,17 +68,14 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
-                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                            <?php echo $_SESSION['email']; ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Juan Felipe</h6>
-                            <span>Empleado</span>
+                            <h6><?php echo $_SESSION['nombre'] ;?></h6>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -121,9 +118,15 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="../consultaPedido/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Notas Entregadas</span>
+                    <span>Historial de Notas Entregadas</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
@@ -133,21 +136,15 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../categorias/index.php">
-                    <i class="bi bi-tags"></i><span>Control Categorias</span>
+                    <i class="bi bi-tags"></i><span>Control de Categorias</span>
                 </a>
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../reportes/index.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Reportes/Reportes Diarios</span>
                 </a>
             </li><!-- End Tables Nav -->
 
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../reportes/diarios.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
-                </a>
-            </li><!-- End Tables Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
@@ -175,7 +172,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
                     <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
+                    <span>Salir del Sistema</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
 

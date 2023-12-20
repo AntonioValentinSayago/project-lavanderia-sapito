@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
+if (!isset($_SESSION['cargo'])) {
+    header('location: ../index.php');
+}
+require_once("../config/db_config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +14,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Inventario - Lavanderia Sapito</title>
+    <title>Inventario de Productos - Lavanderia Sapito</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -42,7 +51,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-                <span class="d-none d-lg-block">Sapito</span>
+                <span class="d-none d-lg-block">Lavandería Sapito</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -59,14 +68,14 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Juan Felipe</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">
+                            <?php echo ($_SESSION['email']); ?>
+                        </span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Juan Felipe</h6>
-                            <span>Empleado</span>
+                            <h6><?php echo ucfirst($_SESSION['nombre']); ?></h6>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -109,9 +118,15 @@
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="../consultaPedido/index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Notas Entregadas</span>
+                    <span>Historial de Notas Entregadas</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
@@ -121,25 +136,18 @@
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../categorias/index.php">
-                    <i class="bi bi-tags"></i><span>Control Categorias</span>
+                    <i class="bi bi-tags"></i><span>Control de Categorias</span>
                 </a>
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../reportes/index.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../reportes/diarios.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes Diarios</span>
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Reportes/Reportes Diarios</span>
                 </a>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../gastos/index.php">
-                    <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
+                    <i class="bi bi-bar-chart"></i><span>Control Gastos Generales</span>
                 </a>
             </li><!-- End Charts Nav -->
             <li class="nav-item">
@@ -151,7 +159,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../systemUser/index.php">
                     <i class="bi bi-person-add"></i>
-                    <span>Empleados</span>
+                    <span>Control de Empleados</span>
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
@@ -163,7 +171,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
                     <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
+                    <span>Salir del Sistema</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
 
@@ -247,7 +255,7 @@
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024</a>
         </div>
     </footer><!-- End Footer -->
 
