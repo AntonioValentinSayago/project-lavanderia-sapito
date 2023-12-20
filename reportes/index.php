@@ -215,7 +215,7 @@ if (!isset($_SESSION['cargo'])) {
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
-                <div class="card-body">
+                <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Pedidos <span>| Pendientes</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -236,7 +236,7 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } ?>
                       <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
-                          class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                          class="text-muted small pt-2 ps-1" style="color: #7f1d1d;"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                     </div>
                   </div>
                 </div>
