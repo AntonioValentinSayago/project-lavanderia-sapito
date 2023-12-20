@@ -14,7 +14,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Inventario - Lavanderia Sapito</title>
+    <title>Control de Gastos - Lavanderia Sapito</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -81,10 +81,9 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
-                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
+
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                            <?php echo $_SESSION['email']; ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -93,7 +92,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                             <h6>
                                 <?php echo ucfirst($_SESSION['nombre']); ?>
                             </h6>
-                            <span>Administracion</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -128,69 +126,82 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../pedidos/index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Panel Principal</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed " href="../pedidos/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Crear Nueva Nota</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../inventario/inventario.php">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
-                </a>
-            </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../categorias/index.php">
-                    <i class="bi bi-tags"></i><span>Control Categorias</span>
-                </a>
-            </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historial de Notas Entregadas</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" href="../inventario/inventario.php">
+          <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
+        </a>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control de Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../reportes/index.php">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
+        </a>
+      </li><!-- End Tables Nav -->
 
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link" href="gastosGenerales.php">
-                    <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
-                </a>
-            </li><!-- End Charts Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../gastos/index.php">
+          <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
+        </a>
+      </li><!-- End Charts Nav -->
 
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../clientes/clientes.php">
-                    <i class="bi bi-person"></i>
-                    <span>Clientes</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link ">
+          <i class="bi bi-person"></i>
+          <span>Control de Clientes</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../systemUser/index.php">
-                    <i class="bi bi-person-add"></i>
-                    <span>Empleados</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../systemUser/index.php">
+          <i class="bi bi-person-add"></i>
+          <span>Control de Empleados</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="">
-                    <i class="bi bi-question-circle"></i>
-                    <span>Manual de Usuario</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed">
+          <i class="bi bi-question-circle"></i>
+          <span>Manual de Usuario</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Salir del Sistema</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
 
-        </ul>
+    </ul>
 
     </aside><!-- End Sidebar-->
 
@@ -198,18 +209,6 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
 
         <div class="pagetitle" style="display: flex;">
             <h1>Control de Gastos Generales</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php"></a></li>
-                    <li class="breadcrumb-item active"></li>
-                </ol>
-            </nav>
-            <div style="margin-left: auto;">
-                <button type="button" class="btn btn-primary btn-add" onclick="example()"><i
-                        class="bi bi-plus me-1"></i>Gasto</button>
-                <button type="button" class="btn btn-danger" onclick="example()"><i class="bi bi-filetype-pdf"></i>
-                    Generar Reporte</button>
-            </div>
         </div><!-- End Page Title -->
 
         <!--Inicio del Section Principal-->
@@ -239,26 +238,26 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                             <!-- No Labels Form -->
                                             <form class="row g-3 mt-2" action="updateGasto.php" method="post">
                                                 <div class="col-md-6">
-                                                    <label for="">Fecha del Gasto*</label>
+                                                    <label for="">Fecha del Gasto *</label>
                                                     <input type="date" class="form-control" value="<?php echo $fila["fechaGasto"]; ?>" name="fechaGasto">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="">Nombre*</label>
+                                                    <label for="">Nombre *</label>
                                                     <input type="text" class="form-control" value="<?php echo $fila["nombreGasto"]; ?>" name="nombreGasto">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="">Descripcion*</label>
+                                                    <label for="">Descripcion *</label>
                                                     <input type="text" class="form-control" value="<?php echo $fila["descripcionGasto"]; ?>" name="descripcionGasto">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="">Precio*</label>
+                                                    <label for="">Precio *</label>
                                                     <input type="number" class="form-control" value="<?php echo $fila["precioGasto"]; ?>" name="precioGasto">
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-success"><i
-                                                            class="bi bi-save-fill"></i> Guardar</button>
+                                                    <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4"><i
+                                                            class="bi bi-save-fill"></i> Guardar Nuevo Gasto</button>
                                                     <a href="index.php"><button type="button"
-                                                            class="btn btn-secondary">Cancelar</button></a>
+                                                            class="btn" style="background: #991b1b; color:white">Cancelar Registro</button></a>
                                                 </div>
                                             </form><!-- End No Labels Form -->
                                             <?php
@@ -291,7 +290,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito </a>
         </div>
     </footer><!-- End Footer -->
 
