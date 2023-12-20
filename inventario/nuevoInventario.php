@@ -226,10 +226,10 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 name="existencia" required>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-success"><i
-                                                    class="bi bi-save-fill"></i> Guardar</button>
+                                            <button type="submit" class="btn" ><i
+                                                    class="bi bi-save-fill" style="background: #991b1b; color:white"></i> Guardar</button>
                                             <a href="inventario.php"><button type="button"
-                                                    class="btn btn-secondary">Cancelar</button></a>
+                                                    class="btn" style="background: #991b1b; color:white">Cancelar Registro</button></a>
                                         </div>
                                     </form><!-- End No Labels Form -->
                                 </div>

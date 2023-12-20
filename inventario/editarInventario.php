@@ -231,8 +231,8 @@ require_once("../config/db_config.php");
                                                             <input type="number" class="form-control" value="<?php echo $fila["cantidadProducto"];?>" name="existencia">
                                                         </div>
                                                         <div class="text-center">
-                                                            <button type="submit" class="btn btn-success"><i class="bi bi-save-fill"></i> Guardar</button>
-                                                            <a href="inventario.php"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                                                            <button type="submit" class="btn" style="background: #991b1b; color:white"><i class="bi bi-save-fill"></i> Actualizar</button>
+                                                            <a href="inventario.php"><button type="button" class="btn" style="background: #991b1b; color:white">Cancelar Actualización</button></a>
                                                         </div>
                                                     </form><!-- End No Labels Form -->
                                                     <?php
