@@ -346,7 +346,7 @@ if (!isset($_SESSION['cargo'])) {
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-6">
+            <div class="col-xxl-4 col-md-6">
               <div class="card info-card customers-card">
                 <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Clientes <span>| Cartera Disponible</span></h5>
