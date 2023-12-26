@@ -574,7 +574,6 @@ require_once("../config/db_config.php");
         RESTAR CANTIDAD DEL PRODUCTO
       ********************************************************************
     */
-
     $(".formularioVenta").on("change", "input.restaCantidadProducto", function () {
 
       var precio = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
