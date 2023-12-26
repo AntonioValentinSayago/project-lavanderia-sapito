@@ -116,80 +116,80 @@ if (!isset($_SESSION['cargo'])) {
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="index.php">
-    <i class="bi bi-grid"></i>
-    <span>Crear Nueva Nota</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Crear Nueva Nota</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
-    <i class="bi bi-grid"></i>
-    <span>Control de Pedidos Activos</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../consultaPedido/index.php">
-    <i class="bi bi-grid"></i>
-    <span>Historia de Notas Entregadas</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historia de Notas Entregadas</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../inventario/inventario.php">
-    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
-  </a>
-</li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../inventario/inventario.php">
+          <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
+        </a>
+      </li><!-- End Components Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../categorias/index.php">
-    <i class="bi bi-tags"></i><span>Control Categorias</span>
-  </a>
-</li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
 
-<li class="nav-item">
-  <a class="nav-link" href="../reportes/index.php">
-    <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios <span>
-  </a>
-</li><!-- End Tables Nav -->
+      <li class="nav-item">
+        <a class="nav-link" href="../reportes/index.php">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios <span>
+        </a>
+      </li><!-- End Tables Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../gastos/index.php">
-    <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
-  </a>
-</li><!-- End Charts Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../gastos/index.php">
+          <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
+        </a>
+      </li><!-- End Charts Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../clientes/clientes.php">
-    <i class="bi bi-person"></i>
-    <span>Control de Clientes</span>
-  </a>
-</li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../clientes/clientes.php">
+          <i class="bi bi-person"></i>
+          <span>Control de Clientes</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../systemUser/index.php">
-    <i class="bi bi-person-add"></i>
-    <span>Control de Empleados</span>
-  </a>
-</li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../systemUser/index.php">
+          <i class="bi bi-person-add"></i>
+          <span>Control de Empleados</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#">
-    <i class="bi bi-question-circle"></i>
-    <span>Manual de Usuario</span>
-  </a>
-</li><!-- End F.A.Q Page Nav -->
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-    <i class="bi bi-box-arrow-right"></i>
-    <span>Salir del  Sistema</span>
-  </a>
-</li><!-- End F.A.Q Page Nav -->
-</ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span>Manual de Usuario</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Salir del Sistema</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+    </ul>
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -233,17 +233,18 @@ if (!isset($_SESSION['cargo'])) {
                         <h6>
                           <?php echo $totalRegistros ?>
                           <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
-                              class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                              class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i
+                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
                         <?php
-                      }else {
+                      } else {
                         ?>
-                          <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                        <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
                           No existen pedidos registrados
                         </p>
                         <?php
                       }
-                      
+
                       ?>
                     </div>
                   </div>
@@ -265,20 +266,34 @@ if (!isset($_SESSION['cargo'])) {
                     </div>
                     <div class="ps-3">
                       <?php
-                      $consulta = "SELECT *
-                      from inventario";
+                      $consulta = "SELECT SUM(ingreso_total_diario) AS total_ingreso, fecha_reporte
+              FROM ctl_reporte_diarios
+              WHERE DATE(fecha_reporte) = CURDATE()
+              GROUP BY fecha_reporte";
                       $stmt = mysqli_query($conexion, $consulta);
-                      if (mysqli_num_rows($stmt) > 0) {
+
+                      if ($stmt) {
                         $totalRegistros = mysqli_num_rows($stmt);
-                        ?>
-                        <h6>
-                          <?php echo $totalRegistros ?>
-                          <a href="../pdf/inventario/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
-                              class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
-                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
-                        </h6>
-                        <?php
-                      } ?>
+
+                        if ($totalRegistros > 0) {
+                          $row = mysqli_fetch_assoc($stmt);
+                          $totalIngreso = $row['total_ingreso'];
+                          ?>
+                          <p>
+                            <?php echo "Total de ingresos: $totalIngreso"; ?>
+                            <a href="../pdf/inventario/pdf.php" target="_target"
+                              style="color: #7f1d1d; font-weight:900"><span class="text-success small pt-1 fw-bold"></span>
+                              <span class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar
+                                PDF</span></a>
+                          </p>
+                          <?php
+                        } else {
+                          echo "<p class='text-center' style='font-weight: 900; color:#7f1d1d'>No hay registros para la fecha actual.</p>";
+                        }
+                      } else {
+                        echo "<p class='text-center' style='font-weight: 900; color:#7f1d1d'>Error en la consulta: " . mysqli_error($conexion) . "</p>";
+                      }
+                      ?>
 
                     </div>
                   </div>
@@ -313,14 +328,14 @@ if (!isset($_SESSION['cargo'])) {
                             class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
                               class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         <?php
-                      }else {
+                      } else {
                         ?>
                         <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
                           No hay productos existentes
                         </p>
                         <?php
-                      } 
-                      
+                      }
+
                       ?>
                     </div>
                   </div>
@@ -354,14 +369,14 @@ if (!isset($_SESSION['cargo'])) {
                                 class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
                         <?php
-                      }else {
+                      } else {
                         ?>
                         <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
                           No existen clientes registrados
                         </p>
                         <?php
                       }
-                      
+
                       ?>
 
                     </div>
@@ -398,9 +413,10 @@ if (!isset($_SESSION['cargo'])) {
                         ?>
                         <h3>
                           <?php echo $totalRegistros ?>
-                          <a href="../pdf/categorias/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
-                              class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"><i
-                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                          <a href="../pdf/categorias/pdf.php" target="_target"
+                            style="color: #7f1d1d; font-weight:900"><span class="text-success small pt-1 fw-bold"></span>
+                            <span class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar
+                              PDF</span></a>
                         </h3>
                         <?php
                       } ?>
@@ -440,12 +456,12 @@ if (!isset($_SESSION['cargo'])) {
                         <?php
                       } else {
                         ?>
-                         <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                        <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
                           No existen gastos registrados
                         </p>
                         <?php
-                      } 
-                      
+                      }
+
                       ?>
 
                     </div>
@@ -482,14 +498,14 @@ if (!isset($_SESSION['cargo'])) {
                               class="text-muted small pt-2 ps-1"><i class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
                         <?php
-                      }else {
+                      } else {
                         ?>
                         <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
                           No existen empleados registrados
                         </p>
                         <?php
                       }
-                      
+
                       ?>
 
                     </div>
