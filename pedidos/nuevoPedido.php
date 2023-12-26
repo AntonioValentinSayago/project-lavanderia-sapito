@@ -7,7 +7,8 @@ $idEmpleado = $_POST['idEmpleado'];
 $cliente = $_POST['cliente'];
 $folioNota = $_POST['folioNota'];
 $total = $_POST['total'];
-$valoresColumna = $_POST['valoresColumna'];
+//$valoresColumna = $_POST['valoresColumna'];
+$valoresColumna = json_decode($_POST['valoresColumna'], true);
 $dineroCuenta = $_POST['dineroCuenta'];
 $resta = $_POST['resta'];
 
@@ -37,12 +38,14 @@ $insertarTablaPedidos = "INSERT INTO ctl_ventapedidos (folio_nota ,
                                             obervaciones)
 VALUES ($folioNota,'Pendiente',$dineroCuenta, $resta,$total,'$fecha_formateada','$fecha_formateada_creacion','$horaEntrega', '$obervaciones')";
 
-//$insertarDatosPedidos = mysqli_query($conexion, $insertarTablaPedidos);
+$insertTablaPedidos = mysqli_query($conexion, $insertarTablaPedidos);
+// Obtiene el ID del último insert realizado
+$ultimoID = mysqli_insert_id($conexion);
 
-if (mysqli_query($conexion, $insertarTablaPedidos)) {
+if ($insertarTablaPedidos) {
     // Obtiene el ID del último insert realizado
     $ultimoID = mysqli_insert_id($conexion);
-    for($i = 0; $i < count($valoresColumna); $i++) {
+    for ($i = 0; $i < count($valoresColumna); $i++) {
         $valor = $valoresColumna[$i]['nombreCategoria'];
         $cantidad = $valoresColumna[$i]['cantidad'];
         $sql = "INSERT INTO ctl_catalogo (id_ctl_ventapedidos,
@@ -53,13 +56,24 @@ if (mysqli_query($conexion, $insertarTablaPedidos)) {
         VALUES ($ultimoID,$valor,$idEmpleado,$cliente,$cantidad)";
         if (mysqli_query($conexion, $sql)) {
             echo "Valor insertado correctamente: $valor<br>";
+        }
+    }
+
+
+    if ($dineroCuenta > 0) {
+        # code...Insertart
+        $sqlInsertReporte = "INSERT INTO ctl_reporte_diarios
+            (fecha_reporte, ingreso_total_diario, id_ctl_ventapedidos)
+            VALUES ('$fecha_formateada_creacion',$dineroCuenta, $ultimoID )";
+        if (mysqli_query($conexion, $sqlInsertReporte)) {
+            echo "Valor insertado correctamente:<br>";
         } else {
             echo "Error al insertar valor: " . mysqli_error($conexion) . "<br>";
         }
     }
-    echo "Valor insertado correctamente. ";
-} else {
-    echo "Error al insertar valor: " . mysqli_error($conexion);
+
+
+
 }
 
 

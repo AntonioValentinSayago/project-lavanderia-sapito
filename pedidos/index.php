@@ -614,14 +614,16 @@ require_once("../config/db_config.php");
         var fila = tabla.rows[i];
 
         // Obtiene el texto de la primera celda de la fila
-        var celda = fila.cells[0];
-        var texto = celda.innerText;
+        //var celda = fila.cells[0];
+        //var texto = celda.innerText;
+
+        var setCategoria2 = fila.cells[0].querySelector('.quitarProducto').getAttribute('idProducto');
 
         var cantidad = fila.cells[2].querySelector(".nuevaCantidadProducto");;
         var textCana = cantidad.value;
 
         var objeto = {
-          nombreCategoria: texto,
+          nombreCategoria: setCategoria2,
           cantidad: textCana
         }
 
@@ -637,7 +639,7 @@ require_once("../config/db_config.php");
           cliente: cliente,
           folioNota: folioNota,
           total: total,
-          valoresColumna: valoresColumna,
+          valoresColumna: JSON.stringify(valoresColumna),
           dineroCuenta: dineroCuenta,
           resta: resta,
           fechaEntrega: fechaEntrega,
