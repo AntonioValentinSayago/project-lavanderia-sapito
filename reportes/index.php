@@ -240,9 +240,9 @@ if (!isset($_SESSION['cargo'])) {
                           <p class="text-center" style="color:#020617; font-weight:900">
                             <?php echo "Total de ingresos: $totalIngreso"; ?>
                           </p>
-                          <a href="../pdf/inventario/pdf.php" target="_target" style="color: #7f1d1d; font-weight:900"><span
+                          <a href="" target="_target" style="color: #7f1d1d; font-weight:900"><span
                               class="text-success small pt-1 fw-bold"></span>
-                            <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;">
+                            <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;" onclick="alert('Servicio en Construcción')">
                               <i class="bi bi-filetype-pdf"></i> Generar Reporte de Ingresos Diarios
                             </button>
                             <?php
