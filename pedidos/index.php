@@ -569,11 +569,7 @@ require_once("../config/db_config.php");
       $("#resta").val(sumaTotalPrecio);
       $("#resta").attr("totalResta", sumaTotalPrecio);
     }
-    /*
-      ********************************************************************
-        RESTAR CANTIDAD DEL PRODUCTO
-      ********************************************************************
-    */
+
     $(".formularioVenta").on("change", "input.restaCantidadProducto", function () {
 
       var precio = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
