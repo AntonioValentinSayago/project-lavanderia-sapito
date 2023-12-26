@@ -211,50 +211,8 @@ if (!isset($_SESSION['cargo'])) {
         <div class="col-lg-12">
           <div class="row">
 
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
-
-                <div class="card-body" style="border: 1.5px solid #064e3b">
-                  <h5 class="card-title">Pedidos <span>| Pendientes</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="ps-3">
-                      <?php
-                      $consulta = "SELECT *
-                      from ctl_ventapedidos";
-                      $stmt = mysqli_query($conexion, $consulta);
-                      if (mysqli_num_rows($stmt) > 0) {
-                        $totalRegistros = mysqli_num_rows($stmt);
-                        ?>
-                        <h6>
-                          <?php echo $totalRegistros ?>
-                          <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
-                              class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i
-                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
-                        </h6>
-                        <?php
-                      } else {
-                        ?>
-                        <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
-                          No existen pedidos registrados
-                        </p>
-                        <?php
-                      }
-
-                      ?>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Sales Card -->
-
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-4 col-md-12">
               <div class="card info-card revenue-card">
 
                 <div class="card-body" style="border: 1.5px solid #064e3b">
@@ -303,8 +261,50 @@ if (!isset($_SESSION['cargo'])) {
               </div>
             </div><!-- End Revenue Card -->
 
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+
+                <div class="card-body" style="border: 1.5px solid #064e3b">
+                  <h5 class="card-title">Pedidos <span>| Pendientes</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <?php
+                      $consulta = "SELECT *
+                      from ctl_ventapedidos";
+                      $stmt = mysqli_query($conexion, $consulta);
+                      if (mysqli_num_rows($stmt) > 0) {
+                        $totalRegistros = mysqli_num_rows($stmt);
+                        ?>
+                        <h6>
+                          <?php echo $totalRegistros ?>
+                          <a href=""><span class="text-success small pt-1 fw-bold"></span> <span
+                              class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i
+                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                        </h6>
+                        <?php
+                      } else {
+                        ?>
+                        <p class="text-center" style="font-weight: 900; color:#7f1d1d ">
+                          No existen pedidos registrados
+                        </p>
+                        <?php
+                      }
+
+                      ?>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-5">
+            <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
                 <div class="card-body" style="border: 1.5px solid #064e3b">
@@ -346,7 +346,7 @@ if (!isset($_SESSION['cargo'])) {
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-7">
+            <div class="col-xxl-4 col-xl-6">
               <div class="card info-card customers-card">
                 <div class="card-body" style="border: 1.5px solid #064e3b">
                   <h5 class="card-title">Clientes <span>| Cartera Disponible</span></h5>
