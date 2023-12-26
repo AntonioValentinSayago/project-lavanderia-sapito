@@ -345,7 +345,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Horario de Entrega:</label>
-                  <select name="hora-entrega" id="hora-entrega" class="form-control" required>
+                  <select id="horaEntrega" class="form-control" required>
                     <option value="" select>Seleccione Horario....</option>
                     <option value="11:00am">11:00 am</option>
                     <option value="12:00pm">12:00 pm</option>
