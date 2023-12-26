@@ -212,7 +212,7 @@ if (!isset($_SESSION['cargo'])) {
           <div class="row">
 
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-12">
+            <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
                 <div class="card-body" style="border: 1.5px solid #064e3b">
@@ -473,7 +473,7 @@ if (!isset($_SESSION['cargo'])) {
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-xxl-4 col-md-6">
 
               <div class="card info-card customers-card">
 
