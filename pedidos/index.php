@@ -455,7 +455,9 @@ require_once("../config/db_config.php");
 
     // Todo Validar si existe algo en el pedido 
     let btnSubTotal = document.getElementById("total");
-    if (btnSubToal.value > 0) document.querySelector(".btn-disabled-false").disabled = true 
+    if (btnSubTotal.value > 0) document.querySelector(".btn-disabled-false").disabled = true 
+
+
 
     function selectNit(e) {
       var nit = e.target.selectedOptions[0].getAttribute("data-nit")
