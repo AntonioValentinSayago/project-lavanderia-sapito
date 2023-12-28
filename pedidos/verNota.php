@@ -248,7 +248,7 @@ require_once("../config/db_config.php");
                                                         value="<?php echo $fila["estatus"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">NÚMERO DE Folio</label>
+                                                    <label for="">NÚMERO DE FOLIO</label>
                                                     <input type="hidden" name="idCliente" value="">
                                                     <input type="text" class="form-control" name="folioNota" id="folioNota"
                                                         value="<?php echo $fila["folio_nota"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
@@ -259,9 +259,9 @@ require_once("../config/db_config.php");
                                                         value="<?php echo $fila["nombreCliente"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label for="">Telefono*</label>
+                                                    <label for="">TELÉFONO (opcional)</label>
                                                     <input type="number" class="form-control" name="telefono" id="telefono"
-                                                        value="<?php echo $fila["telefono"]; ?>" disabled>
+                                                        value="<?php echo $fila["telefono"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <table class="table">
@@ -285,9 +285,9 @@ require_once("../config/db_config.php");
                                                                             <input type="text" id="descripcion" class="form-control"
                                                                                 name="descripcion"
                                                                                 value="<?php echo $filaCate["nombreCategoria"]; ?>"
-                                                                                disabled>
+                                                                                disabled style="background-color: #cbd5e1; font-weight: 500;">
                                                                         </td>
-                                                                        <td>
+                                                                        <td style="text-align:center">
                                                                             <p><?php echo $filaCate["Cantidad"]; ?></p>
                                                                         </td>
                                                                     </tr>
@@ -299,15 +299,15 @@ require_once("../config/db_config.php");
                                                     </table>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">Dinero a Cuenta*</label>
+                                                    <label for="">DINERO A CUENTA</label>
                                                     <input type="number" class="form-control" name="dineroCuenta" id="dineroCuenta"
-                                                        value="<?php echo $fila["dineroCuenta"]; ?>" disabled>
+                                                        value="<?php echo $fila["dineroCuenta"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">Resta:*</label>
+                                                    <label for="">RESTA POR PAGAR: *</label>
                                                     <input type="number" class="form-control" name="resta" id="resta"
                                                         value="<?php echo $fila["dineroPendiente"]; ?>" disabled
-                                                        style="border: 1px solid red">
+                                                        style="border: 1px solid #fecaca;background-color: #fecaca; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label for="">Total:*</label>
