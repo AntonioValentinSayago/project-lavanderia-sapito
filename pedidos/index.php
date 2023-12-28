@@ -454,8 +454,8 @@ require_once("../config/db_config.php");
     }
 
     // Todo Validar si existe algo en el pedido 
-    let btnSubTotal = document.getElementById("total");
-    if (btnSubTotal.value > 0) document.querySelector(".btn-disabled-false").disabled = true 
+    let btnSubTotal = document.getElementById("total").value;
+    if (btnSubTotal > 0) document.getElementsByClassName("btn-disabled-false").disabled = true 
 
 
 
