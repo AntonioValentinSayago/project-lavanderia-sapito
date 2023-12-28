@@ -187,6 +187,7 @@ require_once("../config/db_config.php");
         </a>
       </li><!-- End F.A.Q Page Nav -->
     </ul>
+    
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -252,7 +253,7 @@ require_once("../config/db_config.php");
                             <td style="text-align:center;">
                               $ <?php echo $fila["costoPagar"]; ?> MXN
                             </td>
-                            <td>
+                            <td style="text-align:center;">
                               <span
                                 class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
                                 <?php echo ($Estatus == 'Pendiente') ? "PENDIENTE" : "ENTREGADO" ?>

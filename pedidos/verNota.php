@@ -14,7 +14,7 @@ require_once("../config/db_config.php");
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - Lavanderia Sapito</title>
+    <title>Delivery - Lavanderia Sapito</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -76,10 +76,8 @@ require_once("../config/db_config.php");
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo ucfirst($_SESSION['img']); ?>"
-                            alt="<?php echo ucfirst($_SESSION['nombre']); ?>" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo ucfirst($_SESSION['nombre']); ?>
+                            <?php echo $_SESSION['nombre']; ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -88,7 +86,6 @@ require_once("../config/db_config.php");
                             <h6>
                                 <?php echo ucfirst($_SESSION['nombre']); ?>
                             </h6>
-                            <span>Administrador</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -120,75 +117,89 @@ require_once("../config/db_config.php");
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link " href="index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Panel Principal</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Crear Nueva Nota</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../inventario/inventario.php">
-                    <i class="bi bi-menu-button-wide"></i><span>Inventario</span>
-                </a>
-            </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historia de Notas Entregadas</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../categorias/index.php">
-                    <i class="bi bi-tags"></i><span>Control Categorias</span>
-                </a>
-            </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../inventario/inventario.php">
+          <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
+        </a>
+      </li><!-- End Components Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../reportes/index.php">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Reportes</span>
-                </a>
-            </li><!-- End Tables Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../categorias/index.php">
+          <i class="bi bi-tags"></i><span>Control Categorias</span>
+        </a>
+      </li><!-- End Components Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../gastos/index.php">
-                    <i class="bi bi-bar-chart"></i><span>Gastos Generales</span>
-                </a>
-            </li><!-- End Charts Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../reportes/index.php">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios <span>
+        </a>
+      </li><!-- End Tables Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../gastos/index.php">
+          <i class="bi bi-bar-chart"></i><span>Control de Gastos Generales</span>
+        </a>
+      </li><!-- End Charts Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../clientes/clientes.php">
-                    <i class="bi bi-person"></i>
-                    <span>Clientes</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../clientes/clientes.php">
+          <i class="bi bi-person"></i>
+          <span>Control de Clientes</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../systemUser/index.php">
-                    <i class="bi bi-person-add"></i>
-                    <span>Empleados</span>
-                </a>
-            </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../systemUser/index.php">
+          <i class="bi bi-person-add"></i>
+          <span>Control de Empleados</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
-                    <i class="bi bi-question-circle"></i>
-                    <span>Manual de Usuario</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Cerrar Sesión</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span>Manual de Usuario</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Salir del  Sistema</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+    </ul>
+
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
 
         <div class="pagetitle" style="display: flex;">
-        <h1>Control de Pedido</h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="index.php"><button type="button"
-                    class="btn btn-primary">Regresar</button>
+        <h1>DETALLE DEL PEDIDO</h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="pedidos-activos.php"><button type="button"
+                    class="btn" style="background: #991b1b; color:white">Regresar</button>
             </a>
             <nav>
                 <ol class="breadcrumb">
@@ -231,21 +242,21 @@ require_once("../config/db_config.php");
                                             $Estatus = $fila["estatus"]; ?>
                                             <form class="row g-3 mt-2" action="updateNota.php" method="POST" id="miForm">
                                                 <div class="col-md-2">
-                                                    <label for="">Estatus</label>
+                                                    <label for="">ESTATUS</label>
                                                     <input type="hidden" name="idNota" value="<?php echo $idNota ?>" id="idNota">
                                                     <input type="text" class="form-control" name="estatus" id="estatus"
-                                                        value="<?php echo $fila["estatus"]; ?>" disabled>
+                                                        value="<?php echo $fila["estatus"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">Folio Nota</label>
+                                                    <label for="">NÚMERO DE Folio</label>
                                                     <input type="hidden" name="idCliente" value="">
                                                     <input type="text" class="form-control" name="folioNota" id="folioNota"
-                                                        value="<?php echo $fila["folio_nota"]; ?>" disabled>
+                                                        value="<?php echo $fila["folio_nota"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label for="">Cliente</label>
+                                                    <label for="">NOMBRE DEL CLIENTE</label>
                                                     <input type="text" class="form-control" name="cliente" id="cliente"
-                                                        value="<?php echo $fila["nombreCliente"]; ?>" disabled>
+                                                        value="<?php echo $fila["nombreCliente"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="">Telefono*</label>
