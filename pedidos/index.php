@@ -363,7 +363,7 @@ require_once("../config/db_config.php");
                   <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4;"><i class="bi bi-save"></i> Crear Pedido</button>
                   <!-- <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4;" ><i class="bi bi-save"></i>
                     Crear y guardar Pedido</button> -->
-                  <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b; color:white"><i
+                  <button type="reset" onclick="resetFormulario()" class="btn btn-default btn-disabled-false" style="background: #991b1b; color:white"><i
                       class="bi bi-trash3"></i> Cancelar Pedido</button>
                 </div>
               </form><!-- End No Labels Form -->
@@ -452,6 +452,11 @@ require_once("../config/db_config.php");
         timeout: 4000,
       });
     }
+
+    // Todo Validar si existe algo en el pedido 
+    let btnSubTotal = document.getElementById("total");
+    if (btnSubToal.value > 0) document.querySelector(".btn-disabled-false").disabled = true 
+
     function selectNit(e) {
       var nit = e.target.selectedOptions[0].getAttribute("data-nit")
       document.getElementById("nit").value = nit;
