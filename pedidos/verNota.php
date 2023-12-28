@@ -77,7 +77,7 @@ require_once("../config/db_config.php");
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo $_SESSION['nombre']; ?>
+                            <?php echo $_SESSION['email']; ?>
                         </span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -310,32 +310,32 @@ require_once("../config/db_config.php");
                                                         style="border: 1px solid #fecaca;background-color: #fecaca; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">Total:*</label>
+                                                    <label for="">TOTAL DEL PEDIDO:*</label>
                                                     <input type="number" class="form-control" name="total" id="total"
-                                                        value="<?php echo $fila["costoPagar"]; ?>" disabled>
+                                                        value="<?php echo $fila["costoPagar"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label for="">Fecha Estimada*</label>
+                                                    <label for="">FECHA ESTIMADA DE ENTREGA</label>
                                                     <input type="text" class="form-control" name="fechaEntrega" id="fechaEntrega"
-                                                        value="<?php echo $fila["fecha_entrega"]; ?>" disabled>
+                                                        value="<?php echo $fila["fecha_entrega"]; ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-4">
-                                                <label for="">Empleado</label>
+                                                <label for="">NOMBRE DEL EMPLEADO </label>
                                                     <input type="text" class="form-control" name="empleado" id="empleado"
-                                                        value="<?php echo ucfirst($_SESSION['nombre']); ?>" disabled>
+                                                        value="<?php echo ucfirst($_SESSION['nombre']); ?>" disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="">Observaciones:</label>
+                                                    <label for="">OBSERVACIONES:</label>
                                                     <input type="text" class="form-control" name="horaEntrega"
                                                         id="horaEntrega" value="<?php echo $fila["obervaciones"]; ?>"
-                                                        disabled>
+                                                        disabled style="background-color: #cbd5e1; font-weight: 900;">
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-success"><i
+                                                    <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4;"><i
                                                             class="bi bi-save-fill"></i>
-                                                        Entregar</button>
+                                                        Entregar Pedido</button>
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#exampleCancelar"
-                                                            class="btn btn-danger">Cancelar Pedido</button>
+                                                            class="btn btn-danger" style="background: #991b1b; color:white">Cancelar Pedido</button>
                                                 </div>
                                             </form><!-- End No Labels Form -->
                                                                                                     <!-- Modal Cancelar Pedido-->
