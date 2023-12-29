@@ -45,12 +45,12 @@ if (isset($_SESSION['id'])) {
             <h3 style="text-align:center">Lavandería<strong> Sapito</strong> <img src="img/394894icono.png" alt="logo" width="50px"></h3>
             <div class="form-group first">
               <label for="username">Correo Electronico</label>
-              <input type="text" class="form-control" placeholder="tu-email@gmail.com" id="user" sryle="border: 1px solid black"/>
+              <input type="text" class="form-control" placeholder="tu-email@gmail.com" id="user" style="border: 1px solid black"/>
             </div>
             <div class="form-group last mb-3">
               <label for="password">Contraseña</label>
               <input type="password" class="form-control" placeholder="****************" id="clave"
-                autocomplete="off" sryle="border: 1px solid black"/>
+                autocomplete="off" style="border: 1px solid black"/>
             </div>
             <!-- Animacion de load (solo sera visible cuando el cliente espere una respuesta del servidor )-->
             <div class="row" id="load" hidden="hidden">
