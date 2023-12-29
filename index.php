@@ -62,7 +62,7 @@ if (isset($_SESSION['id'])) {
               </div>
             </div>
             <!-- Fin load -->
-            <button type="button" class="btn btn-enviar btn-block" style="background: #0f172a; color:white; font-weight:900" name="button" id="login">Entrar al Sistema</button>
+            <button type="button" class="btn btn-enviar btn-block" style="background: #083344; color:white; font-weight:900" name="button" id="login">Entrar al Sistema</button>
           </div>
         </div>
       </div>
