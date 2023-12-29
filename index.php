@@ -42,7 +42,7 @@ if (isset($_SESSION['id'])) {
         <!-- Estructura del formulario -->
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3 style="text-align:center">Lavandería<strong>Sapito</strong></h3>
+            <h3 style="text-align:center">Lavandería<strong> Sapito</strong> <img src="img/394894icono.png" alt="logo" width="50px"></h3>
             <div class="form-group first">
               <label for="username">Correo Electronico</label>
               <input type="text" class="form-control" placeholder="tu-email@gmail.com" id="user" />
