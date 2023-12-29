@@ -42,13 +42,10 @@ if (isset($_SESSION['id'])) {
         <!-- Estructura del formulario -->
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <div class="alert alert-warning" role="alert">
-              Servicio en Mantenimiento :)
-            </div>
-            <h3>Lavandería<strong>Sapito</strong></h3>
+            <h3 style="text-align:center">Lavandería<strong>Sapito</strong></h3>
             <div class="form-group first">
               <label for="username">Correo Electronico</label>
-              <input type="text" class="form-control" placeholder="your-email@gmail.com" id="user" />
+              <input type="text" class="form-control" placeholder="tu-email@gmail.com" id="user" />
             </div>
             <div class="form-group last mb-3">
               <label for="password">Contraseña</label>
@@ -66,7 +63,6 @@ if (isset($_SESSION['id'])) {
             </div>
             <!-- Fin load -->
             <button type="button" class="btn btn-enviar btn-block" name="button" id="login">Iniciar sesion</button>
-
           </div>
         </div>
       </div>
