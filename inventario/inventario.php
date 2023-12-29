@@ -219,7 +219,7 @@ require_once("../config/db_config.php");
                                                 <th scope="col">PRODUCTO</th>
                                                 <th scope="col">DESCRIPCIÓN</th>
                                                 <th scope="col">EXISTENCIAS</th>
-                                                <th scope="col">ESTATIS</th>
+                                                <th scope="col">ESTATUS</th>
                                                 <th scope="col">ACCIONES</th>
                                             </tr>
                                         </thead>
