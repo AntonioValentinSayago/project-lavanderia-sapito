@@ -343,11 +343,15 @@ require_once("../config/db_config.php");
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> Advertencia</h5>
+        <h5 class="modal-title" style="color:#dc2626; font-wight: 800;" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> ADEVERTENCIA</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         ¿Estas seguro de Cancelar este pedido?
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            Estoy conciente de realizar este acción, no podrá deshacer en un futuro
+        </label>
       </div>
       <div class="modal-footer">
 <form action="cancelarNota.php" method="POST">
@@ -363,8 +367,8 @@ require_once("../config/db_config.php");
         <input type="hidden" name="horaEntrega"id="horaEntrega" value="<?php echo $fila["hora_entrega"]; ?>">
         <input type="hidden" name="empleado" id="empleado"value="<?php echo ucfirst($_SESSION['nombre']); ?>" >
         <input type="hidden" name="horaEntrega"id="horaEntrega" value="<?php echo $fila["obervaciones"]; ?>" >
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cerrar</button>
-        <button type="submit" class="btn btn-success">Si, Seguro</button>
+        <button type="button" class="btn" data-bs-dismiss="modal" style="background: #991b1b; color:white">No, Cerrar ventana</button>
+        <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4;">Si, confirmo </button>
 </form>
       </div>
     </div>
@@ -409,7 +413,7 @@ require_once("../config/db_config.php");
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024 </a>
         </div>
     </footer><!-- End Footer -->
 
