@@ -343,12 +343,12 @@ require_once("../config/db_config.php");
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" style="color:#dc2626; font-wight: 800;" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> ADEVERTENCIA</h5>
+        <h5 class="modal-title" style="color:#dc2626; font-wight: 900;" id="exampleModalLabel"><img class="img-fluid" src="https://assets.stickpng.com/images/5a81af7d9123fa7bcc9b0793.png" alt="img" width="25px"> ADEVERTENCIA</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ¿Estas seguro de Cancelar este pedido?
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        ¿Estas seguro de Cancelar este pedido? <br/>
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
         <label class="form-check-label" for="flexCheckDefault">
             Estoy conciente de realizar este acción, no podrá deshacer en un futuro
         </label>
