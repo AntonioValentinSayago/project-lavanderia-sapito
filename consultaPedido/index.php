@@ -251,14 +251,14 @@ if (!isset($_SESSION['cargo'])) {
                             <td style="color:white">
                             <span
                                 class="badge <?php echo ($Estatus == 'Entregado') ? 'bg-success' : 'bg-danger' ?> text-white">
-                                <?php echo ($Estatus == 'Entregado') ? "Entregado" : "Cancelado" ?>
+                                <?php echo ($Estatus == 'Entregado') ? "ENTREGADO" : "CANCELADO" ?>
                               </span>
                             </td>
-                            <td>
+                            <td style="text-transform:uppercase">
                               <?php echo $fila["empleado"]; ?>
                             </td>
                             <td>
-                              $ <?php echo $fila["total_pedido"]; ?>
+                              $ <?php echo $fila["total_pedido"]; ?> MXN
                             </td>
                             <td>
                               <?php echo $fila["descripcion"]; ?>
@@ -336,7 +336,7 @@ if (!isset($_SESSION['cargo'])) {
       &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito 2024</a>
+      Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024</a>
     </div>
   </footer><!-- End Footer -->
 
