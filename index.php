@@ -34,7 +34,7 @@ if (isset($_SESSION['id'])) {
   <!-- Formulario Login -->
   <div class="d-lg-flex half">
     <div class="bg order-1 order-md-2"
-      style="background-image: url('https://wallpapers.com/images/hd/laundry-room-pictures-swc19ed2it6n8r9c.jpg')">
+      style="background-image: url('img/lavanderia.png')">
     </div>
 
     <div class="contents order-2 order-md-1">

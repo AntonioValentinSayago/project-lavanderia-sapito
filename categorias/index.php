@@ -202,7 +202,7 @@ if (!isset($_SESSION['cargo'])) {
     <main id="main" class="main">
 
         <div class="pagetitle" style="display: flex;">
-            <h1>Control de Categorías</h1>
+            <h1>CONTROL DE CategoCATEGORÍAS</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -212,7 +212,7 @@ if (!isset($_SESSION['cargo'])) {
             <div style="margin-left: auto;">
                 <a href="addCategoria.php"><button type="button" class="btn btn-primary btn-add"><i
                             class="bi bi-plus me-1"></i>Nueva Categoría</button></a>
-                <a href="../pdf/categorias/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
+                <a href="../pdf/categorias/pdf.php" target="_target"><button type="button" class="btn" style="background: #991b1b; color:white"><i
                             class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
             </div>
         </div><!-- End Page Title -->
@@ -231,9 +231,9 @@ if (!isset($_SESSION['cargo'])) {
                                     <table class="table table-borderless" id="example">
                                         <thead style="text-align:center">
                                             <tr>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">$ Precio</th>
-                                                <th scope="col">Acciones</th>
+                                                <th scope="col">NOMBRE DESCRIPTIVO</th>
+                                                <th scope="col">$ PRECIO ACTUAL</th>
+                                                <th scope="col">ACCIONES</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -245,13 +245,12 @@ if (!isset($_SESSION['cargo'])) {
                                                 while ($fila = mysqli_fetch_array($stmt)) {
                                                     $idCategoria = $fila["id_ctl_categorias"];
                                                     ?>
-                                                    <tr style="text-align:center">
+                                                    <tr style="text-align:center; text-transform:uppercase">
                                                         <td>
                                                             <?php echo $fila["nombreCategoria"]; ?>
                                                         </td>
                                                         <td>
-                                                            $
-                                                            <?php echo $fila["precio"]; ?>
+                                                            $ <?php echo $fila["precio"]; ?> MXN
                                                         </td>
                                                         <td style="text-align:center">
                                                             <a
@@ -276,8 +275,6 @@ if (!isset($_SESSION['cargo'])) {
                                                                 <?php
                                                             }
                                                             ?>
-
-
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -383,7 +380,7 @@ if (!isset($_SESSION['cargo'])) {
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024 </a>
         </div>
     </footer><!-- End Footer -->
 
