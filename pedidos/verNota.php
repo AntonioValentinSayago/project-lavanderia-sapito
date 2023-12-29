@@ -347,12 +347,14 @@ require_once("../config/db_config.php");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ¿Estas seguro de Cancelar este pedido? <br/><br/><br/><br/><br/>
+        ¿Estas seguro de Cancelar este pedido? <br/><br/>
     <form action="cancelarNota.php" method="POST">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
-        <label class="form-check-label" for="flexCheckDefault">
-            Estoy conciente de realizar este acción, no podrá deshacer en un futuro
-        </label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+            <label class="form-check-label" for="flexCheckDefault">
+                Estoy conciente de realizar este acción, no podrá deshacer en un futuro
+            </label>
+        </div>
       </div>
       <div class="modal-footer">
         <input type="hidden" name="idNota" value="<?php echo $idNota ?>"id="idNota">
