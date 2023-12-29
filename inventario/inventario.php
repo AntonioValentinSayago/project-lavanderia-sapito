@@ -193,7 +193,7 @@ require_once("../config/db_config.php");
                     <?php
                 } else {
                     ?>
-                    <button type="button" class="btn btn-danger" onclick="validar()"><i class="bi bi-filetype-pdf"></i>
+                    <button type="button" class="btn" style="background: #991b1b; color:white" onclick="validar()"><i class="bi bi-filetype-pdf"></i>
                         Generar Reporte</button>
                     <?php
 
@@ -215,12 +215,12 @@ require_once("../config/db_config.php");
                                     <table class="table table-borderless" id="example">
                                         <thead style="text-align:center">
                                             <tr>
-                                                <th scope="col">Código</th>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Descripcion</th>
-                                                <th scope="col">Existencias</th>
-                                                <th scope="col">Etatus</th>
-                                                <th scope="col">Acciones</th>
+                                                <th scope="col">CÓDIGO</th>
+                                                <th scope="col">PRODUCTO</th>
+                                                <th scope="col">DESCRIPCIÓN</th>
+                                                <th scope="col">EXISTENCIAS</th>
+                                                <th scope="col">ESTATIS</th>
+                                                <th scope="col">ACCIONES</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -273,8 +273,8 @@ require_once("../config/db_config.php");
                                                 }
                                             } else {
                                                 ?>
-                                                <div class="alert alert-danger" role="alert">
-                                                    No existen productos en el inventario
+                                                <div class="alert alert-danger" role="alert" syle="font-wight: 900">
+                                                    No existen productos registrados en la Base de Datos
                                                 </div>
                                                 <?php
                                             }
