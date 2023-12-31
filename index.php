@@ -32,7 +32,7 @@ if (isset($_SESSION['id'])) {
 
 <body">
   <!-- Formulario Login -->
-  <div class="d-lg-flex half">
+  <div class="d-lg-flex half" style="height:90%">
     <div class="bg order-1 order-md-2"
       style="background-image: url('img/lavanderia.png')">
     </div>
