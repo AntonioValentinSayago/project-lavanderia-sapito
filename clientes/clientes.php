@@ -216,7 +216,7 @@ if (!isset($_SESSION['cargo'])) {
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
-              <h5 class="card-title">Clientes con Pedido</h5>
+              <h5 class="card-title">Clientes con Pedido Activo</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -259,7 +259,8 @@ if (!isset($_SESSION['cargo'])) {
                               </span>
                             </td>
                             <td>
-                              <span class="badge bg-success"><i class="bi bi-eye"></i> </span>
+                            <a href="../pedidos/verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
+                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
                             </td>
                           </tr>
                           <?php
