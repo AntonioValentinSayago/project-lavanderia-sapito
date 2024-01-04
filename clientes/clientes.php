@@ -234,7 +234,10 @@ if (!isset($_SESSION['cargo'])) {
                     <tbody>
                       <?php
                       require_once("../config/db_config.php");
-                      $consulta = "select DISTINCT nombreCompleto,cl.idCliente,estatus,direccion,folio_nota from ctl_catalogo cata
+                      $consulta = "SELECT DISTINCT nombreCompleto,
+                      cl.idCliente,estatus,direccion,folio_nota, 
+                      cata.id_ctl_ventapedidos
+                      FROM ctl_catalogo cata
                       JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                       JOIN clientes cl ON cl.idCliente = cata.idCliente";
                       $stmt = mysqli_query($conexion, $consulta);
