@@ -38,6 +38,20 @@ require_once("../config/db_config.php");
   <link href="../vendor/simple-datatables/style.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
+
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -271,8 +285,8 @@ require_once("../config/db_config.php");
                   <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
-                    <option value="">Seleccione Cliente...</option>
+                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
+                    <option value="">-- Seleccione Cliente --</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
                     $stmtClientes = mysqli_query($conexion, $consultaClientes);
