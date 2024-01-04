@@ -294,15 +294,14 @@ if (!isset($_SESSION['cargo'])) {
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
-              <h5 class="card-title">Control de Clientes</h5>
+              <h5 class="card-title">CONTROL DE CLIENTES</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <!-- Active Table -->
                   <table class="table table-striped" id="example">
                     <thead>
-                      <tr style="background:#F4f4f8;">
-                        <th scope="col">#</th>
+                      <tr style="background-color:#F4f4f8; text-align:center">
                         <th scope="col">Nombre Completo</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Telefono</th>
@@ -318,9 +317,6 @@ if (!isset($_SESSION['cargo'])) {
                           $idCliente = $fila["idCliente"];
                           ?>
                           <tr style="text-align:center; text-transform: uppercase;">
-                            <th scope="row">
-                              <?php echo $idCliente ?>
-                            </th>
                             <th scope="row">
                               <?php echo $fila["nombreCompleto"]; ?>
                             </th>
