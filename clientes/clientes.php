@@ -317,7 +317,7 @@ if (!isset($_SESSION['cargo'])) {
                         while ($fila = mysqli_fetch_array($stmt)) {
                           $idCliente = $fila["idCliente"];
                           ?>
-                          <tr style="text-align:center">
+                          <tr style="text-align:center; text-transform: uppercase;">
                             <th scope="row">
                               <?php echo $idCliente ?>
                             </th>
