@@ -379,7 +379,7 @@ if (!isset($_SESSION['cargo'])) {
     function validar() {
       iziToast.warning({
         title: 'Advertencia',
-        message: 'No puedo borrar un cliente con pedido',
+        message: 'Error, no se puede borrar un cliente con pedido activo',
         position: 'center'
       });
     }
