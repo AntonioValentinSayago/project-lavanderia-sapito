@@ -50,11 +50,11 @@ require_once("../config/db_config.php");
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2();
     });
-</script>
+  </script>
 
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
@@ -133,57 +133,57 @@ require_once("../config/db_config.php");
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-  <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-<li class="nav-item">
-  <a class="nav-link " href="index.php">
-    <i class="bi bi-grid"></i>
-    <span>Crear Nueva Nota</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Crear Nueva Nota</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="pedidos-activos.php">
-    <i class="bi bi-grid"></i>
-    <span>Control de Pedidos Activos</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pedidos-activos.php">
+          <i class="bi bi-grid"></i>
+          <span>Control de Pedidos Activos</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../consultaPedido/index.php">
-    <i class="bi bi-grid"></i>
-    <span>Historia de Notas Entregadas</span>
-  </a>
-</li><!-- End Dashboard Nav -->
-
-
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../clientes/clientes.php">
-    <i class="bi bi-person"></i>
-    <span>Control de Clientes</span>
-  </a>
-</li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+          <i class="bi bi-grid"></i>
+          <span>Historia de Notas Entregadas</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#">
-    <i class="bi bi-question-circle"></i>
-    <span>Manual de Usuario</span>
-  </a>
-</li><!-- End F.A.Q Page Nav -->
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-    <i class="bi bi-box-arrow-right"></i>
-    <span>Salir del  Sistema</span>
-  </a>
-</li><!-- End F.A.Q Page Nav -->
-</ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../clientes/clientes.php">
+          <i class="bi bi-person"></i>
+          <span>Control de Clientes</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span>Manual de Usuario</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Salir del Sistema</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+    </ul>
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Control de Pedidos</h1>
+      <h1>Generar Nueva Venta</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -194,11 +194,11 @@ require_once("../config/db_config.php");
         <a href="../clientes/addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-person-fill-add"></i> Nuevo
             Cliente</button></a>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
+        <button type="button" class="btn" style="background:#34d399; color:#f0fdf4" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
-
+    
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
@@ -289,10 +289,11 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-3">
                   <label for="">Folio Nota</label>
-                  <?php $numero = random_int(1, 99); 
-                    $letra_aleatoria = chr(rand(65, 90));
+                  <?php $numero = random_int(1, 99);
+                  $letra_aleatoria = chr(rand(65, 90));
                   ?>
-                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;echo$numero ?>" disabled id="folioNota">
+                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;
+                  echo $numero ?>" disabled id="folioNota">
                 </div>
                 <div class="col-md-9">
                   <table class="table table-bordered table-hover " id="miTabla">
