@@ -24,7 +24,7 @@ function getPlantilla($productos)
       </div>
 	  <br>
       <div id="project">
-        <div><span>Ingreso: </span> ' . $_SESSION['email'] . '</div>
+        <div><span>Autor: </span> ' . $_SESSION['email'] . '</div>
       </div>
 	   <div id="project2">
         <div><span>FECHA: </span> ' . $date = date('d-m-Y') . '</div>
@@ -35,9 +35,10 @@ function getPlantilla($productos)
       <table>
         <thead>
           <tr>
-            <th class="qty">Folio del Pedido </th>
-            <th class="qty">Hora de Entrega </th>
-            <th class="desc">Ingreso $</th>
+            <th class="qty">NO° DE FOLIO </th>
+            <th class="qty">HORA DE ENTREGA </th>
+            <th class="qty">OBSERVACIONES </th>
+            <th class="desc">INGRESO $</th>
           </tr>
         </thead>
         <tbody>';
@@ -54,7 +55,7 @@ function getPlantilla($productos)
     }
     $contenido .= '
     <tr>
-				<td class="qty" colspan="3"><strong>Total:</strong></td>
+				<td class="qty" colspan="2"><strong>Total:</strong></td>
 				<td class="total"><strong>$ '.number_format($importetotal,0).'</strong></td>
 			</tr> 
         </tbody>
