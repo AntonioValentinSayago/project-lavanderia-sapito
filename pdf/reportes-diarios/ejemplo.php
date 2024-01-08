@@ -27,7 +27,7 @@ function getPlantilla($productos)
         <div><span>Autor: </span> ' . $_SESSION['email'] . '</div>
       </div>
 	   <div id="project2">
-        <div><span>FECHA: </span> ' . $date = date('d-m-Y') . '</div>
+        <div><span>FECHA DE CREACIÓN: </span> ' . $date = date('d-m-Y') . '</div>
       </div>
     </header>
     <main>
