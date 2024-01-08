@@ -120,14 +120,14 @@ require_once("../config/db_config.php");
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link " href="index2.php">
           <i class="bi bi-grid"></i>
           <span>Crear Nueva Nota</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pedidos-activos.php">
+        <a class="nav-link collapsed" href="pedidos-activos-empleado.php">
           <i class="bi bi-grid"></i>
           <span>Control de Pedidos Activos</span>
         </a>
