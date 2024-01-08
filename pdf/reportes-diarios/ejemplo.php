@@ -24,32 +24,39 @@ function getPlantilla($productos)
       </div>
 	  <br>
       <div id="project">
-        <div><span>Ingreso: </span> ' . ucfirst($_SESSION['nombre']) . '</div>
+        <div><span>Ingreso: </span> ' . $_SESSION['email'] . '</div>
       </div>
 	   <div id="project2">
         <div><span>FECHA: </span> ' . $date = date('d-m-Y') . '</div>
       </div>
     </header>
     <main>
-			<p>Reporte de Pedidos</p>
+			<p>Reporte de Ingresos Diarios</p>
       <table>
         <thead>
           <tr>
-            <th class="qty">Nombre Cliente</th>
-            <th class="qty">Dirección</th>
-            <th class="desc">Telefono</th>
+            <th class="qty">Folio del Pedido </th>
+            <th class="qty">Hora de Entrega </th>
+            <th class="desc">Ingreso $</th>
           </tr>
         </thead>
         <tbody>';
+        $importetotal=0;
     foreach ($productos as $producto) {
+      $importe=$producto["ingreso_total_diario"];
+      $importetotal+=$importe;
         $contenido .= '
   					<tr>
-  					<td class="qty">' . $producto["nombreCompleto"] . '</td>
-                      <td class="qty">' . $producto["direccion"] . '</td>
-                      <td class="qty">' . $producto["telefono"] . '</td>
+  					<td class="qty">' . $producto["folio_nota"] . '</td>
+                      <td class="qty">' . $producto["hora_entrega"] . '</td>
+                      <td class="qty">' . $producto["ingreso_total_diario"] . '</td>
   					</tr>';
     }
     $contenido .= '
+    <tr>
+				<td class="qty" colspan="3"><strong>Total:</strong></td>
+				<td class="total"><strong>$ '.number_format($importetotal,0).'</strong></td>
+			</tr> 
         </tbody>
       </table>
 	

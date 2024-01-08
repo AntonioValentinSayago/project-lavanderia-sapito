@@ -242,7 +242,7 @@ if (!isset($_SESSION['cargo'])) {
                           </p>
                           <a href="" target="_target" style="color: #7f1d1d; font-weight:900"><span
                               class="text-success small pt-1 fw-bold"></span>
-                            <a href="../pdf/reportes-diarios/pdf.php">
+                            <a href="../pdf/reportes-diarios/pdf.php" target="_target">
                               <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;" >
                               <i class="bi bi-filetype-pdf"></i> Generar Reporte de Ingresos Diarios
                             </button>
