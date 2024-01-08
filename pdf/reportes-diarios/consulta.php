@@ -5,7 +5,10 @@ $mysqli->set_charset("utf8");
 $consulta=$mysqli->prepare("SELECT ctl_reporte.fecha_reporte, ctl_reporte.ingreso_total_diario, ctl_reporte.id_ctl_ventapedidos, 
                             ped.folio_nota, ped.hora_entrega, ped.obervaciones
                             from ctl_reporte_diarios ctl_reporte
-                            JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = ctl_reporte.id_ctl_ventapedidos");
+                            JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = ctl_reporte.id_ctl_ventapedidos
+                            WHERE DATE(ctl_reporte.fecha_reporte) = CURDATE()
+                            GROUP BY ctl_reporte.fecha_reporte"    
+                        );
 $consulta->execute();
 $resultados=$consulta->get_result();
 $productos=array();
