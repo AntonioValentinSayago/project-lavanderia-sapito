@@ -401,6 +401,13 @@ require_once("../config/db_config.php");
             "previous": "Anterior"
           }
         },
+        "columns": [
+          null, // Primera columna (Nombre) - Será searchable
+          { "searchable": false }, // Segunda columna (Edad) - No será searchable
+          null,
+          null,
+          null // Tercera columna (Ciudad) - Será searchable
+        ]
       });
 
     }
@@ -434,6 +441,15 @@ require_once("../config/db_config.php");
   </script>
   <script>
 
+    function alertaMensaje() {
+      iziToast.warning({
+        title: 'Error:',
+        message: 'Servicio en Mantenimiento',
+        position: 'topCenter',
+        timeout: 4000,
+      });
+    }
+
     function selectNit(e) {
       var nit = e.target.selectedOptions[0].getAttribute("data-nit")
       document.getElementById("nit").value = nit;
@@ -447,41 +463,57 @@ require_once("../config/db_config.php");
         var categoria = selectMar.options[selectMar.selectedIndex].text;
         var precio = document.getElementById("nit").value;
 
+        if (precio === '') {
+          iziToast.warning({
+            title: 'Error:',
+            message: 'Debe agregar una opción Valida',
+            position: 'topCenter',
+            timeout: 2000,
+          });
+          return;
+        }
+
         var i = 1; //contador para asignar id al boton que borrara la fila
-        var fila = '<tr id="row' + i + '">' +
-          '<th style="color:blue;">' + setCategoria + '</th>' +
+        var fila =
+          '<tr id="row' + i + '">' +
+          '<td><span class="btn btn-danger btn-xs quitarProducto" idProducto="' + setCategoria + '"><i class="bi bi-trash"></i></span></td>' +
           '<td>' + categoria + '</td>' +
-          '<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
+          '<td><input type="number" step="any" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="0" value="1"  stock="1" nuevoStock="' + Number(-1) + '"   required></td>' +
           '<td class="ingresoPrecio"><input  type="text" class="form-control nuevoPrecioProducto" precioReal="' + precio + '" value="' + precio + '" disabled></td>' +
           '</tr>';
         i++;
-
         var totalPrecio = 0;
         var precioFila = parseFloat(precio);
         totalPrecio += precioFila;
 
-        // Obtén una referencia al elemento en el que deseas agregar el contenido
         var inputElement = document.getElementById('total');
-        var inputElementResta = document.getElementById('resta');
         // Agrega el contenido HTML utilizando innerHTML
         inputElement.value = totalPrecio;
         inputElement.setAttribute('precioReal', precio);
 
+        // Obtén una referencia al elemento en el que deseas agregar el contenido
+        var inputElementResta = document.getElementById('resta');
         inputElementResta.value = totalPrecio;
         inputElementResta.setAttribute('precioReal', precio);
 
+        //le resto 1 para no contar la fila del header
         $('#miTabla tr:first').after(fila);
         var nFilas = $("#miTabla tr").length;
-        //le resto 1 para no contar la fila del header
         document.getElementById("categoria").value = "";
         document.getElementById("nit").value = "";
+
+        setTimeout(() => {
+          sumarPrecios();
+        }, 500);
+
       });
 
+
       //Remover la categoría de la venta
-      $(document).on('click', '.btn_remove', function () {
-        var button_id = $(this).attr("id");
-        //cuando da click obtenemos el id del boton
-        $('#row' + button_id + '').remove(); //borra la fila
+      $(document).on('click', '.quitarProducto', function () {
+        var button_id = $(this).attr("idProducto");
+        $(this).closest('tr').remove(); //borra la fila
+
         var nFilas = $("#miTabla tr").length;
 
         //restar la cantidad
@@ -490,10 +522,9 @@ require_once("../config/db_config.php");
         var total = precioSubTotal - precio1.attr("precioReal");
         $("#total").val(total);
 
-        var precioTotal = document.getElementById('resta').value;
-        var precio2 = $(this).parent().parent().find(".ingresoRestaPrecio").children(".restaPrecioProducto");
-        var precioFinal2 = precioTotal - precio2.attr("precioReal")
-        $("#resta").val(precioFinal2);
+        let precioTotalVenta = document.getElementById('resta').value;
+        let totalVenta = precioTotalVenta - precio1.attr("precioReal");
+        $("#resta").val(totalVenta);
 
 
       });
@@ -536,11 +567,6 @@ require_once("../config/db_config.php");
       $("#resta").val(sumaTotalPrecio);
       $("#resta").attr("totalResta", sumaTotalPrecio);
     }
-    /*
-      ********************************************************************
-        RESTAR CANTIDAD DEL PRODUCTO
-      ********************************************************************
-    */
 
     $(".formularioVenta").on("change", "input.restaCantidadProducto", function () {
 
@@ -554,6 +580,8 @@ require_once("../config/db_config.php");
   <script>
     $('#agregarVenta').submit(function (e) {
       e.preventDefault(); // Evita el envío del formulario estándar
+      var botton = document.getElementById("agregarVenta");
+      botton.disabled = true;
 
       // Obtén los valores de los campos
       var idEmpleado = document.getElementById("idEmpleado").value;
@@ -563,18 +591,42 @@ require_once("../config/db_config.php");
       var dineroCuenta = document.getElementById("dineroCuenta").value;
       var resta = document.getElementById("resta").value;
       var fechaEntrega = document.getElementById("fechaEntrega").value;
+      var horaEntrega = document.getElementById("horaEntrega").value;
+      var obervaciones = document.getElementById("obervaciones").value;
       var tabla = document.getElementById("miTabla");
       var valoresColumna = [];
+
+      // Se valida de que existan productos en la venta
+      if (total === '') {
+        iziToast.warning({
+          title: 'Error:',
+          message: 'Debe agregar Productos a la Venta',
+          position: 'topCenter',
+          timeout: 2000,
+        });
+        return;
+      }
 
       // Itera sobre las filas de la tabla (comenzando desde el índice 1 para omitir la cabecera)
       for (var i = 1; i < tabla.rows.length; i++) {
         var fila = tabla.rows[i];
 
         // Obtiene el texto de la primera celda de la fila
-        var celda = fila.cells[0];
-        var texto = celda.innerText;
+        //var celda = fila.cells[0];
+        //var texto = celda.innerText;
 
-        valoresColumna.push(texto);
+        var setCategoria2 = fila.cells[0].querySelector('.quitarProducto').getAttribute('idProducto');
+
+        var cantidad = fila.cells[2].querySelector(".nuevaCantidadProducto");;
+        var textCana = cantidad.value;
+
+        var objeto = {
+          nombreCategoria: setCategoria2,
+          cantidad: textCana
+        }
+
+        valoresColumna.push(objeto);
+        //valoresColumna.push(textCana);
       }
       // Realiza la solicitud AJAX
       $.ajax({
@@ -585,10 +637,12 @@ require_once("../config/db_config.php");
           cliente: cliente,
           folioNota: folioNota,
           total: total,
-          valoresColumna: valoresColumna,
+          valoresColumna: JSON.stringify(valoresColumna),
           dineroCuenta: dineroCuenta,
           resta: resta,
-          fechaEntrega: fechaEntrega
+          fechaEntrega: fechaEntrega,
+          horaEntrega: horaEntrega,
+          obervaciones: obervaciones
         }, // Datos a enviar
         success: function (response) {
           // Maneja la respuesta del servidor
@@ -602,17 +656,21 @@ require_once("../config/db_config.php");
           for (var i = filas.length - 1; i > 0; i--) {
             tabla.deleteRow(i);
           }
+          var botton = document.getElementById("agregarVenta");
+          botton.disabled = true;
+          botton.innerHTML = "<div class='alert alert-warning' role='alert'>Guardando Pedido!</div>";
 
           iziToast.success({
             title: 'OK',
             message: 'Nota Realizada Correctamente',
             position: 'center',
-            timeout: 2000,
+            timeout: 2500,
           });
           // Puedes mostrar una notificación o redirigir a otra página después de la inserción
           setTimeout(function () {
+            window.open('vendor/ticket.php', '_blank');
             location.reload();
-          }, 2500);
+          }, 2200);
 
         },
         error: function (xhr, status, error) {
