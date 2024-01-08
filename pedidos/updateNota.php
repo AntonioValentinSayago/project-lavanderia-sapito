@@ -28,6 +28,21 @@ echo $valoresString;
 setlocale(LC_TIME, 'es_MX.UTF-8'); 
 $date = date("Y-m-d");// Establece la configuración regional en español para México
 $fecha = date('Y-m-d', strtotime($date)); // Obtiene la fecha actual en el formato "dia de mes de año"
+$fecha_formateada_creacion = date('Y-m-d', strtotime($date));
+
+
+//Inserta en la Tabla de reportes Diarios
+if ($resta > 0) {
+  # code...Insertart
+  $sqlInsertReporte = "INSERT INTO ctl_reporte_diarios
+      (fecha_reporte, ingreso_total_diario, id_ctl_ventapedidos)
+      VALUES ('$fecha_formateada_creacion',$resta, $idNota )";
+  if (mysqli_query($conexion, $sqlInsertReporte)) {
+      echo "Valor insertado correctamente:<br>";
+  } else {
+      echo "Error al insertar valor: " . mysqli_error($conexion) . "<br>";
+  }
+}
 
 $insertar = "INSERT INTO ctl_historial (folio_nota ,
                                         cliente ,
