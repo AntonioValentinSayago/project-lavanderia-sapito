@@ -50,12 +50,13 @@ function getPlantilla($productos)
   					<tr>
   					<td class="qty">' . $producto["folio_nota"] . '</td>
                       <td class="qty">' . $producto["hora_entrega"] . '</td>
+                      <td class="qty">' . $producto["observaciones"] . '</td>
                       <td class="qty">' . $producto["ingreso_total_diario"] . '</td>
   					</tr>';
     }
     $contenido .= '
     <tr>
-				<td class="qty" colspan="2"><strong>Total:</strong></td>
+				<td class="qty" colspan="3"><strong>Total:</strong></td>
 				<td class="total"><strong>$ '.number_format($importetotal,0).'</strong></td>
 			</tr> 
         </tbody>
