@@ -383,7 +383,7 @@ require_once("../config/db_config.php");
         </div>
       </div>
     </section>
-    
+
   </main><!-- End #main -->
 
   <script>
@@ -761,6 +761,7 @@ require_once("../config/db_config.php");
       </div>
     </div>
   </div>
+  
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

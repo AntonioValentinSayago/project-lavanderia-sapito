@@ -639,19 +639,20 @@ require_once("../config/db_config.php");
   </script>
 
 
+
   <!-- Modal -->
   <div class="modal modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Lista de Precios</h5>
+          <h5 class="modal-title" id="exampleModalLabel">LISTA DE PRECIOS</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <table class="table table-striped table-hover" id="example2">
-            <thead style="background:#EABCB3;">
+            <thead style="background:#fed7aa;font-wight: 900">
               <tr>
-                <th scope="col">Nombre</th>
+                <th scope="col">Categoría Disponible</th>
                 <th scope="col">$ Precio</th>
               </tr>
             </thead>
@@ -675,7 +676,8 @@ require_once("../config/db_config.php");
                 }
               } else {
                 ?>
-                <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
+                <h5 class="alert" style="background-color: #fbbf24; font-weight: 900;">No hay registros en la base de
+                  datos</h5>
                 <?php
               }
               ?>
@@ -683,18 +685,21 @@ require_once("../config/db_config.php");
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn" data-bs-dismiss="modal" style="background: #991b1b; color:white">Cerrar
+            Ventana</button>
         </div>
       </div>
     </div>
   </div>
+
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
       &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+      Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024 </a>
     </div>
   </footer><!-- End Footer -->
 
