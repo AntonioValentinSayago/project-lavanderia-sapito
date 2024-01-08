@@ -40,15 +40,7 @@ require_once("../config/db_config.php");
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
-  <link href="../css/style.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" rel="stylesheet"></script>
-  <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js" rel="stylesheet"></script>
-  <link href=" https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -286,10 +278,10 @@ require_once("../config/db_config.php");
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
-                  <label for="id_cliente">Lista de Clientes Disponibles</label>
+                  <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control select2" type="text" id="id_cliente" required>
+                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
                     <option value="">-- Seleccione Cliente --</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
@@ -718,12 +710,6 @@ require_once("../config/db_config.php");
 
   </script>
 
-<!-- BUSCADOR DEL SELECT -->
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
-</script>
 
   <!-- Modal -->
   <div class="modal modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -796,10 +782,6 @@ require_once("../config/db_config.php");
   <script src="../vendor/simple-datatables/simple-datatables.js"></script>
   <script src="../vendor/tinymce/tinymce.min.js"></script>
   <script src="../vendor/php-email-form/validate.js"></script>
-
-    <!-- Buscaro del selecte -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
 
   <!-- Template Main JS File -->
   <script src="../js/main.js"></script>

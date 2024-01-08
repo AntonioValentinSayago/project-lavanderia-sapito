@@ -133,41 +133,51 @@ require_once("../config/db_config.php");
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="">
-          <i class="bi bi-grid"></i>
-          <span>Panel Principal</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../consultaPedido/index2.php">
-          <i class="bi bi-grid"></i>
-          <span>Historial de Pedidos</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+<li class="nav-item">
+  <a class="nav-link " href="index.php">
+    <i class="bi bi-grid"></i>
+    <span>Crear Nueva Nota</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../clientes/clientes2.php">
-          <i class="bi bi-person"></i>
-          <span>Clientes</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="pedidos-activos.php">
+    <i class="bi bi-grid"></i>
+    <span>Control de Pedidos Activos</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>Manual de Usuario</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-          <i class="bi bi-box-arrow-right"></i>
-          <span>Cerrar Sesión</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-    </ul>
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../consultaPedido/index.php">
+    <i class="bi bi-grid"></i>
+    <span>Historia de Notas Entregadas</span>
+  </a>
+</li><!-- End Dashboard Nav -->
+
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../clientes/clientes.php">
+    <i class="bi bi-person"></i>
+    <span>Control de Clientes</span>
+  </a>
+</li><!-- End Profile Page Nav -->
+
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#">
+    <i class="bi bi-question-circle"></i>
+    <span>Manual de Usuario</span>
+  </a>
+</li><!-- End F.A.Q Page Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+    <i class="bi bi-box-arrow-right"></i>
+    <span>Salir del  Sistema</span>
+  </a>
+</li><!-- End F.A.Q Page Nav -->
+</ul>
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
