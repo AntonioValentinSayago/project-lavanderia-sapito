@@ -40,14 +40,6 @@ require_once("../config/db_config.php");
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
-</script>
-
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -711,6 +703,13 @@ require_once("../config/db_config.php");
 
   </script>
 
+  <!-- BUSCADOR DEL SELECT -->
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
+
 
   <!-- Modal -->
   <div class="modal modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -761,7 +760,7 @@ require_once("../config/db_config.php");
       </div>
     </div>
   </div>
-  
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -784,6 +783,8 @@ require_once("../config/db_config.php");
   <script src="../vendor/simple-datatables/simple-datatables.js"></script>
   <script src="../vendor/tinymce/tinymce.min.js"></script>
   <script src="../vendor/php-email-form/validate.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../js/main.js"></script>

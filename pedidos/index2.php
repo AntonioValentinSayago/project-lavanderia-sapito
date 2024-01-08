@@ -50,11 +50,6 @@ require_once("../config/db_config.php");
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
 
-  <script>
-    $(document).ready(function () {
-      $('.select2').select2();
-    });
-  </script>
 
   <!-- Template Main CSS File -->
   <link href="../css/style.css" rel="stylesheet">
@@ -695,7 +690,11 @@ require_once("../config/db_config.php");
     }
 
   </script>
-
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2();
+    });
+  </script>
 
 
   <!-- Modal -->
