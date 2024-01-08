@@ -242,7 +242,8 @@ if (!isset($_SESSION['cargo'])) {
                           </p>
                           <a href="" target="_target" style="color: #7f1d1d; font-weight:900"><span
                               class="text-success small pt-1 fw-bold"></span>
-                            <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;" onclick="alert('Servicio en Construcción')">
+                            <a href="../pdf/reportes-diarios/pdf.php"></a>
+                              <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;" >
                               <i class="bi bi-filetype-pdf"></i> Generar Reporte de Ingresos Diarios
                             </button>
                             <?php
