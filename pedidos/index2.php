@@ -93,10 +93,8 @@ require_once("../config/db_config.php");
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo ucfirst($_SESSION['img']); ?>" alt="<?php echo ucfirst($_SESSION['nombre']); ?>"
-              class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              <?php echo ucfirst($_SESSION['nombre']); ?>
+              <?php echo $_SESSION['email']; ?>
             </span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -105,7 +103,6 @@ require_once("../config/db_config.php");
               <h6>
                 <?php echo ucfirst($_SESSION['nombre']); ?>
               </h6>
-              <span>Administrador</span>
             </li>
             <li>
               <hr class="dropdown-divider">
