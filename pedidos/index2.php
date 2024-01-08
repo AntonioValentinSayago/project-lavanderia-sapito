@@ -198,82 +198,78 @@ require_once("../config/db_config.php");
           data-bs-target="#exampleModal" id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
-    
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-        <div class="col-lg-5">
-          <div class="row">
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-                <div class="card-body mt-2">
-                  <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-                    <?php date_default_timezone_set("America/Mexico_City");
-                    echo date('d \d\e F \d\e Y'); ?>
-                  </h5>
-                  <hr>
-                  <!-- No Labels Form -->
-                  <form class="row g-3">
-                    <div class="col-md-8">
-                      <label for="">Categoría</label>
-                      <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
-                        <?php
-                        $consultaCategoria = "SELECT * FROM ctl_categorias";
-                        $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
-                        if (mysqli_num_rows($stmtCategoria) > 0) {
-                          while ($fila = mysqli_fetch_array($stmtCategoria)) {
-                            ?>
-                            <option data-nit="<?php echo $fila["precio"]; ?>"
-                              value="<?php echo $fila["id_ctl_categorias"]; ?>">
-                              <?php echo $fila["nombreCategoria"]; ?>
-                            </option>
-                            <?php
-                          }
-                        } else {
-                          ?>
-                          <option value="null" selected>No existen Categorías</option>
-                          <?php
-                        }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="">Precio $</label>
-                      <input type="number" class="form-control" id="nit">
-                    </div>
-                    <div class="col-md-12">
-                      <button type="button" class="btn btn-primary" id="adicionar">Agregar</button>
-                      <button type="reset" class="btn btn-secondary">Limpiar</button>
-                    </div>
-                  </form><!-- End No Labels Form -->
-                </div>
-              </div>
-            </div><!-- End Recent Sales -->
-          </div>
-        </div>
-        <div class="col-lg-7">
+        <div class="col-lg-12">
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-                <?php date_default_timezone_set("America/Mexico_City");
-                $date = date("d-m-Y"); // Establece la configuración regional en español para México
-                echo $fecha = date('Y-m-d', strtotime($date)); ?>
+                <?php
+                // Establecer la zona horaria a la Ciudad de México
+                date_default_timezone_set('America/Mexico_City');
+
+                // Crear un objeto DateTimeImmutable con la fecha y hora actuales
+                $fecha_actual = new DateTimeImmutable();
+                // Obtener la fecha formateada
+                $fecha_formateada = $fecha_actual->format('Y-m-d H:i:s');
+
+                // Imprimir la fecha
+                echo "Fecha actual en la Ciudad de México: $fecha_formateada";
+                ?>
               </h5>
+              <hr>
+              <!-- No Labels Form -->
+              <form class="row g-3">
+                <div class="col-md-4">
+                  <label for="categoria">Lista de Categorías Disponibles</label>
+                  <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
+                    <option value="null" selected> - Seleccione una Opción - </option>
+                    <?php
+                    $consultaCategoria = "SELECT * FROM ctl_categorias";
+                    $stmtCategoria = mysqli_query($conexion, $consultaCategoria);
+                    if (mysqli_num_rows($stmtCategoria) > 0) {
+                      while ($fila = mysqli_fetch_array($stmtCategoria)) {
+                        ?>
+                        <option data-nit="<?php echo $fila["precio"]; ?>" value="<?php echo $fila["id_ctl_categorias"]; ?>">
+                          <?php echo $fila["nombreCategoria"]; ?>
+                        </option>
+                        <?php
+                      }
+                    } else {
+                      ?>
+                      <option value="null" selected>No existen Categorías</option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="nit">PRECIO $</label>
+                  <input type="number" class="form-control" id="nit" disabled>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-block" id="adicionar"
+                    style="background:#34d399; color:#f0fdf4; width:100%">Agregar al Pedido</button>
+                  <!-- <button type="reset" class="btn btn-secondary btn-block" style="background: #083344">Limpiar</button> -->
+                </div>
+              </form><!-- End No Labels Form -->
               <hr>
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
                 <div class="col-md-9">
-                  <label for="id_cliente">Cliente</label>
+                  <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control" type="text" id="id_cliente" required>
+                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true"
+                    data-live-search="true">
+                    <option value="">-- Seleccione Cliente --</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
                     $stmtClientes = mysqli_query($conexion, $consultaClientes);
                     if (mysqli_num_rows($stmtClientes) > 0) {
                       while ($fila = mysqli_fetch_array($stmtClientes)) {
                         ?>
-                        <option value="">Seleccione Cliente...</option>
                         <option value="<?php echo $fila["idCliente"]; ?>">
                           <?php echo $fila["nombreCompleto"]; ?>
                         </option>
@@ -288,120 +284,91 @@ require_once("../config/db_config.php");
                   </select>
                 </div>
                 <div class="col-md-3">
-                  <label for="">Folio Nota</label>
-                  <?php $numero = random_int(1, 99);
-                  $letra_aleatoria = chr(rand(65, 90));
+                  <label for="">Número de Folio</label>
+                  <?php
+                  //$numero = random_int(1, 99);
+                  //$letra_aleatoria = chr(rand(65, 90));
+                  $consultaFolioNota = "SELECT * FROM config_folios ORDER BY ultimo_folio DESC LIMIT 1";
+                  $stmtFolioNota = mysqli_query($conexion, $consultaFolioNota);
+                  if (mysqli_num_rows($stmtFolioNota) > 0) {
+                    while ($fila = mysqli_fetch_array($stmtFolioNota)) {
+                      $folio_incremento = $fila["ultimo_folio"] + 1;
+                      ?>
+                      <input type="text" class="form-control" value="<?php echo $folio_incremento ?>" disabled
+                        id="folioNota">
+                      <?php
+                    }
+                  } else {
+                    ?>
+                    <input type="text" class="form-control" value="1" disabled id="folioNota">
+                    <?php
+                  }
                   ?>
-                  <input type="text" class="form-control" value="LS<?php echo $letra_aleatoria;
-                  echo $numero ?>" disabled id="folioNota">
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <table class="table table-bordered table-hover " id="miTabla">
                     <tr style="font-size:10px; font-weight: 900;color:black">
-                      <td scope="col">#</td>
-                      <td scope="col">Nombre</td>
-                      <td scope="col">Cantidad:</td>
-                      <td scope="col">Total:</td>
+                      <!-- <td scope="col" >#</td> -->
+                      <td scope="col" class="text-center">-</td>
+                      <td scope="col">Producto</td>
+                      <td scope="col">Cantidad o KG:</td>
+                      <td scope="col">Total $:</td>
                     </tr>
                   </table>
                 </div>
-                <div class="col-md-3 text-center">
+                <div class="col-md-2 text-center">
                   <label for="">Subtotal a Pagar</label><br>
-                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled>
+                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled
+                    style="background-color: #cbd5e1; font-weight: 900;">
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
-                  <input type="number" class="form-control restaCantidadProducto" required id="dineroCuenta"
+                  <input type="text" class="form-control restaCantidadProducto" required id="dineroCuenta"
                     placeholder="00.00">
                 </div>
                 <div class="col-md-4 ingresoRestaPrecio">
                   <label for="">Total:</label><br>
                   <input type="number" class="form-control restaPrecioProducto" id="resta" totalResta=""
-                    placeholder="00.00" disabled>
+                    placeholder="00.00" disabled style="background-color: #cbd5e1; font-weight: 900;">
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo $fecha ?>">
+                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo $date ?>">
+                </div>
+                <div class="col-md-4">
+                  <label for="">Horario de Entrega:</label>
+                  <select id="horaEntrega" class="form-control" required>
+                    <option value="" select>Seleccione Horario....</option>
+                    <option value="11:00am">11:00 am</option>
+                    <option value="12:00pm">12:00 pm</option>
+                    <option value="02:00pm">02:00 pm</option>
+                    <option value="04:00pm">04:00 pm</option>
+                    <option value="06:00pm">06:00 pm</option>
+                    <option value="08:00pm">08:00 pm</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                  <label for="descripcion">Observaciones:</label>
+                  <input type="text" class="form-control" required id="obervaciones">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Crear Pedido</button>
-                  <button type="reset" onclick="resetFormulario()" class="btn btn-danger"><i
-                      class="bi bi-trash3"></i></button>
+                  <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4;"><i
+                      class="bi bi-save"></i> Crear Pedido</button>
+                  <!-- <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4;" ><i class="bi bi-save"></i>
+                    Crear y guardar Pedido</button> -->
+                  <button type="reset" onclick="resetFormulario()" class="btn btn-default"
+                    style="background: #991b1b; color:white">
+                    <i class="bi bi-trash3"></i> Cancelar Pedido
+                  </button>
                 </div>
               </form><!-- End No Labels Form -->
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card recent-sales overflow-auto">
-                <div class="card-body">
-                  <p>Cartera de Pedidos</p>
-                  <hr>
-                  <table class="table table-borderless" id="example1">
-                    <thead>
-                      <tr>
-                        <th scope="col">$ Folio de Nota</th>
-                        <th scope="col">$ Total</th>
-                        <th scope="col">Estatus</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Ver</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $consulta = "SELECT DISTINCT folio_nota,
-                      ped.estatus, ped.dineroCuenta,ped.dineroPendiente, ped.costoPagar,ped.fecha_entrega,
-                      cl.nombreCompleto as nombreCliente,
-                      cata.id_ctl_ventapedidos FROM ctl_catalogo cata
-                                    join ctl_categorias cate ON cate.id_ctl_categorias = cata.id_ctl_categorias
-                                    JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
-                                    JOIN clientes cl ON cl.idCliente = cata.idCliente
-                                    JOIN ctl_userSystem  emp ON emp.id_ctlUserSystem = cata.id_ctlUserSystem";
-                      $stmt = mysqli_query($conexion, $consulta);
-                      if (mysqli_num_rows($stmt) > 0) {
-                        while ($fila = mysqli_fetch_array($stmt)) {
-                          $Estatus = $fila["estatus"];
-                          ?>
-                          <tr>
-                            <th scope="row">
-                              <?php echo $fila["folio_nota"]; ?>
-                            </th>
-                            <td>
-                              <?php echo $fila["costoPagar"]; ?>
-                            </td>
-                            <td>
-                              <span
-                                class="badge <?php echo ($Estatus == 'Pendiente') ? 'bg-warning' : 'bg-success' ?> text-dark">
-                                <?php echo ($Estatus == 'Pendiente') ? "Pendiente" : "Entregado" ?>
-                              </span>
-                            </td>
-                            <td>
-                              <?php echo $fila["nombreCliente"]; ?>
-                            </td>
-                            <td><a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
-                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a></td>
-                          </tr>
-                          <?php
-                        }
-                      } else {
-                        ?>
-                        <h5 class="alert alert-danger">No hay registros en la base de datos</h5>
-                        <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
+
+
   </main><!-- End #main -->
 
   <script>

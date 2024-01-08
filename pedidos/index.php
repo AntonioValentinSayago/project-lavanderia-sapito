@@ -383,6 +383,7 @@ require_once("../config/db_config.php");
         </div>
       </div>
     </section>
+    
   </main><!-- End #main -->
 
   <script>
