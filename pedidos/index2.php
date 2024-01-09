@@ -134,7 +134,7 @@ require_once("../config/db_config.php");
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../consultaPedido/index.php">
+        <a class="nav-link collapsed" href="../consultaPedido/index2.php">
           <i class="bi bi-grid"></i>
           <span>Historia de Notas Entregadas</span>
         </a>
