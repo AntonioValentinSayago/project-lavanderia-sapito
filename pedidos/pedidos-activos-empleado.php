@@ -234,7 +234,7 @@ require_once("../config/db_config.php");
                               <?php echo $fila["nombreCliente"]; ?>
                             </td>
                             <td style="text-align:center;">
-                              <a href="verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
+                              <a href="verNota-empleado.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
                                   class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
 
                               <a href="imprimirTicket.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"
