@@ -120,14 +120,14 @@ require_once("../config/db_config.php");
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php">
+        <a class="nav-link collapsed" href="index2.php">
           <i class="bi bi-grid"></i>
           <span>Crear Nueva Nota</span>
         </a>
       </li><!-- End Dashboard Nav -->
       
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="pedidos-activos-empleado.php">
           <i class="bi bi-grid"></i>
           <span>Control de Pedidos Activos</span>
         </a>
@@ -170,7 +170,7 @@ require_once("../config/db_config.php");
 
         <div class="pagetitle" style="display: flex;">
         <h1>DETALLE DEL PEDIDO</h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="pedidos-activos.php"><button type="button"
+            <a href="pedidos-activos-empleado.php"><button type="button"
                     class="btn" style="background: #991b1b; color:white">Regresar</button>
             </a>
             <nav>
