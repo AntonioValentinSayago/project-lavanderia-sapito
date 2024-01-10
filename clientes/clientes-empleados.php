@@ -123,48 +123,48 @@ require_once("../config/db_config.php");
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../pedidos/index2.php">
-    <i class="bi bi-grid"></i>
-    <span>Crear Nueva Nota</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="../pedidos/index2.php">
+      <i class="bi bi-grid"></i>
+      <span>Crear Nueva Nota</span>
+    </a>
+  </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../pedidos/pedidos-activos-empleado.php">
-    <i class="bi bi-grid"></i>
-    <span>Control de Pedidos Activos</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="../pedidos/pedidos-activos-empleado.php">
+      <i class="bi bi-grid"></i>
+      <span>Control de Pedidos Activos</span>
+    </a>
+  </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../consultaPedido/index2.php">
-    <i class="bi bi-grid"></i>
-    <span>Historia de Notas Entregadas</span>
-  </a>
-</li><!-- End Dashboard Nav -->
-
-
-<li class="nav-item">
-  <a class="nav-link " href="">
-    <i class="bi bi-person"></i>
-    <span>Control de Clientes</span>
-  </a>
-</li><!-- End Profile Page Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="../consultaPedido/index2.php">
+      <i class="bi bi-grid"></i>
+      <span>Historia de Notas Entregadas</span>
+    </a>
+  </li><!-- End Dashboard Nav -->
 
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#">
-    <i class="bi bi-question-circle"></i>
-    <span>Manual de Usuario</span>
-  </a>
-</li><!-- End F.A.Q Page Nav -->
-<li class="nav-item">
-  <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-    <i class="bi bi-box-arrow-right"></i>
-    <span>Salir del Sistema</span>
-  </a>
-</li><!-- End F.A.Q Page Nav -->
+  <li class="nav-item">
+    <a class="nav-link " href="">
+      <i class="bi bi-person"></i>
+      <span>Control de Clientes</span>
+    </a>
+  </li><!-- End Profile Page Nav -->
+
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#">
+      <i class="bi bi-question-circle"></i>
+      <span>Manual de Usuario</span>
+    </a>
+  </li><!-- End F.A.Q Page Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Salir del Sistema</span>
+    </a>
+  </li><!-- End F.A.Q Page Nav -->
 </ul>
 
   </aside><!-- End Sidebar-->
@@ -173,7 +173,7 @@ require_once("../config/db_config.php");
     <div class="pagetitle" style="display: flex;">
       <h1>Cartera de Clientes</h1>
       <div style="margin-left: auto;">
-        <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
+        <a href="agregar-cliente-empleado.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-plus me-1"></i>Agregar Nuevo Cliente</button></a>
         <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
               class="bi bi-filetype-pdf"></i> Generar Reporte de Clientes con Pedido</button></a>
