@@ -3,7 +3,10 @@ include("../config/db_config.php");
 
 $nombre = $_POST["nombre"];
 $direccion = $_POST["direccion"];
-$telefono = $_POST["telefono"] ?: 'sin-numero';
+$telefono = $_POST["telefono"];
+
+// Usamos una expresión ternaria para decidir si agregar comillas o no
+$telefono = $telefono !== '' ? "'$telefono'" : "'sin-numero'";
 
 $insertar = "INSERT INTO clientes (nombreCompleto, direccion, telefono)
              VALUES ('$nombre', '$direccion', $telefono)";
