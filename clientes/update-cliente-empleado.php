@@ -25,5 +25,5 @@ if (!$resultado) {
     die("Error al actualizar datos: " . mysqli_error($conexion));
 }
 
-header("Location: clientes-empleado.php");
+header("Location: clientes-empleados.php");
 ?>
