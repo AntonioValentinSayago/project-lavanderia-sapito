@@ -78,10 +78,8 @@ require_once("../config/db_config.php");
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo ucfirst($_SESSION['img']); ?>" alt="<?php echo ucfirst($_SESSION['nombre']); ?>"
-              class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              <?php echo ucfirst($_SESSION['nombre']); ?>
+              <?php echo $_SESSION['email']; ?>
             </span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -90,7 +88,6 @@ require_once("../config/db_config.php");
               <h6>
                 <?php echo ucfirst($_SESSION['nombre']); ?>
               </h6>
-              <span>Empleado</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -124,43 +121,51 @@ require_once("../config/db_config.php");
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed " href="../pedidos/index2.php">
-          <i class="bi bi-grid"></i>
-          <span>Panel Principal</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../consultaPedido/index2.php">
-          <i class="bi bi-grid"></i>
-          <span>Historial de Pedidos</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../pedidos/index2.php">
+    <i class="bi bi-grid"></i>
+    <span>Crear Nueva Nota</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link ">
-          <i class="bi bi-person"></i>
-          <span>Clientes</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../pedidos/pedidos-activos-empleado.php">
+    <i class="bi bi-grid"></i>
+    <span>Control de Pedidos Activos</span>
+  </a>
+</li><!-- End Dashboard Nav -->
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../consultaPedido/index2.php">
+    <i class="bi bi-grid"></i>
+    <span>Historia de Notas Entregadas</span>
+  </a>
+</li><!-- End Dashboard Nav -->
 
 
-      <li class="nav-item">
-        <a class="nav-link collapsed">
-          <i class="bi bi-question-circle"></i>
-          <span>Manual de Usuario</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-          <i class="bi bi-box-arrow-right"></i>
-          <span>Cerrar Sesión</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
+<li class="nav-item">
+  <a class="nav-link " href="">
+    <i class="bi bi-person"></i>
+    <span>Control de Clientes</span>
+  </a>
+</li><!-- End Profile Page Nav -->
 
-    </ul>
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#">
+    <i class="bi bi-question-circle"></i>
+    <span>Manual de Usuario</span>
+  </a>
+</li><!-- End F.A.Q Page Nav -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+    <i class="bi bi-box-arrow-right"></i>
+    <span>Salir del Sistema</span>
+  </a>
+</li><!-- End F.A.Q Page Nav -->
+</ul>
 
   </aside><!-- End Sidebar-->
 
@@ -169,9 +174,9 @@ require_once("../config/db_config.php");
       <h1>Cartera de Clientes</h1>
       <div style="margin-left: auto;">
         <a href="addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
-              class="bi bi-plus me-1"></i>Cliente</button></a>
+              class="bi bi-plus me-1"></i>Agregar Nuevo Cliente</button></a>
         <a href="../pdf/clientesPedido/pdf.php" target="_target"><button type="button" class="btn btn-danger"><i
-              class="bi bi-filetype-pdf"></i> Generar Reporte</button></a>
+              class="bi bi-filetype-pdf"></i> Generar Reporte de Clientes con Pedido</button></a>
       </div>
     </div><!-- End Page Title -->
     <!--Inicio del Section Principal-->
@@ -180,7 +185,7 @@ require_once("../config/db_config.php");
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
-              <h5 class="card-title">Clientes con Pedido</h5>
+              <h5 class="card-title">Clientes con Pedido Activo</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -188,17 +193,20 @@ require_once("../config/db_config.php");
                   <table class="table table-striped" id="example1">
                     <thead>
                       <tr style="background:#F4f4f8;">
-                        <th scope="col">Cliente</th>
+                        <th scope="col">Nombre del Cliente</th>
                         <th scope="col">Direccion</th>
-                        <th scope="col">Folio</th>
-                        <th scope="col">Estatus</th>
+                        <th scope="col">No° Folio</th>
+                        <th scope="col">Estatus Actual</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
                       require_once("../config/db_config.php");
-                      $consulta = "select DISTINCT nombreCompleto,cl.idCliente,estatus,direccion,folio_nota from ctl_catalogo cata
+                      $consulta = "SELECT DISTINCT nombreCompleto,
+                      cl.idCliente,estatus,direccion,folio_nota, 
+                      cata.id_ctl_ventapedidos
+                      FROM ctl_catalogo cata
                       JOIN ctl_ventapedidos ped ON ped.id_ctl_ventapedidos = cata.id_ctl_ventapedidos
                       JOIN clientes cl ON cl.idCliente = cata.idCliente";
                       $stmt = mysqli_query($conexion, $consulta);
@@ -206,7 +214,7 @@ require_once("../config/db_config.php");
                         while ($fila = mysqli_fetch_array($stmt)) {
                           $Estatus = $fila["estatus"];
                           ?>
-                          <tr style="text-align:center">
+                          <tr style="text-align:center; text-transform: uppercase;">
                             <td>
                               <?php echo $fila["nombreCompleto"]; ?>
                             </td>
@@ -223,7 +231,8 @@ require_once("../config/db_config.php");
                               </span>
                             </td>
                             <td>
-                              <span class="badge bg-success"><i class="bi bi-eye"></i> </span>
+                            <a href="../pedidos/verNota.php?idPedido=<?php echo $fila["id_ctl_ventapedidos"] ?>"><span
+                                  class="badge bg-success"><i class="bi bi-eye-fill"></i></span></a>
                             </td>
                           </tr>
                           <?php
@@ -258,15 +267,14 @@ require_once("../config/db_config.php");
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body pt-3">
-              <h5 class="card-title">Control de Clientes</h5>
+              <h5 class="card-title">CONTROL DE CLIENTES</h5>
               <!-- Bordered Tabs -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <!-- Active Table -->
                   <table class="table table-striped" id="example">
                     <thead>
-                      <tr style="background:#F4f4f8;">
-                        <th scope="col">#</th>
+                      <tr style="background-color:#F4f4f8; text-align:center">
                         <th scope="col">Nombre Completo</th>
                         <th scope="col">Direccion</th>
                         <th scope="col">Telefono</th>
@@ -281,10 +289,7 @@ require_once("../config/db_config.php");
                         while ($fila = mysqli_fetch_array($stmt)) {
                           $idCliente = $fila["idCliente"];
                           ?>
-                          <tr style="text-align:center">
-                            <th scope="row">
-                              <?php echo $idCliente ?>
-                            </th>
+                          <tr style="text-align:center; text-transform: uppercase;">
                             <th scope="row">
                               <?php echo $fila["nombreCompleto"]; ?>
                             </th>
@@ -339,6 +344,8 @@ require_once("../config/db_config.php");
       </div>
     </section>
   </main><!-- End #main -->
+
+
   <script>
     function validar() {
       iziToast.warning({

@@ -375,6 +375,8 @@ if (!isset($_SESSION['cargo'])) {
       </div>
     </section>
   </main><!-- End #main -->
+
+  
   <script>
     function validar() {
       iziToast.warning({
