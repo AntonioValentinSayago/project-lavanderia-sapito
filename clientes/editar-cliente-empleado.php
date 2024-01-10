@@ -195,7 +195,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
                                 while ($fila = mysqli_fetch_array($stmt)) {
                                     ?>
                                     <hr>
-                                    <form class="row g-3 mt-2" action="updateClientes.php" method="post">
+                                    <form class="row g-3 mt-2" action="update-cliente-empleado.php" method="post">
                                         <div class="col-md-6">
                                             <label for="">Nombre Completo*</label>
                                             <input type="hidden" name="idCliente" value="<?php echo $fila["idCliente"]; ?>">
@@ -212,7 +212,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-success"><i class="bi bi-save-fill"></i>
                                                 Guardar</button>
-                                            <a href="clientes.php"><button type="button"
+                                            <a href="clientes-empleados.php"><button type="button"
                                                     class="btn btn-secondary">Cancelar</button></a>
                                         </div>
                                     </form><!-- End No Labels Form -->
@@ -237,7 +237,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
             &copy; Copyright <strong><span>Lavanderia_Sapito</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Lavandera Sapito </a>
+            Designed by <a href="https://bootstrapmade.com/">Lavandería Sapito 2024</a>
         </div>
     </footer><!-- End Footer -->
 

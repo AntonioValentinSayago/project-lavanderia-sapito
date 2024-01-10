@@ -300,7 +300,7 @@ require_once("../config/db_config.php");
                               <?php echo $fila["telefono"]; ?>
                             </td>
                             <td>
-                              <a href="editarCliente.php?idCliente=<?php echo $fila["idCliente"]; ?>"><span
+                              <a href="editar-cliente-empleado.php?idCliente=<?php echo $fila["idCliente"]; ?>"><span
                                   class="badge bg-warning"><i class="bi bi-pencil-square"></i>
                                 </span></a>
                               <?php
