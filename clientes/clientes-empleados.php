@@ -350,7 +350,7 @@ require_once("../config/db_config.php");
     function validar() {
       iziToast.warning({
         title: 'Advertencia',
-        message: 'No puedo borrar un cliente con pedido',
+        message: 'No puedo eliminar un cliente con pedido activo',
         position: 'center'
       });
     }
@@ -362,7 +362,7 @@ require_once("../config/db_config.php");
         // Delete id
         var deleteid = $(this).data('id');
         // Confirm box
-        bootbox.confirm("¿Seguro de borrar este Cliente?", function (result) {
+        bootbox.confirm("¿Seguro de borrar este Cliente? ", function (result) {
           if (result) {
             // AJAX Request
             $.ajax({
@@ -377,7 +377,7 @@ require_once("../config/db_config.php");
                     $(this).remove();
                   });
                 } else {
-                  bootbox.alert('Errro de Servidor.');
+                  bootbox.alert('Errro de Servidor');
                 }
               }
             });
