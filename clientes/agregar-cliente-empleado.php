@@ -195,7 +195,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
                                 <div class="col-md-6">
                                     <label for="">Teléfono (opcional)</label>
                                     <input type="number" class="form-control" name="telefono" id="telefonoCliente"
-                                        placeholder="Telefono" value="00000000">
+                                        placeholder="00000000" >
                                     <span id="telefonoStatus" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-12">
