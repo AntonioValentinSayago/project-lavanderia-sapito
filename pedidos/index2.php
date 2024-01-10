@@ -142,7 +142,7 @@ require_once("../config/db_config.php");
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../clientes/clientes.php">
+        <a class="nav-link collapsed" href="../clientes/clientes-empleados.php">
           <i class="bi bi-person"></i>
           <span>Control de Clientes</span>
         </a>

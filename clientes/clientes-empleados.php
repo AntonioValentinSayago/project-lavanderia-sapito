@@ -2,10 +2,10 @@
 session_start();
 
 // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
-if (!isset($_SESSION['cargo'])) {
+if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
   header('location: ../index.php');
 }
-
+require_once("../config/db_config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ if (!isset($_SESSION['cargo'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - Lavanderia Sapito</title>
+  <title>Control de Clientes - Lavanderia Sapito</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -61,7 +61,7 @@ if (!isset($_SESSION['cargo'])) {
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/394/394894.png" alt="">
-        <span class="d-none d-lg-block">Sapito</span>
+        <span class="d-none d-lg-block">Lavandería Sapito</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
