@@ -207,7 +207,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
                                     <button type="submit" class="btn" id="registroButton" style="background:#34d399; color:#f0fdf4"><i
                                             class="bi bi-save-fill"></i>
                                         Guardar Nuevo Cliente</button>
-                                    <a href="clientes.php"><button type="button"
+                                    <a href="clientes-empleados.php"><button type="button"
                                             class="btn" style="background: #991b1b; color:white">Cancelar Registro</button></a>
                                 </div>
                             </form><!-- End No Labels Form -->
