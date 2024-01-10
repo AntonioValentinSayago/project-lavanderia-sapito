@@ -11,7 +11,7 @@ $nombreCompleto = mysqli_real_escape_string($conexion, $nombreCompleto);
 $direccion = mysqli_real_escape_string($conexion, $direccion);
 
 // Verificar si $telefono está vacío o nulo
-$telefono = ($telefono !== '') ? "'$telefono'" : 'sin-numero';
+$telefono = ($telefono !== '') ? "'$telefono'" : 'NULL';
 
 // Actualizar la base de datos
 $insertar = "UPDATE clientes 
