@@ -185,7 +185,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 0) {
                             <!-- Bordered Tabs -->
                             <hr>
                             <!-- No Labels Form -->
-                            <form class="row g-3 mt-2" action="newCliente.php" method="post">
+                            <form class="row g-3 mt-2" action="nuevo-cliente-empleado.php" method="post">
                                 <div class="col-md-6">
                                     <label for="">Nombre Completo*</label>
                                     <input type="text" class="form-control" name="nombre" id="nombreCliente"
