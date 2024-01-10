@@ -1,17 +1,21 @@
-<?php 
-    include("../config/db_config.php");
+<?php
+include("../config/db_config.php");
 
-    $nombre = $_POST["nombre"];
-    $telefono = $_POST["telefono"];
-    $direccion = $_POST["direccion"];
+$nombre = $_POST["nombre"];
+$direccion = $_POST["direccion"];
+$telefono = $_POST["telefono"];
 
+// Usamos una expresión ternaria para decidir si agregar comillas o no
+$telefono = $telefono !== '' ? "'$telefono'" : "'sin-numero'";
 
-    $insertar = "INSERT INTO clientes (nombreCompleto ,
-                                        direccion ,
-                                        telefono)
-                VALUES ('$nombre','$direccion', $telefono)";
+$insertar = "INSERT INTO clientes (nombreCompleto, direccion, telefono)
+             VALUES ('$nombre', '$direccion', $telefono)";
 
-    $insertar = mysqli_query($conexion, $insertar);
+$resultado = mysqli_query($conexion, $insertar);
 
+if (!$resultado) {
+    // Manejar el error, si es necesario
+    die("Error al insertar datos: " . mysqli_error($conexion));
+}
 
 header("Location: clientes.php");
