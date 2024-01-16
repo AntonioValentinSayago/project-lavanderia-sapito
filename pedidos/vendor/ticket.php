@@ -105,7 +105,7 @@
                          // Corta la cadena si es más larga que la longitud máxima
                          $nombreProductosRecortado = mb_substr($nombreProductos, 0, $longitudMaxima, 'UTF-8'); 
                          $nombreProductosMostrar = (mb_strlen($nombreProductos) > $longitudMaxima) ? $nombreProductosRecortado . '...' : $nombreProductos;
-                         $pdf->Cell(-2, 4, mb_convert_encoding($nombreProductosMostrar, 'ISO-8859-1', 'UTF-8'), 100, 0, 'C');                                             
+                         $pdf->Cell(1, 4, mb_convert_encoding($nombreProductosMostrar, 'ISO-8859-1', 'UTF-8'), 100, 0, 'R');                                             
                          //$pdf->Cell(1,4,mb_convert_encoding($nombreProductos, 'ISO-8859-1', 'UTF-8'),100,0,'C');
                          $pdf->Cell(39,4,mb_convert_encoding($precioProductos,'ISO-8859-1', 'UTF-8'),0,0,'C');
                          $pdf->Cell(-1,4,mb_convert_encoding($cantidadProductos,'ISO-8859-1', 'UTF-8'),0,0,'R');
