@@ -101,7 +101,7 @@
                          $cantidadNumerica = floatval($cantidadProductos);
                          $producto = $precioNumerico * $cantidadNumerica;                         
                          $totalDelTicket = "$" . $producto;                                                            
-                         $pdf->Cell(1,4,mb_convert_encoding($nombreProductos, 'ISO-8859-1', 'UTF-8'),20,0,'C');
+                         $pdf->Cell(1,4,mb_convert_encoding($nombreProductos, 'ISO-8859-1', 'UTF-8'),0,100,'C');
                          $pdf->Cell(39,4,mb_convert_encoding($precioProductos,'ISO-8859-1', 'UTF-8'),0,0,'C');
                          $pdf->Cell(-1,4,mb_convert_encoding($cantidadProductos,'ISO-8859-1', 'UTF-8'),0,0,'R');
                          $pdf->Cell(13,4,mb_convert_encoding($totalDelTicket,'ISO-8859-1', 'UTF-8'),0,0,'R');
