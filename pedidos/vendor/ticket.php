@@ -84,7 +84,7 @@
                         ";
     $stmt = mysqli_query($conexion, $consulta);
     /*----------  Detalles de la tabla  ----------*/
-    $longitudMaxima = 20; // Establece la longitud máxima deseada
+    $longitudMaxima = 14; // Establece la longitud máxima deseada
     if (mysqli_num_rows($stmt) > 0){
         while($fila = mysqli_fetch_array($stmt)){
             $total_pagar = "$ ".$fila["costoPagar"]; 
