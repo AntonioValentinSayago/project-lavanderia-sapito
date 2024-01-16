@@ -93,7 +93,7 @@
                      $stmtCate = mysqli_query($conexion, $consultaCate);
                 if (mysqli_num_rows($stmtCate) > 0) {
                      while ($filaCate = mysqli_fetch_array($stmtCate)) {
-                        $pdf->Cell(10,5,mb_convert_encoding("", 'ISO-8859-1', 'UTF-8'),0,0,'C');
+                        $pdf->Cell(18,5,mb_convert_encoding("", 'ISO-8859-1', 'UTF-8'),0,0,'C');
                          $nombreProductos = $filaCate["nombreCategoria"];                                                   
                          $precioProductos = $filaCate["precio"];                                                   
                          $cantidadProductos = $filaCate["Cantidad"];   
@@ -101,7 +101,7 @@
                          $cantidadNumerica = floatval($cantidadProductos);
                          $producto = $precioNumerico * $cantidadNumerica;                         
                          $totalDelTicket = "$" . $producto;                                                            
-                         $pdf->Cell(1,4,mb_convert_encoding($nombreProductos, 'ISO-8859-1', 'UTF-8'),0,0,'C');
+                         $pdf->Cell(-10,4,mb_convert_encoding($nombreProductos, 'ISO-8859-1', 'UTF-8'),0,0,'C');
                          $pdf->Cell(39,4,mb_convert_encoding($precioProductos,'ISO-8859-1', 'UTF-8'),0,0,'C');
                          $pdf->Cell(-1,4,mb_convert_encoding($cantidadProductos,'ISO-8859-1', 'UTF-8'),0,0,'R');
                          $pdf->Cell(13,4,mb_convert_encoding($totalDelTicket,'ISO-8859-1', 'UTF-8'),0,0,'R');
