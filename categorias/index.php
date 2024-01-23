@@ -202,7 +202,7 @@ if (!isset($_SESSION['cargo'])) {
     <main id="main" class="main">
 
         <div class="pagetitle" style="display: flex;">
-            <h1>CONTROL DE CategoCATEGORÍAS</h1>
+            <h1>CONTROL DE CATEGORÍAS</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php"></a></li>
