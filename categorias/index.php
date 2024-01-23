@@ -221,7 +221,7 @@ if (!isset($_SESSION['cargo'])) {
         <section class="section dashboard">
             <div class="row">
                 <!-- Left side columns -->
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="row">
                         <!-- Recent Sales -->
                         <div class="col-12">
@@ -294,9 +294,6 @@ if (!isset($_SESSION['cargo'])) {
                         </div><!-- End Recent Sales -->
                     </div>
                 </div><!-- End Left side columns -->
-                <div class="col-lg-4">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, quidem.</p>
-                </div>
             </div>
         </section>
     </main><!-- End #main -->
