@@ -165,7 +165,7 @@ if (!isset($_SESSION['cargo'])) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../gastos/index.php">
-          <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
+          <i class="bi bi-bar-chart"></i><span>Control de Gastos de Generales</span>
         </a>
       </li><!-- End Charts Nav -->
 
