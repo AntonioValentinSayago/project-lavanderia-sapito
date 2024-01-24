@@ -124,7 +124,7 @@ if (!isset($_SESSION['cargo'])) {
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="index.php">
+        <a class="nav-link collapsed" href="../pedidos/index.php">
           <i class="bi bi-grid"></i>
           <span>Crear Nueva Nota</span>
         </a>
