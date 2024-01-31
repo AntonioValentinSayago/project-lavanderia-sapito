@@ -50,11 +50,11 @@ function getPlantilla($productos)
         $contenido .= '
   					<tr >
   					<td class="qty" style="font-size: 9px">' . $producto["folio_nota"] . '</td>
-                      <td class="qty" style="font-size: 5px">' . $producto["cliente"] . '</td>
+                      <td class="qty" style="font-size: 9px">' . $producto["cliente"] . '</td>
                       <td class="qty">' . $producto["telefono_cliente"] . '</td>
                       <td class="qty">' . $producto["estatus"] . '</td>
-                      <td class="qty">' . $producto["empleado"] . '</td>
-                      <td class="qty">' . $producto["descripcion"] . '</td>
+                      <td class="qty" style="font-size: 9px">' . $producto["empleado"] . '</td>
+                      <td class="qty" style="font-size: 9px">' . $producto["descripcion"] . '</td>
                       <td class="qty">$ ' . $producto["total_pedido"] . '</td>
   					</tr>';
     }
