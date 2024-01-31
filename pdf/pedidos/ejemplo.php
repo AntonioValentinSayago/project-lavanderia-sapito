@@ -17,10 +17,7 @@ function getPlantilla($productos)
       </div>
       <div id="company" class="clearfix">
         <div><h2>Lavandería Sapito</h2></div>
-        
-        <div>HEHD000000123</div>
-        <div>Av. Robles, Comitan, Chiapas</div>
-		<div>960000000</div>
+      
       </div>
 	  <br>
       <div id="project">
@@ -51,8 +48,8 @@ function getPlantilla($productos)
         $importe = $producto["total_pedido"];
         $importetotal += $importe;
         $contenido .= '
-  					<tr>
-  					<td class="qty">' . $producto["folio_nota"] . '</td>
+  					<tr >
+  					<td class="qty" style="font-size: 5px">' . $producto["folio_nota"] . '</td>
                       <td class="qty">' . $producto["cliente"] . '</td>
                       <td class="qty">' . $producto["telefono_cliente"] . '</td>
                       <td class="qty">' . $producto["estatus"] . '</td>
