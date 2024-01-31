@@ -32,7 +32,7 @@ function getPlantilla($productos)
       <table>
         <thead>
           <tr>
-            <th class="qty">Folio Nota</th>
+            <th class="qty" style="font-size: 9px">Folio Nota</th>
             <th class="qty">Cliente</th>
             <th class="desc">Telefono</th>
             <th class="desc">Estatus</th>
@@ -49,8 +49,8 @@ function getPlantilla($productos)
         $importetotal += $importe;
         $contenido .= '
   					<tr >
-  					<td class="qty" style="font-size: 5px">' . $producto["folio_nota"] . '</td>
-                      <td class="qty">' . $producto["cliente"] . '</td>
+  					<td class="qty" style="font-size: 9px">' . $producto["folio_nota"] . '</td>
+                      <td class="qty" style="font-size: 5px">' . $producto["cliente"] . '</td>
                       <td class="qty">' . $producto["telefono_cliente"] . '</td>
                       <td class="qty">' . $producto["estatus"] . '</td>
                       <td class="qty">' . $producto["empleado"] . '</td>
