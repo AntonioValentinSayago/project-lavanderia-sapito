@@ -284,7 +284,7 @@ if (!isset($_SESSION['cargo'])) {
                         ?>
                         <h6>
                           <?php echo $totalRegistros ?>
-                          <a href="../pdf/pedidos/pdf.php"><span class="text-success small pt-1 fw-bold"></span> <span
+                          <a href="../pdf/pedidos/pdf.php" target="_black"><span class="text-success small pt-1 fw-bold"></span> <span
                               class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i
                                 class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
                         </h6>
