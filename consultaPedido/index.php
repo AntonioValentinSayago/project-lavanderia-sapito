@@ -293,7 +293,6 @@ if (!isset($_SESSION['cargo'])) {
       initDataTableDelivery();
     })
 
-
     function initDataTableDelivery() {
       tblDeliveryView = $("#example1").DataTable({
         fixedMeader: true,
@@ -324,7 +323,6 @@ if (!isset($_SESSION['cargo'])) {
             null,
             null,
             {"searchable": false},
-            {"searchable": false}, // Tercera columna (Ciudad) - Será searchable
             {"searchable": false}, // Tercera columna (Ciudad) - Será searchable
         ]
       });
