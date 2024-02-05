@@ -17,10 +17,7 @@ function getPlantilla($productos)
       </div>
       <div id="company" class="clearfix">
         <div><h2>Lavandería Sapito</h2></div>
-        
-        <div>HEHD000000123</div>
-        <div>Av. Robles, Comitan, Chiapas</div>
-		<div>960000000</div>
+      
       </div>
 	  <br>
       <div id="project">
