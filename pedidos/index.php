@@ -337,7 +337,7 @@ require_once("../config/db_config.php");
                     placeholder="00.00">
                 </div>
                 <div class="col-md-4 ingresoRestaPrecio">
-                  <label for="">Total a Par:</label><br>
+                  <label for="">Total a Pagar:</label><br>
                   <input type="number" class="form-control restaPrecioProducto" id="resta" totalResta=""
                     placeholder="00.00" disabled style="background-color: #cbd5e1; font-weight: 900;">
                 </div>
