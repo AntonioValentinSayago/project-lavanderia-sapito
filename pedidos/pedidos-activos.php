@@ -259,7 +259,7 @@ require_once("../config/db_config.php");
                                 <?php echo ($Estatus == 'Pendiente') ? "PENDIENTE" : "ENTREGADO" ?>
                               </span>
                             </td>
-                            <td style="text-align:center;">
+                            <td style="text-align:center;text-transoform: uppercase">
                               <?php echo $fila["nombreCliente"]; ?>
                             </td>
                             <td style="text-align:center;">
