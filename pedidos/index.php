@@ -195,7 +195,7 @@ require_once("../config/db_config.php");
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
-      <h1>Generar Nueva Venta</h1>
+      <h1>Crear Nueva Venta</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php"></a></li>
@@ -204,7 +204,7 @@ require_once("../config/db_config.php");
       </nav>
       <div style="margin-left: auto;">
         <a href="../clientes/addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
-              class="bi bi-person-fill-add"></i> Nuevo
+              class="bi bi-person-fill-add"></i> Agregar Nuevo
             Cliente</button></a>
         <button type="button" class="btn"   style="background:#34d399; color:#f0fdf4" data-bs-toggle="modal" data-bs-target="#exampleModal"
           id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
