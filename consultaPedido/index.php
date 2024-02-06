@@ -222,7 +222,7 @@ if (!isset($_SESSION['cargo'])) {
                   <!-- Active Table -->
                   <table class="table table-striped" id="example1">
                     <thead>
-                      <tr style="background:#F4f4f8; text-align:center">
+                      <tr style="background:#F4f4f8; text-align:center; font-size: 5px">
                         <th scope="col">Folio Nota</th>
                         <th scope="col">Nombre de Cliente</th>
                         <th scope="col">Estatus</th>
