@@ -228,7 +228,7 @@ if (!isset($_SESSION['cargo'])) {
                             <div class="card recent-sales overflow-auto">
                                 <div class="card-body">
                                     <hr>
-                                    <table class="table table-borderless" id="example">
+                                    <table class="table table-border" id="example">
                                         <thead style="text-align:center">
                                             <tr>
                                                 <th scope="col">NOMBRE DESCRIPTIVO</th>
