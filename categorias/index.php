@@ -221,7 +221,7 @@ if (!isset($_SESSION['cargo'])) {
         <section class="section dashboard">
             <div class="row">
                 <!-- Left side columns -->
-                <div class="col-lg-10">
+                <div class="col-lg-11">
                     <div class="row">
                         <!-- Recent Sales -->
                         <div class="col-12">
