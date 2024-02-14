@@ -226,9 +226,9 @@ if (!isset($_SESSION['cargo'])) {
                       <?php
                       $fecha_reporte_diario = date('Y-m-d');
                       $consulta = "SELECT SUM(ingreso_total_diario) AS total_ingreso, fecha_reporte
-              FROM ctl_reporte_diarios
-              WHERE DATE(fecha_reporte) = '2024-02-13'
-              GROUP BY fecha_reporte";
+                                   FROM ctl_reporte_diarios
+                                   WHERE fecha_reporte = '$fecha_reporte_diario'
+                                   GROUP BY fecha_reporte";
                       $stmt = mysqli_query($conexion, $consulta);
 
                       if ($stmt) {
