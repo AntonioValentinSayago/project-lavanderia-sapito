@@ -343,7 +343,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Fecha de Entrega</label>
-                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo $date ?>">
+                  <input type="date" class="form-control" required id="fechaEntrega" min="<?php echo date('Y-m-d'); ?>">
                 </div>
                 <div class="col-md-4">
                   <label for="">Horario de Entrega:</label>
