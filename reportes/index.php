@@ -229,7 +229,7 @@ if (!isset($_SESSION['cargo'])) {
                       // Realizar la consulta SQL
                       $consulta = "SELECT SUM(ingreso_total_diario) AS total_ingreso, fecha_reporte
                         FROM ctl_reporte_diarios
-                        WHERE DATE(fecha_reporte) = '$fecha_reporte_diario'
+                        WHERE DATE(fecha_reporte) = date('Y-m-d')
                         GROUP BY fecha_reporte";
                       $stmt = mysqli_query($conexion, $consulta);
 
