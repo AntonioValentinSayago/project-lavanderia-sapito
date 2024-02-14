@@ -225,10 +225,12 @@ if (!isset($_SESSION['cargo'])) {
                     <div class="ps-3">
                       <?php
                       $fecha_reporte_diario = date('Y-m-d');
+
+                      // Realizar la consulta SQL
                       $consulta = "SELECT SUM(ingreso_total_diario) AS total_ingreso, fecha_reporte
-                                   FROM ctl_reporte_diarios
-                                   WHERE fecha_reporte = '$fecha_reporte_diario'
-                                   GROUP BY fecha_reporte";
+                        FROM ctl_reporte_diarios
+                        WHERE DATE(fecha_reporte) = '$fecha_reporte_diario'
+                        GROUP BY fecha_reporte";
                       $stmt = mysqli_query($conexion, $consulta);
 
                       if ($stmt) {
@@ -244,9 +246,9 @@ if (!isset($_SESSION['cargo'])) {
                           <a href="" target="_target" style="color: #7f1d1d; font-weight:900"><span
                               class="text-success small pt-1 fw-bold"></span>
                             <a href="../pdf/reportes-diarios/pdf.php" target="_target">
-                              <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;" >
-                              <i class="bi bi-filetype-pdf"></i> Generar Reporte de Ingresos Diarios
-                            </button>
+                              <button type="buton" class="btn" style="background:#34d399; color:#f0fdf4;">
+                                <i class="bi bi-filetype-pdf"></i> Generar Reporte de Ingresos Diarios
+                              </button>
                             </a>
                             <?php
                         } else {
@@ -285,9 +287,10 @@ if (!isset($_SESSION['cargo'])) {
                         ?>
                         <h6>
                           <?php echo $totalRegistros ?>
-                          <a href="../pdf/pedidos/pdf.php" target="_black"><span class="text-success small pt-1 fw-bold"></span> <span
-                              class="text-muted small pt-2 ps-1" style="color: #7f1d1d; font-weight:900"><i
-                                class="bi bi-filetype-pdf"></i> Generar PDF</span></a>
+                          <a href="../pdf/pedidos/pdf.php" target="_black"><span
+                              class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"
+                              style="color: #7f1d1d; font-weight:900"><i class="bi bi-filetype-pdf"></i> Generar
+                              PDF</span></a>
                         </h6>
                         <?php
                       } else {
