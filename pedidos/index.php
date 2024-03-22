@@ -275,7 +275,9 @@ require_once("../config/db_config.php");
                   <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
                   <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
+                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true"
+                    style="height: 50px;"  
+                  >
                     <option value="">-- Seleccione Cliente --</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
