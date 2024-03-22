@@ -195,6 +195,9 @@ require_once("../config/db_config.php");
   <main id="main" class="main">
 
     <div class="pagetitle" style="display: flex;">
+      <div class="alert alert-warning" role="alert">
+        Sitio web en mantenimiento
+      </div>
       <h1>Crear Nueva Venta</h1>
       <nav>
         <ol class="breadcrumb">
