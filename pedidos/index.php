@@ -329,7 +329,7 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
-                  <input type="text" class="form-control restaCantidadProducto" required id="dineroCuenta"
+                  <input type="number" class="form-control restaCantidadProducto" required id="dineroCuenta"
                     placeholder="00.00">
                 </div>
                 <div class="col-md-4 ingresoRestaPrecio">
@@ -600,6 +600,9 @@ require_once("../config/db_config.php");
       var obervaciones = document.getElementById("obervaciones").value;
       var tabla = document.getElementById("miTabla");
       var valoresColumna = [];
+
+      //* validacion para no insertar datos mayores o menor al dinero total a pagar
+      if(dineroCuenta === 0 || dineroCuenta > resta) dineroCuenta.value = 0;
 
       // Se valida de que existan productos en la venta
       if (total === '') {
