@@ -593,14 +593,15 @@ require_once ("../config/db_config.php");
   <script>
 
     document.getElementById("dineroCuenta").addEventListener("blur", function () {
-      // validar();
-      console.log("Sali del Input");
+      validar();
     });
     function validar() {
       var dineroCuenta = document.getElementById("dineroCuenta").value;
       var resta = document.getElementById("resta").value;
       //* validacion para no insertar datos mayores o menor al dinero total a pagar
-      if (dineroCuenta < 0 || dineroCuenta > resta) dineroCuenta.value = ' ';
+      if (dineroCuenta > resta) {
+        dineroCuenta.value = ' '
+      }
     }
   </script>
 
