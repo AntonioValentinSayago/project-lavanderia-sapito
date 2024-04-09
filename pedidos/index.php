@@ -593,7 +593,8 @@ require_once ("../config/db_config.php");
   <script>
 
     document.getElementById("dineroCuenta").addEventListener("blur", function () {
-      validar();
+      // validar();
+      console.log("Sali del Input");
     });
     function validar() {
       var dineroCuenta = document.getElementById("dineroCuenta").value;
