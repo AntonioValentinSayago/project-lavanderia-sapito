@@ -232,7 +232,7 @@ require_once("../config/db_config.php");
               <form class="row g-3">
                 <div class="col-md-4">
                   <label for="categoria">Lista de Categorías Disponibles</label>
-                  <select class="form-control" type="text" onchange="selectNit(event)" id="categoria" data-show-subtext="true" data-live-search="true">
+                  <select class="form-control select2" type="text" onchange="selectNit(event)" id="categoria" data-show-subtext="true" data-live-search="true">
                     <option value="null" selected> - Seleccione una Opción - </option>
                     <?php
                     $consultaCategoria = "SELECT * FROM ctl_categorias";
