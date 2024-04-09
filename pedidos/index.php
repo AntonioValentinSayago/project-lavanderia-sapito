@@ -600,7 +600,7 @@ require_once ("../config/db_config.php");
       var resta = document.getElementById("resta").value;
       //* validacion para no insertar datos mayores o menor al dinero total a pagar
       if (dineroCuenta > resta) {
-        dineroCuenta = " ";
+        alert("Error_servicio en mantenimiento");
       }
     }
   </script>
