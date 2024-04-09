@@ -602,7 +602,7 @@ require_once("../config/db_config.php");
       var valoresColumna = [];
 
       //* validacion para no insertar datos mayores o menor al dinero total a pagar
-      if(dineroCuenta === 0 || dineroCuenta > resta) dineroCuenta.value = 0;
+      if(dineroCuenta === 0 || dineroCuenta > resta) dineroCuenta.value = ' ';
 
       // Se valida de que existan productos en la venta
       if (total === '') {
