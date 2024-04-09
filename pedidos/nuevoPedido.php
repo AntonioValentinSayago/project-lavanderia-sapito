@@ -15,6 +15,7 @@ $resta = $_POST['resta'];
 $fechaEntrega = $_POST['fechaEntrega'];
 $obervaciones = $_POST['obervaciones'];
 $horaEntrega = $_POST['horaEntrega'];
+
 // Seperar la Hora y la Fecha
 list($fecha_nueva, $hora) = explode('T', $fechaEntrega);
 $fecha_nueva = date('Y-m-d', strtotime($fecha));

@@ -67,12 +67,6 @@ require_once("../config/db_config.php");
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -238,7 +232,7 @@ require_once("../config/db_config.php");
               <form class="row g-3">
                 <div class="col-md-4">
                   <label for="categoria">Lista de Categorías Disponibles</label>
-                  <select class="form-control" type="text" onchange="selectNit(event)" id="categoria">
+                  <select class="form-control" type="text" onchange="selectNit(event)" id="categoria" data-show-subtext="true" data-live-search="true">
                     <option value="null" selected> - Seleccione una Opción - </option>
                     <?php
                     $consultaCategoria = "SELECT * FROM ctl_categorias";
@@ -271,13 +265,11 @@ require_once("../config/db_config.php");
               <hr>
               <!-- No Labels Form method="POST" action="nuevaVenta.php"-->
               <form class="row g-3 formularioVenta" id="agregarVenta">
+                <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
                 <div class="col-md-9">
                   <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
-                  <input type="hidden" value="<?php echo ucfirst($_SESSION['id']); ?>" id="idEmpleado">
-                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true"
-                    style="height: 50px;"  
-                  >
+                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
                     <option value="">-- Seleccione Cliente --</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
@@ -382,6 +374,7 @@ require_once("../config/db_config.php");
 
   </main><!-- End #main -->
 
+  <!-- Es ek scrip para gestiona las datatable -->
   <script>
     /* ---------------------------------------------------*/
     $(function () {
@@ -450,6 +443,7 @@ require_once("../config/db_config.php");
     }
 
   </script>
+
   <script>
 
     function alertaMensaje() {
