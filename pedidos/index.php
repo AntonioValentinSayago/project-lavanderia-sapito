@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
   header('location: ../index.php');
 }
-require_once("../config/db_config.php");
+require_once ("../config/db_config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +117,7 @@ require_once("../config/db_config.php");
           <span>Crear Nueva Nota</span>
         </a>
       </li><!-- End Dashboard Nav -->
-      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="pedidos-activos.php">
           <i class="bi bi-grid"></i>
@@ -179,17 +179,17 @@ require_once("../config/db_config.php");
       <li class="nav-item">
         <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
           <i class="bi bi-box-arrow-right"></i>
-          <span>Salir del  Sistema</span>
+          <span>Salir del Sistema</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
     </ul>
-    
+
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-      <div class="alert alert-warning" role="alert">
-        Sitio web en mantenimiento
-      </div>
+    <div class="alert alert-warning" role="alert">
+      Sitio web en mantenimiento
+    </div>
     <div class="pagetitle" style="display: flex;">
       <h1>Crear Nueva Venta</h1>
       <nav>
@@ -202,8 +202,8 @@ require_once("../config/db_config.php");
         <a href="../clientes/addCliente.php"><button type="button" class="btn btn-primary btn-add"><i
               class="bi bi-person-fill-add"></i> Agregar Nuevo
             Cliente</button></a>
-        <button type="button" class="btn"   style="background:#34d399; color:#f0fdf4" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
+        <button type="button" class="btn" style="background:#34d399; color:#f0fdf4" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" id="showTable"><i class="bi bi-eye-fill"></i> Lista de Precios</button>
       </div>
     </div><!-- End Page Title -->
 
@@ -214,25 +214,26 @@ require_once("../config/db_config.php");
           <div class="card recent-sales overflow-auto">
             <div class="card-body mt-2">
               <h5 style="font-size:10px;padding:0px 0px 0px 0px">
-              <?php 
-                    // Establecer la zona horaria a la Ciudad de México
-                    date_default_timezone_set('America/Mexico_City');
-                    
-                    // Crear un objeto DateTimeImmutable con la fecha y hora actuales
-                    $fecha_actual = new DateTimeImmutable();
-                    // Obtener la fecha formateada
-                    $fecha_formateada = $fecha_actual->format('Y-m-d H:i:s');
+                <?php
+                // Establecer la zona horaria a la Ciudad de México
+                date_default_timezone_set('America/Mexico_City');
 
-                    // Imprimir la fecha
-                    echo "Fecha actual en la Ciudad de México: $fecha_formateada";
-              ?>
+                // Crear un objeto DateTimeImmutable con la fecha y hora actuales
+                $fecha_actual = new DateTimeImmutable();
+                // Obtener la fecha formateada
+                $fecha_formateada = $fecha_actual->format('Y-m-d H:i:s');
+
+                // Imprimir la fecha
+                echo "Fecha actual en la Ciudad de México: $fecha_formateada";
+                ?>
               </h5>
               <hr>
               <!-- No Labels Form -->
               <form class="row g-3">
                 <div class="col-md-4">
                   <label for="categoria">Lista de Categorías Disponibles</label>
-                  <select class="form-control select2" type="text" onchange="selectNit(event)" id="categoria" data-show-subtext="true" data-live-search="true">
+                  <select class="form-control select2" type="text" onchange="selectNit(event)" id="categoria"
+                    data-show-subtext="true" data-live-search="true">
                     <option value="null" selected> - Seleccione una Opción - </option>
                     <?php
                     $consultaCategoria = "SELECT * FROM ctl_categorias";
@@ -257,8 +258,9 @@ require_once("../config/db_config.php");
                   <label for="nit">PRECIO $</label>
                   <input type="number" class="form-control" id="nit" disabled>
                 </div>
-                <div class="col-md-4" >
-                  <button type="button" class="btn btn-block" id="adicionar"  style="background:#34d399; color:#f0fdf4; width:100%">Agregar al Pedido</button>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-block" id="adicionar"
+                    style="background:#34d399; color:#f0fdf4; width:100%">Agregar al Pedido</button>
                   <!-- <button type="reset" class="btn btn-secondary btn-block" style="background: #083344">Limpiar</button> -->
                 </div>
               </form><!-- End No Labels Form -->
@@ -269,7 +271,8 @@ require_once("../config/db_config.php");
                 <div class="col-md-9">
                   <label for="id_cliente">Clientes Disponibles</label>
                   <!-- data-live-search="true" data-live-search-style="startsWith" -->
-                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true" data-live-search="true">
+                  <select class="form-control select2" type="text" id="id_cliente" required data-show-subtext="true"
+                    data-live-search="true">
                     <option value="">-- Seleccione Cliente --</option>
                     <?php
                     $consultaClientes = "SELECT * FROM clientes";
@@ -325,7 +328,8 @@ require_once("../config/db_config.php");
                 </div>
                 <div class="col-md-2 text-center">
                   <label for="">Subtotal a Pagar</label><br>
-                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled style="background-color: #cbd5e1; font-weight: 900;">
+                  <input type="number" class="form-control" id="total" total="" placeholder="00.00" disabled
+                    style="background-color: #cbd5e1; font-weight: 900;">
                 </div>
                 <div class="col-md-4">
                   <label for="">Dinero a cuenta*</label>
@@ -358,11 +362,13 @@ require_once("../config/db_config.php");
                   <input type="text" class="form-control" required id="obervaciones">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4;"><i class="bi bi-save"></i> Crear Pedido</button>
+                  <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4;"><i
+                      class="bi bi-save"></i> Crear Pedido</button>
                   <!-- <button type="button" class="btn" onclick="alertaMensaje()"  style="background:#34d399; color:#f0fdf4;" ><i class="bi bi-save"></i>
                     Crear y guardar Pedido</button> -->
-                  <button type="reset" onclick="resetFormulario()" class="btn btn-default" style="background: #991b1b; color:white">
-                      <i class="bi bi-trash3"></i> Cancelar Pedido
+                  <button type="reset" onclick="resetFormulario()" class="btn btn-default"
+                    style="background: #991b1b; color:white">
+                    <i class="bi bi-trash3"></i> Cancelar Pedido
                   </button>
                 </div>
               </form><!-- End No Labels Form -->
@@ -582,6 +588,21 @@ require_once("../config/db_config.php");
     })
 
   </script>
+
+  <!-- Validar que se ingrese la cantidad correcta -->
+  <script>
+
+    document.getElementById("dineroCuenta").addEventListener("blur", function () {
+      validar();
+    });
+    function validar() {
+      var dineroCuenta = document.getElementById("dineroCuenta").value;
+      var resta = document.getElementById("resta").value;
+      //* validacion para no insertar datos mayores o menor al dinero total a pagar
+      if (dineroCuenta < 0 || dineroCuenta > resta) dineroCuenta.value = ' ';
+    }
+  </script>
+
   <script>
     $('#agregarVenta').submit(function (e) {
       e.preventDefault(); // Evita el envío del formulario estándar
@@ -601,8 +622,6 @@ require_once("../config/db_config.php");
       var tabla = document.getElementById("miTabla");
       var valoresColumna = [];
 
-      //* validacion para no insertar datos mayores o menor al dinero total a pagar
-      if(dineroCuenta === 0 || dineroCuenta > resta) dineroCuenta.value = ' ';
 
       // Se valida de que existan productos en la venta
       if (total === '') {
@@ -705,11 +724,11 @@ require_once("../config/db_config.php");
   </script>
 
   <!-- BUSCADOR DEL SELECT -->
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2();
     });
-</script>
+  </script>
 
 
   <!-- Modal -->
@@ -748,7 +767,8 @@ require_once("../config/db_config.php");
                 }
               } else {
                 ?>
-                <h5 class="alert" style="background-color: #fbbf24; font-weight: 900;">No hay registros en la base de datos</h5>
+                <h5 class="alert" style="background-color: #fbbf24; font-weight: 900;">No hay registros en la base de
+                  datos</h5>
                 <?php
               }
               ?>
@@ -756,7 +776,8 @@ require_once("../config/db_config.php");
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" data-bs-dismiss="modal" style="background: #991b1b; color:white">Cerrar Ventana</button>
+          <button type="button" class="btn" data-bs-dismiss="modal" style="background: #991b1b; color:white">Cerrar
+            Ventana</button>
         </div>
       </div>
     </div>
