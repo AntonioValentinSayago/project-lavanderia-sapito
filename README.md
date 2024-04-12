@@ -1,4 +1,4 @@
-# Lavanderia Sapito, control de inventarios y de pedidos en PHP y MySQL
+# Lavanderia Sapito, control de inventarios y de pedidos en PHP y MySQL Version 1.1.10
 
 Aplicación construida en PHP en programación orientada a Objetos, la cual consume un servicio de Api de la plataforma "GIPHY Developers"
 
