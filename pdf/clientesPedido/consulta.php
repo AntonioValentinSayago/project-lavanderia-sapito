@@ -1,6 +1,6 @@
 <?php
 
-$mysqli= new mysqli("localhost","u551598332_root","#iSmT:[>8","u551598332_lavanderia_sap");
+$mysqli= new mysqli("localhost","u551598332_lavanderiasapi","D2!N!E~8a!","u551598332_lavanderiasapi");
 $mysqli->set_charset("utf8");
 $consulta=$mysqli->prepare("SELECT DISTINCT cl.nombreCompleto,cl.idCliente,estatus,direccion,folio_nota, 
                             ped.costoPagar,ped.fecha_entrega,

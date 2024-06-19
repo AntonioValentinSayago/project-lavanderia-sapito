@@ -5,7 +5,7 @@ require_once 'ejemplo.php';
 
 $fecha = $_POST['fecha'];
 
-$mysqli= new mysqli("localhost","u551598332_root","#iSmT:[>8","u551598332_lavanderia_sap");
+$mysqli= new mysqli("localhost","u551598332_lavanderiasapi","D2!N!E~8a!","u551598332_lavanderiasapi");
 $mysqli->set_charset("utf8");
 $consulta=$mysqli->prepare("SELECT * from ctl_historial WHERE fecha_entrega = '$fecha'");
 $consulta->execute();

@@ -7,10 +7,10 @@
 
         # Atributos de la clase conexion
         private $mysqli = '';
-        private $usuario = 'u551598332_root';
-        private $clave = '#iSmT:[>8';
+        private $usuario = 'u551598332_lavanderiasapi';
+        private $clave = 'D2!N!E~8a!';
         private $server = 'localhost';
-        private $db = 'u551598332_lavanderia_sap';
+        private $db = 'u551598332_lavanderiasapi';
 
 
         # Funcion que permite conectarnos a la base de datos
