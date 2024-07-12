@@ -100,81 +100,81 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
     </header><!-- End Header -->
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-        <a class="nav-link collapsed " href="../pedidos/index.php">
-          <i class="bi bi-grid"></i>
-          <span>Crear Nueva Nota</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link collapsed " href="../pedidos/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Crear Nueva Nota</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
-          <i class="bi bi-grid"></i>
-          <span>Control de Pedidos Activos</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../pedidos/pedidos-activos.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Control de Pedidos Activos</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../consultaPedido/index.php">
-          <i class="bi bi-grid"></i>
-          <span>Historial de Notas Entregadas</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../consultaPedido/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Historial de Notas Entregadas</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../inventario/inventario.php">
-          <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
-        </a>
-      </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../inventario/inventario.php">
+                    <i class="bi bi-menu-button-wide"></i><span>Inventario de Productos</span>
+                </a>
+            </li><!-- End Components Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../categorias/index.php">
-          <i class="bi bi-tags"></i><span>Control de Categorias</span>
-        </a>
-      </li><!-- End Components Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../categorias/index.php">
+                    <i class="bi bi-tags"></i><span>Control de Categorias</span>
+                </a>
+            </li><!-- End Components Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../reportes/index.php">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
-        </a>
-      </li><!-- End Tables Nav -->
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../gastos/index.php">
-          <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
-        </a>
-      </li><!-- End Charts Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../reportes/index.php">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Gestion de Reportes/Reportes Diarios</span>
+                </a>
+            </li><!-- End Tables Nav -->
 
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../clientes/clientes.php">
-          <i class="bi bi-person"></i>
-          <span>Control de Clientes</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../gastos/index.php">
+                    <i class="bi bi-bar-chart"></i><span>Gastos de Generales</span>
+                </a>
+            </li><!-- End Charts Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-person-add"></i>
-          <span>Control de Empleados</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" onclick="example()">
-          <i class="bi bi-question-circle"></i>
-          <span>Manual de Usuario</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
-          <i class="bi bi-box-arrow-right"></i>
-          <span>Salir del Sistema</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-    </ul>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../clientes/clientes.php">
+                    <i class="bi bi-person"></i>
+                    <span>Control de Clientes</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-person-add"></i>
+                    <span>Control de Empleados</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" onclick="example()">
+                    <i class="bi bi-question-circle"></i>
+                    <span>Manual de Usuario</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../login/controller/cerrarSesion.php">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Salir del Sistema</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+        </ul>
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -206,27 +206,27 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                         <div class="col-md-6">
                                             <label>Nombre Completo</label>
                                             <input type="text" class="form-control" placeholder="Nombre (S)"
-                                                name="nombreEmp" style="text-transform:uppercase">
+                                                name="nombreEmp" style="text-transform:uppercase" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Apellidos (s)</label>
                                             <input type="text" class="form-control" placeholder="Apellido (S)"
-                                                name="lastEmp" style="text-transform:uppercase">
+                                                name="lastEmp" style="text-transform:uppercase" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Correo Electronico</label>
                                             <input type="text" class="form-control" placeholder="Correo Electronico"
-                                                name="email" style="text-transform:uppercase">
+                                                name="email" style="text-transform:uppercase" required>
                                         </div>
                                         <div class="col-md-3">
                                             <label>Telefono</label>
                                             <input type="number" class="form-control" placeholder="Telefono"
-                                                name="telefono">
+                                                name="telefono" required>
                                         </div>
                                         <div class="col-md-3">
                                             <label>Privilegios</label>
                                             <select name="cargo" class="form-control"
-                                                placeholder="Seleccione una opcion">
+                                                placeholder="Seleccione una opcion" required>
                                                 <option value="" disabled selected>Seleccione...</option>
                                                 <option value="0">EMPLEADO</option>
                                                 <option value="1">ADMINISTRADOR</option>
@@ -235,18 +235,19 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                         <div class="col-md-2">
                                             <label># Empleado</label>
                                             <input type="d" class="form-control" placeholder="Numero de Empleado"
-                                                name="numEmp" value="LS-EMP101">
+                                                name="numEmp" value="LS-EMP101" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Contraseña</label>
                                             <input type="text" class="form-control" placeholder="Nueva Contraseña"
-                                                name="password">
+                                                name="password" required>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn" style="background:#34d399; color:#f0fdf4"><i
+                                            <button type="submit" class="btn"
+                                                style="background:#34d399; color:#f0fdf4"><i
                                                     class="bi bi-save-fill"></i> Guardar Nuevo Empleado</button>
-                                            <a href="index.php"><button type="button"
-                                                    class="btn btn-default" style="background: #991b1b; color:white">Cancelar/regresar</button></a>
+                                            <a href="index.php"><button type="button" class="btn btn-default"
+                                                    style="background: #991b1b; color:white">Cancelar/regresar</button></a>
                                         </div>
                                     </form><!-- End No Labels Form -->
                                 </div>
