@@ -226,9 +226,7 @@ if (!isset($_SESSION['cargo'])) {
     <!--Inicio del Section Principal-->
     <section class="section dashboard">
       <div class="row">
-
         <div class="col-xl-12">
-
           <div class="card">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
@@ -260,7 +258,7 @@ if (!isset($_SESSION['cargo'])) {
                         while ($fila = mysqli_fetch_array($stmt)) {
                           $cargo = $fila["cargo"];
                           ?>
-                          <tr>
+                          <tr style="font-size: 8px;">
                             <td>
                               <?php echo strtoupper($fila["nombreCompleto"]); ?>
                             </td>
