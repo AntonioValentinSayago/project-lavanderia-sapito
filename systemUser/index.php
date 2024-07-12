@@ -239,7 +239,6 @@ if (!isset($_SESSION['cargo'])) {
                     <thead>
                       <tr>
                         <th scope="col">Datos del Empleado</th>
-                        <th scope="col">Apellido (S)</th>
                         <th scope="col">Correo Electronico</th>
                         <th scope="col"># Empleado</th>
                         <th scope="col">Telefono</th>
