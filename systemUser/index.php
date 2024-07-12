@@ -238,7 +238,7 @@ if (!isset($_SESSION['cargo'])) {
                   <table class="table table-borderless datatable" id="example1">
                     <thead>
                       <tr>
-                        <th scope="col">Datos del Empleado</th>
+                        <th scope="col" style="font-size: 5px;">Datos del Empleado</th>
                         <th scope="col">Correo Electronico</th>
                         <th scope="col"># Empleado</th>
                         <th scope="col">Telefono</th>
