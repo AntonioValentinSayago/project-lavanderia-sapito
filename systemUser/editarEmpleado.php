@@ -255,10 +255,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                         name="password">
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-success"><i
+                                                    <button type="submit" class="btn btn-success"
+                                                            style="background:#34d399; color:#f0fdf4"><i
                                                             class="bi bi-save-fill"></i> Guardar</button>
                                                     <a href="index.php"><button type="button"
-                                                            class="btn btn-secondary">Cancelar</button></a>
+                                                            class="btn btn-secondary"
+                                                            style="background: #991b1b; color:white">Cancelar</button></a>
                                                 </div>
                                             </form><!-- End No Labels Form -->
                                             <?php
