@@ -218,22 +218,22 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                     <input type="hidden" value="<?php echo $fila["id_ctlUserSystem"]; ?>"
                                                         name="id_ctlUserSystem">
                                                     <input type="text" class="form-control"
-                                                        value="<?php echo $fila["nombreCompleto"]; ?>" name="nombreEmp">
+                                                        value="<?php echo $fila["nombreCompleto"]; ?>" name="nombreEmp" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>Apellidos (s)</label>
                                                     <input type="text" class="form-control"
-                                                        value="<?php echo $fila["apellidoCompleto"]; ?>" name="lastEmp">
+                                                        value="<?php echo $fila["apellidoCompleto"]; ?>" name="lastEmp" required>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label>Correo Electronico</label>
                                                     <input type="text" class="form-control"
-                                                        value="<?php echo $fila["email_correo"]; ?>" name="email">
+                                                        value="<?php echo $fila["email_correo"]; ?>" name="email" required>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Telefono</label>
                                                     <input type="number" class="form-control"
-                                                        value="<?php echo $fila["telefono"]; ?>" name="telefono">
+                                                        value="<?php echo $fila["telefono"]; ?>" name="telefono" required>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Privilegios</label>
@@ -247,12 +247,12 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1) {
                                                 <div class="col-md-2">
                                                     <label># Empleado</label>
                                                     <input type="d" class="form-control" name="numEmp"
-                                                        value="<?php echo $fila["num_empleado"]; ?>">
+                                                        value="<?php echo $fila["num_empleado"]; ?>" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>Contraseña</label>
                                                     <input type="text" class="form-control" value="<?php echo $fila["clave"]; ?>"
-                                                        name="password">
+                                                        name="password" required>
                                                 </div>
                                                 <div class="text-center">
                                                     <button type="submit" class="btn btn-success"
