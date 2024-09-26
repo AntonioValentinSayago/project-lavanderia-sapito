@@ -1,4 +1,4 @@
-# Lavanderia Sapito, control de inventarios y de pedidos en PHP y MySQL Version 3.2.12
+# Lavanderia Sapito, control de inventarios y de pedidos en PHP y MySQL Version 3.3.12
 
 Aplicación construida en PHP con MySQL, para la gestión de una lavanderia
 
